@@ -1,0 +1,28 @@
+|_index.html
+|_nosotros.html
+|_accesibilidad.html
+|_servicios.html
+|_actividades.html
+|_contacto.html
+|_404.html
+|_header.html
+|_footer.html
+|_admin.html
+|_carrito.html
+|_gracias.html
+|_yodate-hook
+|_CSS
+|  |_ style.css
+|  |_accesibilidad-paises.js
+|_img
+|_js
+|  |_pago.js
+|  |_carrito.js
+|  |_accesibilidad-paises.js
+|_backend
+   |_routes
+   |  |_alumnos.js
+   |_test.php
+   |_guardar_alumno.php
+   |_listar_alumnos.php  
+
