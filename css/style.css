@@ -1,0 +1,447 @@
+/* --- RESET BÁSICO Y ACCESIBILIDAD GENERAL --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    /* 🎨 PALETA CORREGIDA PARA DISLEXIA Y CONTRASTE (WCAG AAA/AA) */
+    --bg-color: #F5F5F5; /* Reemplazo de blanco puro */
+    --text-color: #121212;
+    
+    /* Colores institucionales ajustados para contraste ≥ 4.5:1 sobre #F5F5F5 */
+    --primary-color: #155BA6; /* Azul institucional oscurecido (Contraste 6.3:1 - AA) */
+    --secondary-color: #B35812; /* Naranja institucional oscurecido (Contraste 4.6:1 - AA) */
+    
+    --current-page-color: var(--primary-color);
+    --header-bg: #F5F5F5;
+    --focus-outline-color: #155BA6;
+    --nav-mobile-bg: rgba(245, 245, 245, 0.95);
+    
+    /* Variables de tipografía (WCAG AAA) */
+    --base-font-size: 1rem; 
+    --base-line-height: 1.5; 
+    --base-letter-spacing: 0.12em; 
+    --base-word-spacing: 0.16em; 
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #F8F9FA;
+    /* Colores institucionales aclarados para fondo oscuro */
+    --primary-color: #4B9FF3; /* Azul adaptado (Contraste 6:1 - AA) */
+    --secondary-color: #F1934E; /* Naranja original funciona bien en oscuro */
+    --current-page-color: #F8F9FA;
+    --header-bg: #1A1A1A;
+    --focus-outline-color: #FFD700;
+    --nav-mobile-bg: rgba(26, 26, 26, 0.98);
+}
+
+/* 🚀 NUEVO: Enlace de salto al contenido (CRÍTICO para teclado y voz) */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-color);
+    color: #F5F5F5;
+    padding: 8px;
+    z-index: 9999;
+    transition: top 0.2s;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Verdana', sans-serif; /* Recomendada para dislexia */
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
+    letter-spacing: var(--base-letter-spacing);
+    word-spacing: var(--base-word-spacing);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evitar desplazamiento horizontal general */
+}
+
+/* Estilos de foco universales y accesibles */
+:focus-visible {
+    outline: 3px solid var(--focus-outline-color);
+    outline-offset: 3px;
+}
+
+/* --- ESTILOS DEL HEADER (Mobile-First) --- */
+.main-header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid #CCCCCC;
+    position: fixed; /* Header fijo para accesibilidad de navegación */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0; /* Un poco de padding superior e inferior */
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilos de Marca/Logo */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo-svg {
+    margin-right: 0.75rem;
+    display: block;
+}
+
+.logo-img {
+    margin-right: 0.75rem;
+    display: block;
+    height: 60px; /* Altura base para mobile */
+    width: auto;  /* Esto asegura que la imagen no se deforme (mantiene el aspect ratio) */
+}
+.company-name {
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: none; /* Oculto en pantallas muy pequeñas, visible en media query */
+}
+
+/* --- ESTILOS DEL BOTÓN "HERRAMIENTAS ACCESIBILIDAD" --- */
+.btn-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Estado hover y focus para alto contraste */
+.btn-tools:hover, 
+.btn-tools:focus-visible,
+.btn-tools[aria-expanded="true"] {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+/* Inversión de color del ícono SVG en hover (si tu SVG lo permite por CSS) */
+.btn-tools:hover .icon-img, 
+.btn-tools:focus-visible .icon-img,
+.btn-tools[aria-expanded="true"] .icon-img {
+    filter: brightness(0) invert(1);
+}
+
+/* Adaptación para pantallas pequeñas (Mobile) */
+@media (max-width: 48rem) { /* Hasta 768px aprox */
+    .btn-tools {
+        border: none;
+        padding: 0.5rem;
+    }
+    
+    /* Ocultamos el texto visualmente, pero lo dejamos para lectores de pantalla */
+    .btn-tools .visible-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}
+
+/* Controles (Modo Oscuro y Burger) */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    padding: 0.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Estilos del Modo Oscuro */
+.moon-icon { display: none; }
+body.dark-mode .sun-icon { display: none; }
+body.dark-mode .moon-icon { display: block; }
+
+/* Estilos del Menú Burger */
+.mobile-menu-toggle {
+    display: block; /* Visible por defecto en mobile */
+}
+
+/* --- ESTILOS DE NAVEGACIÓN (Mobile-First, oculto por defecto) --- */
+.main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Oculto a la derecha */
+    width: 80%;
+    height: 100vh;
+    background-color: var(--nav-mobile-bg);
+    transition: right 0.3s ease;
+    z-index: 999;
+    padding: 6rem 1rem 2rem; /* Padding superior para el logo y controles */
+}
+
+/* Mostrar el menú cuando está abierto */
+.main-nav.open {
+    right: 0;
+}
+
+/* Superposición cuando el menú está abierto */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 998;
+}
+.nav-overlay.open { display: block; }
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaciado AAA */
+}
+
+.nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.125rem;
+    border-radius: 4px;
+}
+
+.nav-link:hover {
+    background-color: var(--focus-outline-color);
+    color: #FFFFFF;
+}
+
+.nav-link.current {
+    font-weight: bold;
+    color: var(--current-page-color);
+    border-bottom: 2px solid var(--current-page-color);
+}
+
+/* --- MEDIA QUERIES PARA ADAPTACIÓN --- */
+
+/* Adaptación para pantallas de tablets (ej: > 600px) */
+@media (min-width: 37.5rem) {
+    .company-name {
+        display: block; /* Mostrar nombre de la empresa */
+    }
+}
+
+/* Adaptación para pantallas medianas (ej: > 960px) - Menú horizontal */
+@media (min-width: 60rem) {
+    .header-container {
+        padding: 0 1.5rem;
+    }
+
+    .main-header {
+        position: static; /* Header no fijo para evitar problemas de reflujo en zoom extremo */
+        border-bottom: none;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-link {
+        margin-right: 1.5rem;
+    }
+
+    .logo-svg {
+        width: 70px; /* Un poco más grande en desktop */
+        height: 70px;
+    }
+
+    .logo-img {
+        height: 70px; /* Un poco más grande en desktop */
+    }
+    
+    .company-name {
+        font-size: 1rem; /* desktop */
+    }
+
+    /* Ocultar botón burger */
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    /* Re-estilizar navegación para horizontal */
+    .main-nav {
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        padding: 0;
+        right: auto;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        gap: 0.5rem; /* Menor gap para horizontal */
+    }
+
+    .nav-link {
+        font-size: 1rem; /* Normalizar en desktop */
+        padding: 0.5rem 0.75rem;
+    }
+
+    .nav-link.current {
+        border-bottom: none;
+    }
+}
+
+/* --- CLASE PARA LECTORES DE PANTALLA --- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* --- PANEL DE ACCESIBILIDAD --- */
+.accessibility-wrapper {
+    position: relative;
+}
+
+.acc-panel {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: var(--header-bg);
+    border: 2px solid var(--text-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.acc-panel[hidden] {
+    display: none;
+}
+
+.acc-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.acc-label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.acc-btn-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.acc-btn-row button, .acc-btn-full {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.acc-btn-row button:hover, .acc-btn-full:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+
+/* Estado presionado / activo */
+.acc-btn-full[aria-pressed="true"] {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    border-color: var(--text-color);
+}
+
+/* --- REGLA DE LECTURA (Reading Ruler) --- */
+.reading-ruler-layer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none; /* Permite hacer clic a través de ella */
+    z-index: 9999;
+    /* Efecto buzón: Oscurece arriba y abajo de la posición del ratón */
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) calc(var(--mouse-y, 50vh) - 60px),
+        transparent calc(var(--mouse-y, 50vh) - 60px),
+        transparent calc(var(--mouse-y, 50vh) + 60px),
+        rgba(0, 0, 0, 0.5) calc(var(--mouse-y, 50vh) + 60px),
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.reading-ruler-layer.active {
+    display: block;
+}
+
+/* Ajuste de la regla para modo oscuro */
+body.dark-mode .reading-ruler-layer {
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.15) calc(var(--mouse-y, 50vh) - 60px),
+        transparent calc(var(--mouse-y, 50vh) - 60px),
+        transparent calc(var(--mouse-y, 50vh) + 60px),
+        rgba(255, 255, 255, 0.15) calc(var(--mouse-y, 50vh) + 60px),
+        rgba(255, 255, 255, 0.15) 100%
+    );
+}

@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kyosei Accesibilidad</title>
+    <link rel="stylesheet" href="./css/style.css">
+     <!-- SEO principal -->
+    <meta name="description" 
+          content="Kyosei Accesibilidad impulsa el diseño inclusivo, la accesibilidad digital y la creación de recursos bilingües basados en WCAG 2.2. Capacitación, auditorías y herramientas para educadores, equipos técnicos y organizaciones.">
+    <meta name="keywords" 
+          content="accesibilidad digital, WCAG 2.2, diseño inclusivo, educación accesible, recursos bilingües, auditorías de accesibilidad, accesibilidad web, inclusión, UX accesible">
+    <meta name="author" content="Kyosei Accesibilidad">
+
+    <!-- Control de indexación -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.kyoseiaccesibilidad.com/">
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:title" content="Kyosei Accesibilidad | Diseño inclusivo y WCAG 2.2">
+    <meta property="og:description" content="Recursos, auditorías y formación en accesibilidad digital para equipos, educadores y organizaciones.">
+    <meta property="og:image" content="https://www.kyoseiaccesibilidad.com/img/kyosei-og.jpg">
+    <meta property="og:url" content="https://www.kyoseiaccesibilidad.com/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kyosei Accesibilidad | Diseño inclusivo y WCAG 2.2">
+    <meta name="twitter:description" content="Accesibilidad digital, recursos bilingües y formación para equipos y educadores.">
+    <meta name="twitter:image" content="https://www.kyoseiaccesibilidad.com/img/kyosei-og.jpg">
+
+   
+    
 </head>
 <body>
+    <header class="main-header" id="header-root">
+    <div class="header-container">
+        
+    <!-- <text x="50" y="55" text-anchor="middle" font-size="14" fill="#121212" font-family="Verdana, sans-serif" aria-label="Braille: K, Y, O, S, E, I">⠅ ⠽ ⠕ ⠎ ⠑ ⠊</text> -->
+                
+        <a href="index.html" class="logo-link" aria-label="Volver a Inicio de Kyosei Accesibilidad">
     
+            <img src="./img/logo-kyosei-con-fondo-circular.png" alt="Logotipo de Kyosei Accesibilidad con texto en Braille" class="logo-img" height="60">
+    
+            <span class="company-name">Kyosei Accesibilidad</span>
+        </a>
+
+        <div class="header-controls">
+            <button id="dark-mode-toggle" class="icon-button" aria-pressed="false" aria-label="Activar modo oscuro">
+                <span class="toggle-icon sun-icon" aria-hidden="true">&#9728;</span> <span class="toggle-icon moon-icon" aria-hidden="true">&#9789;</span> </button>
+
+            <button id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <span class="burger-icon" aria-hidden="true">&#9776;</span> </button>
+        </div>
+
+        <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link current">Inicio</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="accesibilidad.html" class="nav-link">Accesibilidad</a></li>
+                <li><a href="capacitaciones.html" class="nav-link">Capacitaciones</a></li>
+                <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+                <li><a href="actividades.html" class="nav-link">Actividades</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+ <script src="./js/main.js"></script>
 </body>
 </html>
