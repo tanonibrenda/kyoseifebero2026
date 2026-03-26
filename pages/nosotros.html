@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/./img/iconologo.ico">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<header class="main-header" id="header-root">
+    <div class="header-container">
+        
+        <a href="/./index.html" class="logo-link">
+            <img src="/./img/logo-kyosei-con-fondo-circular.png" alt="Logotipo Kyosei Accesibilidad" class="logo-img" height="60">
+            <span class="company-name">Kyosei Accesibilidad</span>
+        </a>
+
+        <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
+            <ul class="nav-list">
+                <li><a href="/./index.html" class="nav-link current" aria-current="page">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="/./recursos.html" class="nav-link">Recursos</a></li> 
+                <li><a href="/./cursosytalleres.html" class="nav-link">Cursos y Talleres</a></li>
+                <li><a href="/./servicios.html" class="nav-link">Servicios</a></li>
+                <li><a href="/./actividades.html" class="nav-link">Actividades</a></li>
+                <li><a href="/./contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-controls">
+            
+            <div class="accessibility-wrapper">
+                <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
+                    <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
+                    <span class="visible-text">Herramientas Accesibilidad</span>
+                </button>
+                
+                <div id="acc-panel" class="acc-panel" role="dialog" aria-labelledby="acc-title" hidden>
+                    <h2 id="acc-title" class="sr-only">Panel de preferencias de accesibilidad</h2>
+                    
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="theme-label">Tema Visual</span>
+                            <button type="button" id="dark-mode-toggle" class="acc-btn-full" aria-pressed="false">
+                                 Activar Modo Oscuro
+                             </button>
+                    </div>
+
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Tamaño de texto</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-fs-decrease" aria-label="Reducir tamaño de texto">A-</button>
+                            <button type="button" id="btn-fs-reset" aria-label="Restablecer tamaño de texto">A</button>
+                            <button type="button" id="btn-fs-increase" aria-label="Aumentar tamaño de texto">A+</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Interlineado</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-lh-decrease" aria-label="Reducir interlineado">↔-</button>
+                            <button type="button" id="btn-lh-reset" aria-label="Restablecer interlineado">↔</button>
+                            <button type="button" id="btn-lh-increase" aria-label="Aumentar interlineado">↔+</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Espaciado de letras</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-ls-decrease" aria-label="Reducir espaciado">T-</button>
+                            <button type="button" id="btn-ls-reset" aria-label="Restablecer espaciado">T</button>
+                            <button type="button" id="btn-ls-increase" aria-label="Aumentar espaciado">T+</button>
+                        </div>
+                    </fieldset>
+
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="ruler-label">Ayudas de lectura</span>
+                        <button type="button" id="toggle-ruler" class="acc-btn-full" aria-pressed="false">
+                            Activar Regla de Lectura
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <button type="button" id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <span class="burger-icon" aria-hidden="true">&#9776;</span> 
+            </button>
+        </div>
+    </div>
+</header>
+    
+<main id="main-content">
+    <section class="hero-section" aria-labelledby="titulo-nosotros">
+        <div class="hero-content-container">
+            <div class="hero-text-content">
+                <h1 id="titulo-nosotros">Nosotros</h1>
+                <p class="hero-lead">Conocé al equipo que trabaja para derribar barreras y construir un entorno digital sin exclusiones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section aria-labelledby="significado-kyosei" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
+        <h2 id="significado-kyosei" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+            ¿Qué significa Kyosei?
+        </h2>
+        <p>
+            La palabra <strong>Kyosei</strong> (共生) proviene del idioma japonés y significa <em>"vivir y trabajar juntos para el bien común"</em>. Para nosotras, este concepto es el corazón absoluto de la accesibilidad digital y el diseño inclusivo.
+        </p>
+        <p>
+            Creemos firmemente en un ecosistema digital donde todas las personas, independientemente de sus capacidades físicas, cognitivas o tecnológicas, puedan coexistir, participar y desarrollarse en igualdad de condiciones. Kyosei representa nuestro compromiso diario de crear entornos que abracen y celebren la diversidad humana.
+        </p>
+    </section>
+
+    <section aria-labelledby="nuestra-historia" style="padding: 2rem 1rem 4rem; max-width: 900px; margin: 0 auto;">
+        <h2 id="nuestra-historia" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+            Nuestra Historia
+        </h2>
+        <p>
+            Nuestra historia comienza con una convicción compartida: la tecnología debe funcionar como un puente, nunca como un muro. Al observar de cerca las constantes barreras que enfrentaban los usuarios en plataformas educativas y sitios web, Ximena Romero y Brenda Yohena Tanoni decidieron unir su experiencia y su pasión para generar un impacto real y medible.
+        </p>
+        <p>
+            Así nació <strong>Kyosei Accesibilidad</strong>. Lo que comenzó como un profundo deseo de mejorar los entornos de aprendizaje virtual, rápidamente evolucionó hasta convertirse en un emprendimiento sólido dedicado a capacitar, auditar y acompañar a organizaciones enteras. Nos basamos estrictamente en las pautas <strong>WCAG 2.2</strong> para asegurar resultados efectivos.
+        </p>
+        <p>
+            Hoy en día, nuestro equipo sigue creciendo con una misión clara: educar con empatía, diseñar con amor y testear con convicción, asegurando que cada proyecto digital esté verdaderamente abierto para todas las personas.
+        </p>
+    </section>
+    
+
+    <section aria-labelledby="nuestra-mision" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
+        <h2 id="nuestra-mision" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+            Nuestra Misión
+        </h2>
+        <p>
+            Construimos un mundo más accesible y justo a través de servicios especializados en accesibilidad. Comenzando por transformar la educación virtual mediante la capacitación docente y el testing de accesibilidad, trabajamos para que cada persona, sin importar sus capacidades, pueda participar plenamente en la era digital.
+        </p>
+    </section>
+
+    <section aria-labelledby="nuestra-vision" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
+        <h2 id="nuestra-vision" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+            Nuestra Visión
+        </h2>
+        <p>
+            Impulsar una sociedad digital equitativa donde la accesibilidad no sea una excepción, sino la norma. Buscamos liderar procesos de transformación inclusiva en instituciones educativas, empresas y entornos digitales.
+        </p>
+    </section>
+
+    <section aria-labelledby="nuestros-valores" style="padding: 2rem 1rem 4rem; max-width: 900px; margin: 0 auto;">
+        <h2 id="nuestros-valores" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+            Nuestros Valores
+        </h2>
+        
+        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            Kyosei, la búsqueda del bien común
+        </h3>
+        <p>
+            Nuestra filosofía central. Significa trabajar en comunidad para el bien común. Cada decisión, cada servicio y cada acción está orientada hacia el bienestar colectivo. Creemos que la prosperidad mutua se alcanza cuando todas las personas pueden participar plenamente en la sociedad.
+        </p>
+
+        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            La accesibilidad es un derecho, no un privilegio
+        </h3>
+        <p>
+            Trabajamos para que cada experiencia digital sea accesible por diseño, eliminando barreras que impiden la participación plena de las personas. Por eso trabajamos con amor, pasión y tenacidad resiliente; para generar un impacto social auténtico.
+        </p>
+    </section>
+
+    <section aria-labelledby="nuestro-equipo" style="padding: 2rem 1rem 4rem; max-width: 1000px; margin: 0 auto;">
+        <h2 id="nuestro-equipo" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; margin-bottom: 2.5rem;">
+            Nuestro Equipo de Trabajo
+        </h2>
+
+        <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; justify-items: center;">
+            
+            <li style="text-align: center; max-width: 300px;">
+                <img src="/./img/ximena_romero.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Ximena Romero">
+                    
+                </div>
+                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Ximena Romero</h3>
+                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Tester en Accesibilidad de 6 años de experiencia</p>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Me encanta trabajar con personas que desafían las barreras y me inspira la creatividad y la innovación.</p>
+            </li>
+
+            <li style="text-align: center; max-width: 300px;">
+                <img src="/./img/brenda_tanoni.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Brenda Tanoni">
+                   
+                </div>
+                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Brenda Tanoni</h3>
+                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Médica. Docente. Estudiante de programación. QA</p>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Siempre buscando aprender y mejorar.</p>
+            </li>
+
+            <li style="text-align: center; max-width: 300px;">
+                <img src="/./img/ian_sosa.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Ian Sosa">
+                    
+                </div>
+                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Ian Sosa</h3>
+                <p style="color: var(primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Desarrollador Web Frontend, diseñador UX/UI y estudiante de Ingeniería en Informática</p>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Busco que cada línea de código aporte a un diseño más humano e inclusivo.</p>
+            </li>
+
+            <li style="text-align: center; max-width: 300px;">
+                <img src="/./img/mariano_infante.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Mariano Infante">
+                </div>
+                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Mariano Infante</h3>
+                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Full Stack Developer y tester QA con mentalidad de crecimiento</p>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Me entusiasma colaborar en equipo, resolver desafíos con creatividad y aportar valor a cada proyecto.</p>
+            </li>
+
+            <li style="text-align: center; max-width: 300px;">
+                <img src="/./img/marcos_peirone.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Marcos Peirone">
+                
+                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Marcos Peirone</h3>
+                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Desarrollador BackEnd. Docente</p>
+                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Apasionado por la tecnología desde siempre, convierto los desafíos visuales en oportunidades para crear experiencias inclusivas que funcionen para todos.</p>
+            </li>
+
+        </ul>
+    </section>
+</main>
+</main>
+
+<footer class="main-footer" aria-labelledby="footer-heading">
+<h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
+
+<div class="footer-container">
+    <div class="footer-section">
+        <h3>Kyosei Accesibilidad</h3>
+        <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
+    </div>
+    
+    <div class="footer-section">
+        <h3>Mapa del sitio</h3>
+        <nav aria-label="Mapa del sitio del pie de página">
+            <ul class="footer-links">
+                <li><a href="/./index.html">Inicio</a></li>
+                <li><a href="/./nosotros.html">Nosotros</a></li>
+                <li><a href="/./guias.html">Guías</a></li>
+                <li><a href="/./cursosytalleres.html">Cursos y Talleres</a></li>
+                <li><a href="/./servicios.html">Servicios</a></li>
+                <li><a href="/./actividades.html">Actividades</a></li>
+                <li><a href="/./contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="footer-section">
+        <h3>Redes Sociales</h3>
+        <nav aria-label="Redes sociales">
+            <ul class="social-links">
+                <li>
+                    <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        
+                        <span aria-hidden="true">LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
+                        
+                        <span aria-hidden="true">Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
+                        
+                        <span aria-hidden="true">Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        
+                        <span aria-hidden="true">YouTube</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
+</div>
+</footer>
+<script src="./js/main.js"></script>
+</body>
+</html>
