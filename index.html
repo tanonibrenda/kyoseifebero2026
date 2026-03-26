@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" href="./css/style.css">
 
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/iconologo.ico">
+
      <!-- SEO principal -->
     <meta name="description" 
           content="Kyosei Accesibilidad impulsa el diseño inclusivo, la accesibilidad digital y la creación de recursos bilingües basados en WCAG 2.2. Capacitación, auditorías y herramientas para educadores, equipos técnicos y organizaciones.">
@@ -118,11 +120,95 @@
         </div>
     </div>
 </header>
-    <main>
+    <main id="main-content">
+        <section class="hero-section">
+            
+            <img src="./img/imagenDeInclusion.png" 
+                 alt="Ilustración de muñecos de papel con características diversas: persona en silla de ruedas, usuario de bastones, persona con implante coclear y representación de la neurodiversidad"
+                 class="hero-image-full-width">
 
+            <div class="hero-content-container">
+                <div class="hero-text-content">
+                    <h1>Kyosei Accesibilidad: Diseño Inclusivo y Accesibilidad Digital</h1>
+                    
+                    <div class="braille-wrapper" role="img" aria-label="Kyosei Accesibilidad escrito en caracteres Braille">
+                        <span aria-hidden="true" lang="zxx">⠅⠽⠕⠎⠑⠊⠀ ⠁⠉⠉⠑⠎⠊⠃⠊⠇⠊⠙⠁⠙</span>
+                    </div>
+                    
+                    <p class="hero-lead">Emprendimiento que nació para derribar barreras y construir puentes de accesibilidad.</p>
+                    <p class="hero-description">
+                        Brindamos capacitación, auditorías y recursos basados en las pautas <strong>WCAG 2.2</strong> para educadores, equipos técnicos y organizaciones comprometidas con la inclusión.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <a href="servicios.html" class="btn-primary">Conocer Servicios</a>
+                        <a href="contacto.html" class="btn-secondary">Hablemos</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
-    <footer>
+    <footer class="main-footer" aria-labelledby="footer-heading">
+    <h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
+    
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Kyosei Accesibilidad</h3>
+            <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Mapa del sitio</h3>
+            <nav aria-label="Mapa del sitio del pie de página">
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="guias.html">Guías</a></li>
+                    <li><a href="cursosytalleres.html">Cursos y Talleres</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="actividades.html">Actividades</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
 
+        <div class="footer-section">
+            <h3>Redes Sociales</h3>
+            <nav aria-label="Redes sociales">
+                <ul class="social-links">
+                    <li>
+                        <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                            
+                            <span aria-hidden="true">LinkedIn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
+                            
+                            <span aria-hidden="true">Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
+                           
+                            <span aria-hidden="true">Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                            
+                            <span aria-hidden="true">YouTube</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
+    </div>
     </footer>
     <script src="./js/main.js"></script>
 </body>
