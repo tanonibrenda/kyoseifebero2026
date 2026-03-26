@@ -5,7 +5,7 @@
 
 :root {
     /* 🎨 PALETA CORREGIDA PARA DISLEXIA Y CONTRASTE (WCAG AAA/AA) */
-    --bg-color: #F5F5F5; /* Reemplazo de blanco puro */
+    --bg-color: #e7e6e6; /* Reemplazo de blanco puro */
     --text-color: #121212;
     
     /* Colores institucionales ajustados para contraste ≥ 4.5:1 sobre #F5F5F5 */
@@ -13,12 +13,12 @@
     --secondary-color: #B35812; /* Naranja institucional oscurecido (Contraste 4.6:1 - AA) */
     
     --current-page-color: var(--primary-color);
-    --header-bg: #F5F5F5;
-    --focus-outline-color: #155BA6;
+    --header-bg: #ece6e6;
+    --focus-outline-color: #0d4d92;
     --nav-mobile-bg: rgba(245, 245, 245, 0.95);
     
     /* Variables de tipografía (WCAG AAA) */
-    --base-font-size: 1rem; 
+    --base-font-size: 1rem;             
     --base-line-height: 1.5; 
     --base-letter-spacing: 0.12em; 
     --base-word-spacing: 0.16em; 
@@ -134,19 +134,55 @@ body {
 }
 
 /* Estado hover y focus para alto contraste */
-.btn-tools:hover, 
+/* --- FOCO ACCESIBLE PARA CONTROLES DEL HEADER (WCAG 2.4.11 Focus Appearance) --- */
+/* --- FOCO ACCESIBLE Y ESTADOS ACTIVOS (WCAG 2.4.11) --- */
+/* Garantiza que el foco se vea siempre y el botón quede "encendido" al abrirse */
+
+.btn-tools:focus,
 .btn-tools:focus-visible,
-.btn-tools[aria-expanded="true"] {
+.icon-button:focus,
+.icon-button:focus-visible,
+.btn-tools[aria-expanded="true"],
+.icon-button[aria-expanded="true"] {
+    /* Naranja vibrante para el borde exterior */
+    outline: 3px solid #ac5005; 
+    outline-offset: 3px;
+    border-radius: 6px;
+    
+    /* Azul vibrante de fondo para máximo contraste del texto/icono blanco */
     background-color: var(--primary-color);
     color: #FFFFFF;
+    
+    /* Un halo adicional por si el outline nativo falla en algún navegador */
+    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2); 
 }
 
-/* Inversión de color del ícono SVG en hover (si tu SVG lo permite por CSS) */
-.btn-tools:hover .icon-img, 
+/* Inversión del icono SVG cuando el botón tiene foco o está activo */
+.btn-tools:focus .icon-img,
 .btn-tools:focus-visible .icon-img,
 .btn-tools[aria-expanded="true"] .icon-img {
     filter: brightness(0) invert(1);
 }
+
+/* Evitar que los SVG internos intercepten clics o confundan el foco */
+.btn-tools .icon-img,
+.icon-button .toggle-icon,
+.icon-button .burger-icon {
+    pointer-events: none;
+}
+
+/* Inversión del icono SVG cuando el botón tiene foco
+.btn-tools:focus .icon-img,
+.btn-tools:focus-visible .icon-img {
+    filter: brightness(0) invert(1);
+}
+
+/* Evitar que los SVG internos intercepten clics o confundan el foco */
+.btn-tools .icon-img,
+.icon-button .toggle-icon,
+.icon-button .burger-icon {
+    pointer-events: none;
+} */
 
 /* Adaptación para pantallas pequeñas (Mobile) */
 @media (max-width: 48rem) { /* Hasta 768px aprox */
@@ -247,7 +283,7 @@ body.dark-mode .moon-icon { display: block; }
 
 .nav-link:hover {
     background-color: var(--focus-outline-color);
-    color: #FFFFFF;
+    color: #dad8d8;
 }
 
 .nav-link.current {
@@ -265,21 +301,19 @@ body.dark-mode .moon-icon { display: block; }
     }
 }
 
-/* Adaptación para pantallas medianas (ej: > 960px) - Menú horizontal */
+/* Adaptación para pantallas medianas (ej: > 960px) - Menú Hamburguesa Permanente */
 @media (min-width: 60rem) {
     .header-container {
         padding: 0 1.5rem;
-    }
-
-    .main-header {
-        position: static; /* Header no fijo para evitar problemas de reflujo en zoom extremo */
-        border-bottom: none;
-    }
-
-    .header-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    /* Mantenemos el header fijo para no perder las herramientas al hacer scroll */
+    .main-header {
+        position: fixed; 
+        border-bottom: 1px solid #CCCCCC;
     }
 
     .logo-link {
@@ -287,46 +321,44 @@ body.dark-mode .moon-icon { display: block; }
     }
 
     .logo-svg {
-        width: 70px; /* Un poco más grande en desktop */
+        width: 70px;
         height: 70px;
     }
 
     .logo-img {
-        height: 70px; /* Un poco más grande en desktop */
+        height: 70px;
     }
     
     .company-name {
-        font-size: 1rem; /* desktop */
+        font-size: 1.2rem;
     }
 
-    /* Ocultar botón burger */
+    /* ASEGURAMOS QUE EL BOTÓN BURGER SIEMPRE SE VEA */
     .mobile-menu-toggle {
-        display: none;
+        display: block;
+        margin-left: 1rem;
     }
 
-    /* Re-estilizar navegación para horizontal */
+    /* EL MENÚ SIGUE SIENDO UN PANEL LATERAL, PERO AJUSTAMOS SU ANCHO PARA ESCRITORIO */
     .main-nav {
-        position: static;
-        width: auto;
-        height: auto;
-        background: none;
-        padding: 0;
-        right: auto;
+       position: fixed;
+    top: 0;
+    right: -100%; /* Oculto a la derecha */
+    width: 80%;
+    height: 100vh;
+    background-color: var(--nav-mobile-bg);
+    /* Agregamos visibility a la transición para que sea suave */
+    transition: right 0.3s ease, visibility 0.3s ease; 
+    z-index: 999;
+    padding: 6rem 1rem 2rem;
+    visibility: hidden;
     }
 
-    .nav-list {
-        flex-direction: row;
-        gap: 0.5rem; /* Menor gap para horizontal */
-    }
-
-    .nav-link {
-        font-size: 1rem; /* Normalizar en desktop */
-        padding: 0.5rem 0.75rem;
-    }
-
-    .nav-link.current {
-        border-bottom: none;
-    }
+    .main-nav.open {
+    right: 0;
+    /* 🔥 Vuelve a estar disponible para el teclado al abrirse */
+    visibility: visible; 
+}
 }
 
 /* --- CLASE PARA LECTORES DE PANTALLA --- */
