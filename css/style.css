@@ -222,10 +222,7 @@ body {
     line-height: 1;
 }
 
-/* Estilos del Modo Oscuro */
-.moon-icon { display: none; }
-body.dark-mode .sun-icon { display: none; }
-body.dark-mode .moon-icon { display: block; }
+
 
 /* Estilos del Menú Burger */
 .mobile-menu-toggle {
@@ -279,6 +276,7 @@ body.dark-mode .moon-icon { display: block; }
     color: var(--text-color);
     font-size: 1.125rem;
     border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease, outline 0.1s ease;
 }
 
 .nav-link:hover {
@@ -286,10 +284,26 @@ body.dark-mode .moon-icon { display: block; }
     color: #dad8d8;
 }
 
+.nav-link:focus,
+.nav-link:focus-visible {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    /* Usamos el naranja secundario para un contraste vibrante contra el azul/gris */
+    outline: 3px solid var(--secondary-color); 
+    outline-offset: 3px;
+    /* Refuerzo en caso de que el outline nativo falle en Windows High Contrast */
+    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2); 
+}
+
 .nav-link.current {
     font-weight: bold;
     color: var(--current-page-color);
     border-bottom: 2px solid var(--current-page-color);
+}
+
+.nav-link.current:focus,
+.nav-link.current:focus-visible {
+    color: #FFFFFF;
 }
 
 /* --- MEDIA QUERIES PARA ADAPTACIÓN --- */
@@ -341,17 +355,18 @@ body.dark-mode .moon-icon { display: block; }
 
     /* EL MENÚ SIGUE SIENDO UN PANEL LATERAL, PERO AJUSTAMOS SU ANCHO PARA ESCRITORIO */
     .main-nav {
-       position: fixed;
+    position: fixed;
     top: 0;
     right: -100%; /* Oculto a la derecha */
     width: 80%;
     height: 100vh;
     background-color: var(--nav-mobile-bg);
-    /* Agregamos visibility a la transición para que sea suave */
     transition: right 0.3s ease, visibility 0.3s ease; 
     z-index: 999;
     padding: 6rem 1rem 2rem;
+    overflow-y: auto;
     visibility: hidden;
+    overflow-y: auto;
     }
 
     .main-nav.open {

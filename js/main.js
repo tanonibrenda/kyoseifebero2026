@@ -85,27 +85,38 @@ function inicializarNavegacion() {
 }
 
 /* --- MODO OSCURO --- */
+/* --- MODO OSCURO --- */
 function inicializarModoOscuro() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if (!darkModeToggle) return; // Por seguridad
+
     const body = document.body;
     const savedDarkMode = localStorage.getItem('darkMode');
     const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     const isDarkMode = savedDarkMode === 'true' || (savedDarkMode === null && prefersDarkMode);
     
-    if (isDarkMode) {
-        body.classList.add('dark-mode');
-        darkModeToggle.setAttribute('aria-pressed', 'true');
-        darkModeToggle.setAttribute('aria-label', 'Desactivar modo oscuro');
+    // Función auxiliar para actualizar estado y texto
+    function actualizarBoton(esOscuro) {
+        darkModeToggle.setAttribute('aria-pressed', esOscuro);
+        darkModeToggle.textContent = esOscuro ? 'Desactivar Modo Oscuro' : 'Activar Modo Oscuro';
     }
 
+    // Estado inicial
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+        actualizarBoton(true);
+    } else {
+        actualizarBoton(false);
+    }
+
+    // Evento click
     darkModeToggle.addEventListener('click', () => {
         const isCurrentlyDark = body.classList.contains('dark-mode');
         body.classList.toggle('dark-mode');
         localStorage.setItem('darkMode', !isCurrentlyDark);
         
-        darkModeToggle.setAttribute('aria-pressed', !isCurrentlyDark);
-        darkModeToggle.setAttribute('aria-label', !isCurrentlyDark ? 'Desactivar modo oscuro' : 'Activar modo oscuro');
+        actualizarBoton(!isCurrentlyDark);
     });
 }
 
@@ -161,7 +172,7 @@ function inicializarPanelAccesibilidad() {
             accPanel.removeAttribute('hidden');
             // Enviar el foco al primer control del panel al abrir
             setTimeout(() => {
-                const primerBoton = document.getElementById('btn-fs-decrease');
+                const primerBoton = document.getElementById('dark-mode-toggle');
                 if (primerBoton) primerBoton.focus();
             }, 50);
         }
