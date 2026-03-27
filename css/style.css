@@ -612,7 +612,7 @@ body.dark-mode .hero-text-content h1 {
 .error-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     min-height: 70vh;
     text-align: center;
     padding: 2rem;
