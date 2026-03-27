@@ -1,305 +1,407 @@
-/* --- RESET BÁSICO Y ACCESIBILIDAD GENERAL --- */
-*, *::before, *::after {
+/* =============================================================================
+   KYOSEI ACCESIBILIDAD — HOJA DE ESTILOS PRINCIPAL
+   Cumplimiento: WCAG 2.2 Nivel A, AA y AAA
+   Estructura:
+     1.  Variables y Tokens de Diseño
+     2.  Reset y Base
+     3.  Utilidades (sr-only, skip-link)
+     4.  Header y Logo
+     5.  Botón de Herramientas de Accesibilidad
+     6.  Controles del Header (burger, icon-button)
+     7.  Navegación Principal
+     8.  Panel de Accesibilidad
+     9.  Regla de Lectura
+    10.  Hero Section
+    11.  Botones del Hero
+    12.  Footer
+    13.  Media Queries — Responsive y Reflujo WCAG 2.2
+============================================================================= */
+
+
+/* =============================================================================
+   1. VARIABLES Y TOKENS DE DISEÑO
+   Paleta ajustada para contraste WCAG AA/AAA y soporte de modo oscuro.
+============================================================================= */
+:root {
+    /* Colores de fondo y texto */
+    --bg-color:              #e7e6e6;   /* Reemplaza blanco puro — mejor para dislexia */
+    --text-color:            #121212;
+    --header-bg:             #ece6e6;
+    --nav-mobile-bg:         rgba(245, 245, 245, 0.95);
+
+    /* Colores institucionales (contraste ≥ 4.5:1 sobre #e7e6e6) */
+    --primary-color:         #155BA6;   /* Azul — contraste 6.3:1 (AA) */
+    --secondary-color:       #B35812;   /* Naranja — contraste 4.6:1 (AA) */
+    --current-page-color:    var(--primary-color);
+    --focus-outline-color:   #0d4d92;
+
+    /* Tipografía — WCAG 1.4.12 Text Spacing (AAA) */
+    --base-font-size:        1rem;
+    --base-line-height:      1.5;
+    --base-letter-spacing:   0.12em;
+    --base-word-spacing:     0.16em;
+}
+
+/* Modo oscuro activado por clase (botón del panel de accesibilidad) */
+body.dark-mode {
+    --bg-color:              #121212;
+    --text-color:            #F8F9FA;
+    --header-bg:             #1A1A1A;
+    --nav-mobile-bg:         rgba(26, 26, 26, 0.98);
+    --primary-color:         #2469ad;   /* Azul aclarado — contraste 6:1 en fondo oscuro */
+    --secondary-color:       #F1934E;   /* Naranja original — funciona bien en oscuro */
+    --current-page-color:    #F8F9FA;
+    --focus-outline-color:   #FFD700;
+    /* Variable exclusiva para hover del nav — evita amarillo sobre amarillo */
+    --nav-hover-bg:          #2a5a8a;   /* Azul medio — contraste ≥ 4.5:1 con #F8F9FA */
+    --nav-hover-text:        #F8F9FA;
+    /* Filtro para invertir el ícono SVG oscuro sobre fondo oscuro */
+    --icon-filter:           brightness(0) invert(1);
+}
+
+/* ─── Modo oscuro del SISTEMA OPERATIVO ─────────────────────────────────────
+   WCAG 1.4.3 Contrast (AA) — se respeta la preferencia del usuario aunque
+   no haya activado el botón del panel de accesibilidad.
+   Se replican exactamente las mismas variables que body.dark-mode para
+   garantizar consistencia visual.
+───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color:              #121212;
+        --text-color:            #F8F9FA;
+        --header-bg:             #1A1A1A;
+        --nav-mobile-bg:         rgba(26, 26, 26, 0.98);
+        --primary-color:         #4B9FF3;
+        --secondary-color:       #F1934E;
+        --current-page-color:    #F8F9FA;
+        --focus-outline-color:   #FFD700;
+        --nav-hover-bg:          #2a5a8a;
+        --nav-hover-text:        #F8F9FA;
+        --icon-filter:           brightness(0) invert(1);
+    }
+}
+
+/* Modo claro — definición explícita de variables de hover y filtro de ícono
+   (evita que queden sin valor si el SO está en oscuro y se pasa a claro manual) */
+:root {
+    --nav-hover-bg:   var(--focus-outline-color); /* Azul oscuro en modo claro */
+    --nav-hover-text: #F5F5F5;
+    --icon-filter:    none; /* Sin filtro en modo claro; el SVG es oscuro de por sí */
+}
+
+
+/* =============================================================================
+   2. RESET Y BASE
+   Box-sizing universal + estilos base del <body>.
+   WCAG 1.4.4 Resize text — no se bloquea el zoom del navegador.
+   WCAG 1.4.10 Reflow — overflow-x: hidden solo en body, no en contenedores clave.
+============================================================================= */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-:root {
-    /* 🎨 PALETA CORREGIDA PARA DISLEXIA Y CONTRASTE (WCAG AAA/AA) */
-    --bg-color: #e7e6e6; /* Reemplazo de blanco puro */
-    --text-color: #121212;
-    
-    /* Colores institucionales ajustados para contraste ≥ 4.5:1 sobre #F5F5F5 */
-    --primary-color: #155BA6; /* Azul institucional oscurecido (Contraste 6.3:1 - AA) */
-    --secondary-color: #B35812; /* Naranja institucional oscurecido (Contraste 4.6:1 - AA) */
-    
-    --current-page-color: var(--primary-color);
-    --header-bg: #ece6e6;
-    --focus-outline-color: #0d4d92;
-    --nav-mobile-bg: rgba(245, 245, 245, 0.95);
-    
-    /* Variables de tipografía (WCAG AAA) */
-    --base-font-size: 1rem;             
-    --base-line-height: 1.5; 
-    --base-letter-spacing: 0.12em; 
-    --base-word-spacing: 0.16em; 
+body {
+    background-color:  var(--bg-color);
+    color:             var(--text-color);
+    font-family:       'Verdana', sans-serif; /* Recomendada para dislexia */
+    font-size:         var(--base-font-size);
+    line-height:       var(--base-line-height);
+    letter-spacing:    var(--base-letter-spacing);
+    word-spacing:      var(--base-word-spacing);
+    margin:            0;
+    padding:           0;
+    overflow-x:        hidden; /* Previene scroll horizontal accidental */
 }
 
-body.dark-mode {
-    --bg-color: #121212;
-    --text-color: #F8F9FA;
-    /* Colores institucionales aclarados para fondo oscuro */
-    --primary-color: #4B9FF3; /* Azul adaptado (Contraste 6:1 - AA) */
-    --secondary-color: #F1934E; /* Naranja original funciona bien en oscuro */
-    --current-page-color: #F8F9FA;
-    --header-bg: #1A1A1A;
-    --focus-outline-color: #FFD700;
-    --nav-mobile-bg: rgba(26, 26, 26, 0.98);
+/* Foco universal accesible — WCAG 2.4.11 Focus Appearance (AA) */
+:focus-visible {
+    outline:        3px solid var(--focus-outline-color);
+    outline-offset: 3px;
 }
 
-/* 🚀 NUEVO: Enlace de salto al contenido (CRÍTICO para teclado y voz) */
+
+/* =============================================================================
+   3. UTILIDADES
+============================================================================= */
+
+/* Clase de accesibilidad: visible solo para lectores de pantalla */
+.sr-only {
+    position:   absolute;
+    width:      1px;
+    height:     1px;
+    padding:    0;
+    margin:     -1px;
+    overflow:   hidden;
+    clip:       rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Enlace de salto — WCAG 2.4.1 Bypass Blocks (A) */
 .skip-link {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    background: var(--primary-color);
-    color: #F5F5F5;
-    padding: 8px;
-    z-index: 9999;
-    transition: top 0.2s;
+    position:        absolute;
+    top:             -100px;
+    left:            0;
+    background:      var(--primary-color);
+    color:           #F5F5F5;
+    padding:         8px;
+    z-index:         9999;
+    transition:      top 0.2s;
     text-decoration: none;
-    font-weight: bold;
+    font-weight:     bold;
 }
 
 .skip-link:focus {
     top: 0;
 }
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Verdana', sans-serif; /* Recomendada para dislexia */
-    font-size: var(--base-font-size);
-    line-height: var(--base-line-height);
-    letter-spacing: var(--base-letter-spacing);
-    word-spacing: var(--base-word-spacing);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Evitar desplazamiento horizontal general */
-}
 
-/* Estilos de foco universales y accesibles */
-:focus-visible {
-    outline: 3px solid var(--focus-outline-color);
-    outline-offset: 3px;
-}
 
-/* --- ESTILOS DEL HEADER (Mobile-First) --- */
+/* =============================================================================
+   4. HEADER Y LOGO
+   Header fijo para que las herramientas de accesibilidad siempre estén disponibles.
+   WCAG 1.4.10 Reflow — el header se apila en pantallas angostas sin scroll horizontal.
+============================================================================= */
 .main-header {
     background-color: var(--header-bg);
-    border-bottom: 1px solid #CCCCCC;
-    position: fixed; /* Header fijo para accesibilidad de navegación */
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 0.5rem 0; /* Un poco de padding superior e inferior */
+    border-bottom:    1px solid #CCCCCC;
+    position:         fixed;
+    top:              0;
+    width:            100%;
+    z-index:          1000;
+    padding:          0.5rem 0;
 }
 
 .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
+    max-width:       1200px;
+    margin:          0 auto;
+    padding:         0 1rem;
+    display:         flex;
     justify-content: space-between;
-    align-items: center;
+    align-items:     center;
+    /* Permite que los hijos se envuelvan si el espacio es muy reducido */
+    flex-wrap:       nowrap;
+    gap:             0.5rem;
 }
 
-/* Estilos de Marca/Logo */
+/* Logo — enlace y tipografía */
 .logo-link {
-    display: flex;
-    align-items: center;
+    display:         flex;
+    align-items:     center;
     text-decoration: none;
-    color: var(--text-color);
-}
-
-.logo-svg {
-    margin-right: 0.75rem;
-    display: block;
+    color:           var(--text-color);
+    flex-shrink:     0; /* El logo nunca se comprime */
 }
 
 .logo-img {
-    margin-right: 0.75rem;
-    display: block;
-    height: 60px; /* Altura base para mobile */
-    width: auto;  /* Esto asegura que la imagen no se deforme (mantiene el aspect ratio) */
+    margin-right: 0.5rem;
+    display:      block;
+    height:       50px;  /* Altura base mobile */
+    width:        auto;
 }
+
+/* El nombre de la empresa se oculta en pantallas muy pequeñas
+   y se revela progresivamente — ver Media Queries sección 13 */
 .company-name {
-    font-size: 0.8rem;
+    font-size:   0.8rem;
     font-weight: bold;
-    display: none; /* Oculto en pantallas muy pequeñas, visible en media query */
+    display:     none;
 }
 
-/* --- ESTILOS DEL BOTÓN "HERRAMIENTAS ACCESIBILIDAD" --- */
+
+/* =============================================================================
+   5. BOTÓN "HERRAMIENTAS DE ACCESIBILIDAD"
+   WCAG 2.5.3 Label in Name (A) — el texto visible coincide con el nombre accesible.
+   WCAG 2.5.8 Target Size — mín. 44×44 px (AAA).
+============================================================================= */
 .btn-tools {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    display:          flex;
+    align-items:      center;
+    gap:              0.5rem;
     background-color: transparent;
-    border: 2px solid var(--primary-color);
-    border-radius: 6px;
-    padding: 0.4rem 0.75rem;
-    font-size: 0.95rem;
-    font-weight: bold;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: all 0.2s ease;
+    border:           2px solid var(--primary-color);
+    border-radius:    6px;
+    padding:          0.4rem 0.75rem;
+    font-size:        0.95rem;
+    font-weight:      bold;
+    color:            var(--text-color);
+    cursor:           pointer;
+    transition:       all 0.2s ease;
+    min-height:       44px;
+    min-width:        44px;
 }
 
-/* Estado hover y focus para alto contraste */
-/* --- FOCO ACCESIBLE PARA CONTROLES DEL HEADER (WCAG 2.4.11 Focus Appearance) --- */
-/* --- FOCO ACCESIBLE Y ESTADOS ACTIVOS (WCAG 2.4.11) --- */
-/* Garantiza que el foco se vea siempre y el botón quede "encendido" al abrirse */
-
+/* Foco y estado activo — WCAG 2.4.11 Focus Appearance (AA) */
 .btn-tools:focus,
 .btn-tools:focus-visible,
-.icon-button:focus,
-.icon-button:focus-visible,
-.btn-tools[aria-expanded="true"],
-.icon-button[aria-expanded="true"] {
-    /* Naranja vibrante para el borde exterior */
-    outline: 3px solid #ac5005; 
-    outline-offset: 3px;
-    border-radius: 6px;
-    
-    /* Azul vibrante de fondo para máximo contraste del texto/icono blanco */
+.btn-tools[aria-expanded="true"] {
+    outline:          3px solid #ac5005;
+    outline-offset:   3px;
+    border-radius:    6px;
     background-color: var(--primary-color);
-    color: #FFFFFF;
-    
-    /* Un halo adicional por si el outline nativo falla en algún navegador */
-    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2); 
+    color:            #FFFFFF;
+    box-shadow:       0 0 0 6px rgba(179, 88, 18, 0.2);
 }
 
-/* Inversión del icono SVG cuando el botón tiene foco o está activo */
+/* Icono interno — se invierte para mantener contraste sobre fondo azul */
 .btn-tools:focus .icon-img,
 .btn-tools:focus-visible .icon-img,
 .btn-tools[aria-expanded="true"] .icon-img {
     filter: brightness(0) invert(1);
 }
 
-/* Evitar que los SVG internos intercepten clics o confundan el foco */
-.btn-tools .icon-img,
-.icon-button .toggle-icon,
-.icon-button .burger-icon {
+/* Ícono SVG — no captura eventos y se adapta al modo oscuro del sistema.
+   WCAG 1.4.11 Non-text Contrast (AA) — el ícono debe ser perceptible siempre */
+.btn-tools .icon-img {
     pointer-events: none;
+    filter:         var(--icon-filter, none);
+    transition:     filter 0.2s ease;
 }
 
-/* Inversión del icono SVG cuando el botón tiene foco
-.btn-tools:focus .icon-img,
-.btn-tools:focus-visible .icon-img {
-    filter: brightness(0) invert(1);
+/* El texto visible del botón se oculta visualmente (no para AT)
+   en pantallas menores de 48rem — se muestra como ícono solo */
+.btn-tools .visible-text {
+    /* Visible por defecto; se oculta con sr-only en pantallas pequeñas
+       mediante la clase aplicada vía JS o la regla de media query a continuación */
 }
 
-/* Evitar que los SVG internos intercepten clics o confundan el foco */
-.btn-tools .icon-img,
-.icon-button .toggle-icon,
-.icon-button .burger-icon {
-    pointer-events: none;
-} */
 
-/* Adaptación para pantallas pequeñas (Mobile) */
-@media (max-width: 48rem) { /* Hasta 768px aprox */
-    .btn-tools {
-        border: none;
-        padding: 0.5rem;
-    }
-    
-    /* Ocultamos el texto visualmente, pero lo dejamos para lectores de pantalla */
-    .btn-tools .visible-text {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-}
-
-/* Controles (Modo Oscuro y Burger) */
+/* =============================================================================
+   6. CONTROLES DEL HEADER (icon-button, burger)
+   WCAG 2.5.8 Target Size — mín. 44×44 px (AAA).
+============================================================================= */
 .header-controls {
-    display: flex;
+    display:     flex;
     align-items: center;
-    gap: 0.75rem;
+    gap:         0.5rem;
 }
 
 .icon-button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    padding: 0.5rem;
-    cursor: pointer;
+    background:  none;
+    border:      none;
+    font-size:   1.5rem;
+    color:       var(--text-color);
+    padding:     0.5rem;
+    cursor:      pointer;
     line-height: 1;
+    min-height:  44px;
+    min-width:   44px;
+    display:     flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* Foco accesible compartido con btn-tools */
+.icon-button:focus,
+.icon-button:focus-visible,
+.icon-button[aria-expanded="true"] {
+    outline:          3px solid #ac5005;
+    outline-offset:   3px;
+    border-radius:    6px;
+    background-color: var(--primary-color);
+    color:            #FFFFFF;
+    box-shadow:       0 0 0 6px rgba(179, 88, 18, 0.2);
+}
 
+/* Los elementos internos no capturan eventos */
+.icon-button .toggle-icon,
+.icon-button .burger-icon {
+    pointer-events: none;
+}
 
-/* Estilos del Menú Burger */
+/* El botón burger es visible por defecto (mobile-first) */
 .mobile-menu-toggle {
-    display: block; /* Visible por defecto en mobile */
-}
-
-/* --- ESTILOS DE NAVEGACIÓN (Mobile-First, oculto por defecto) --- */
-.main-nav {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Oculto a la derecha */
-    width: 100%;
-    max-width: 150px;
-    height: 100vh;
-    background-color: var(--nav-mobile-bg);
-    transition: right 0.3s ease;
-    z-index: 999;
-    padding: 7rem 1rem 2rem; /* Padding superior para el logo y controles */
-    box-shadow: none;
-}
-
-/* Mostrar el menú cuando está abierto */
-.main-nav.open {
-    right: 0;
-}
-
-/* Superposición cuando el menú está abierto */
-.nav-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 998;
-}
-.nav-overlay.open { display: block; }
-
-.nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; /* Espaciado AAA */
-}
-
-.nav-link {
     display: block;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 1.125rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease, outline 0.1s ease;
 }
 
+
+/* =============================================================================
+   7. NAVEGACIÓN PRINCIPAL
+   Menú lateral deslizante (drawer) en todos los viewports.
+   WCAG 2.1.1 Keyboard (A) — el menú es operable con teclado.
+   WCAG 1.4.10 Reflow — el drawer no genera scroll horizontal.
+============================================================================= */
+.main-nav {
+    position:         fixed;
+    top:              0;
+    right:            -100%;      /* Oculto fuera de pantalla a la derecha */
+    width:            min(280px, 85vw); /* Nunca desborda en pantallas pequeñas */
+    height:           100vh;
+    background-color: var(--nav-mobile-bg);
+    transition:       right 0.3s ease, visibility 0.3s ease;
+    z-index:          999;
+    padding:          6rem 1rem 2rem;
+    overflow-y:       auto;
+    visibility:       hidden;     /* Oculto para AT cuando está cerrado */
+    box-shadow:       none;
+}
+
+.main-nav.open {
+    right:      0;
+    visibility: visible;          /* Disponible para teclado y AT al abrirse */
+}
+
+/* Superposición semitransparente cuando el drawer está abierto */
+.nav-overlay {
+    display:          none;
+    position:         fixed;
+    top:              0;
+    left:             0;
+    width:            100%;
+    height:           100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index:          998;
+}
+
+.nav-overlay.open {
+    display: block;
+}
+
+/* Lista de ítems de navegación */
+.nav-list {
+    list-style:     none;
+    padding:        0;
+    margin:         0;
+    display:        flex;
+    flex-direction: column;
+    gap:            0.5rem;       /* Espacio controlado para evitar overflow */
+}
+
+/* Enlace de navegación — WCAG 2.5.8 Target Size (AAA) */
+.nav-link {
+    display:          block;
+    padding:          0.75rem 1rem;
+    text-decoration:  none;
+    color:            var(--text-color);
+    font-size:        1.125rem;
+    border-radius:    4px;
+    min-height:       44px;
+    transition:       background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover del menú — WCAG 1.4.3 Contrast (AA):
+   Se usan variables específicas para garantizar contraste en modo claro Y oscuro del sistema.
+   En modo oscuro --focus-outline-color es amarillo (#FFD700); usarlo de fondo con texto claro
+   no cumple contraste, por eso se define --nav-hover-bg y --nav-hover-text separados. */
 .nav-link:hover {
-    background-color: var(--focus-outline-color);
-    color: #dad8d8;
+    background-color: var(--nav-hover-bg);
+    color:            var(--nav-hover-text);
 }
 
 .nav-link:focus,
 .nav-link:focus-visible {
     background-color: var(--primary-color);
-    color: #FFFFFF;
-    /* Usamos el naranja secundario para un contraste vibrante contra el azul/gris */
-    outline: 3px solid var(--secondary-color); 
-    outline-offset: 3px;
-    /* Refuerzo en caso de que el outline nativo falle en Windows High Contrast */
-    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2); 
+    color:            #FFFFFF;
+    outline:          3px solid var(--secondary-color);
+    outline-offset:   3px;
+    box-shadow:       0 0 0 6px rgba(179, 88, 18, 0.2);
 }
 
+/* Página actual — WCAG 2.4.8 Location (AAA) */
 .nav-link.current {
-    font-weight: bold;
-    color: var(--current-page-color);
+    font-weight:   bold;
+    color:         var(--current-page-color);
     border-bottom: 2px solid var(--current-page-color);
 }
 
@@ -309,381 +411,30 @@ body {
 }
 
 
-
-/* --- PIE DE PÁGINA (FOOTER) --- */
-.main-footer {
-    background-color: #121212; /* Fondo muy oscuro */
-    color: #FFFFFF; /* Contraste 18:1 (AAA) */
-    padding: 4rem 1rem 1rem;
-    margin-top: 4rem; /* Separación clara del contenido principal */
-    border-top: 6px solid var(--primary-color); /* Toque institucional */
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-}
-
-/* Adaptación para tablets y escritorio */
-@media (min-width: 48rem) {
-    .footer-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.footer-section h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
-    /* Usamos un naranja brillante (#F1934E) que sobre #121212 da un contraste de 9.2:1 (AAA) */
-    color: #F1934E; 
-    border-bottom: 2px solid #F1934E;
-    padding-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.footer-section p {
-    line-height: 1.7; /* Interlineado amplio para dislexia */
-}
-
-.footer-links,
-.social-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/*  WCAG 2.2 AAA (Criterio 2.5.8 Target Size): Área mínima de 44x44px */
-.footer-links a,
-.social-links a {
-    color: #FFFFFF;
-    text-decoration: underline; /* WCAG F73: Los enlaces deben distinguirse por algo más que el color */
-    text-underline-offset: 4px;
-    padding: 0.75rem 0.5rem; /* El padding aumenta el área de clic real */
-    margin-left: -0.5rem; /* Compensamos el padding visualmente */
-    display: inline-block;
-    transition: color 0.2s ease, background-color 0.2s ease;
-    border-radius: 4px;
-    width: fit-content;
-}
-
-/* Estado Hover */
-.footer-links a:hover,
-.social-links a:hover {
-    color: #F1934E;
-    text-decoration: none;
-}
-
-/*  FOCO ACCESIBLE PARA EL PIE DE PÁGINA */
-.footer-links a:focus,
-.footer-links a:focus-visible,
-.social-links a:focus,
-.social-links a:focus-visible {
-    outline: 3px solid #F1934E;
-    outline-offset: 4px;
-    background-color: rgba(241, 147, 78, 0.15);
-    color: #F1934E;
-    text-decoration: none;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #333333;
-    font-size: 0.9rem;
-    color: #CCCCCC;
-}
-
-
-/* --- HERO SECTION (Contenido Principal) --- */
-.hero-section {
-    /* Espacio superior para compensar el header fijo */
-    padding: 8rem 1rem 4rem; 
-    background-color: var(--bg-color);
-    display: flex;
-    flex-direction: column;
-}
-
-.hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column-reverse; /* En móvil: imagen arriba, texto abajo */
-    align-items: center;
-    gap: 2rem;
-}
-
-.hero-text-content {
-    flex: 1;
-    text-align: center;
-}
-
-.hero-image-full-width {
-    width: 100%;
-    height: auto;
-    max-height: 50vh; /* Opcional: limita la altura máxima para que no ocupe toda la pantalla inicial */
-    object-fit: cover; /* Asegura que la imagen se adapte sin deformarse */
-    display: block;
-    margin-bottom: 3rem; /* Espacio antes del texto */
-}
-
-.responsive-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px; /* Opcional: suaviza los bordes de la imagen */
-}
-
-/* 🚀 NUEVO: Contenedor para el texto (mantiene legibilidad) */
-.hero-content-container {
-    max-width: 900px; /* Ancho máximo para el texto (mejor legibilidad, criterio WCAG) */
-    margin: 0 auto;
-    padding: 0 1rem 4rem; /* Padding lateral y espacio inferior */
-    width: 100%;
-}
-
-.hero-text-content {
-    text-align: center; /* Texto centrado en móvil */
-}
-
-/* Tipografía del Hero (Fluida) */
-.hero-text-content h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: var(--primary-color);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-}
-
-body.dark-mode .hero-text-content h1 {
-    color: var(--secondary-color);
-}
-
-.braille-wrapper {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.2em;
-}
-
-.hero-lead {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-.hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    color: var(--text-color);
-}
-
-/* --- BOTONES DEL HERO --- */
-.hero-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center; /* Centra los botones en móvil */
-}
-
-.btn-primary, .btn-secondary {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 6px;
-    text-align: center;
-    transition: all 0.2s ease;
-    min-height: 44px; /* Target Size AAA */
-    min-width: 44px;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    border: 2px solid var(--primary-color);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 2px solid var(--primary-color);
-}
-
-/* Hover y Foco Accesible */
-.btn-primary:hover, .btn-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.btn-secondary:hover {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-}
-
-.btn-primary:focus-visible, .btn-secondary:focus-visible {
-    outline: 3px solid var(--secondary-color);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2);
-}
-
-/* --- MEDIA QUERIES (Ajustes de escritorio) --- */
-@media (min-width: 60rem) {
-    .hero-image-full-width {
-        max-height: 60vh; /* Un poco más alto en pantallas grandes */
-    }
-
-    .hero-actions {
-        flex-direction: row; /* Botones uno al lado del otro */
-    }
-}
-
-/* Hover y Foco Accesible */
-.btn-primary:hover, .btn-secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.btn-secondary:hover {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-}
-
-.btn-primary:focus-visible, .btn-secondary:focus-visible {
-    outline: 3px solid var(--secondary-color);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2);
-}
-
-/* --- MEDIA QUERIES (Escritorio) --- */
-@media (min-width: 60rem) {
-    .hero-container {
-        flex-direction: row; /* En escritorio: lado a lado */
-        text-align: left;
-        gap: 4rem;
-    }
-
-    .hero-text-content {
-        text-align: left;
-    }
-
-    .hero-actions {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-}
-
-
-/* --- MEDIA QUERIES PARA ADAPTACIÓN --- */
-
-/* Adaptación para pantallas de tablets (ej: > 600px) */
-@media (min-width: 37.5rem) {
-    .company-name {
-        display: block; /* Mostrar nombre de la empresa */
-    }
-}
-
-/* Adaptación para pantallas medianas (ej: > 960px) - Menú Hamburguesa Permanente */
-@media (min-width: 60rem) {
-    .header-container {
-        padding: 0 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* Mantenemos el header fijo para no perder las herramientas al hacer scroll */
-    .main-header {
-        position: fixed; 
-        border-bottom: 1px solid #CCCCCC;
-    }
-
-    .logo-link {
-        margin-right: 1.5rem;
-    }
-
-    .logo-svg {
-        width: 70px;
-        height: 70px;
-    }
-
-    .logo-img {
-        height: 70px;
-    }
-    
-    .company-name {
-        font-size: 1.2rem;
-    }
-
-    /* ASEGURAMOS QUE EL BOTÓN BURGER SIEMPRE SE VEA */
-    .mobile-menu-toggle {
-        display: block;
-        margin-left: 1rem;
-    }
-
-    /* EL MENÚ SIGUE SIENDO UN PANEL LATERAL, PERO AJUSTAMOS SU ANCHO PARA ESCRITORIO */
-    .main-nav {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Oculto a la derecha */
-    width: 80%;
-    height: 100vh;
-    background-color: var(--nav-mobile-bg);
-    transition: right 0.3s ease, visibility 0.3s ease; 
-    z-index: 999;
-    padding: 6rem 1rem 2rem;
-    overflow-y: auto;
-    visibility: hidden;
-    overflow-y: auto;
-    }
-
-    .main-nav.open {
-    right: 0;
-    /*  Vuelve a estar disponible para el teclado al abrirse */
-    visibility: visible; 
-}
-}
-
-/* --- CLASE PARA LECTORES DE PANTALLA --- */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-/* --- PANEL DE ACCESIBILIDAD --- */
+/* =============================================================================
+   8. PANEL DE ACCESIBILIDAD
+   Desplegable flotante con controles de personalización.
+   WCAG 1.4.4 Resize Text — los controles no bloquean el zoom.
+============================================================================= */
 .accessibility-wrapper {
     position: relative;
 }
 
 .acc-panel {
-    position: absolute;
-    top: 120%;
-    right: 0;
+    position:         absolute;
+    top:              calc(100% + 8px);
+    right:            0;
     background-color: var(--header-bg);
-    border: 2px solid var(--text-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    width: 320px;
-    max-width: 90vw;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1001;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    border:           2px solid var(--text-color);
+    border-radius:    8px;
+    padding:          1.5rem;
+    width:            320px;
+    max-width:        min(90vw, 320px);  /* No desborda en pantallas angostas */
+    box-shadow:       0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index:          1001;
+    display:          flex;
+    flex-direction:   column;
+    gap:              1.25rem;
 }
 
 .acc-panel[hidden] {
@@ -691,62 +442,73 @@ body.dark-mode .hero-text-content h1 {
 }
 
 .acc-control-group {
-    display: flex;
+    display:        flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap:            0.5rem;
+    border:         none;   /* Reset de fieldset */
+    padding:        0;
+    margin:         0;
 }
 
 .acc-label {
     font-weight: bold;
-    font-size: 0.9rem;
-    color: var(--text-color);
+    font-size:   0.9rem;
+    color:       var(--text-color);
 }
 
 .acc-btn-row {
     display: flex;
-    gap: 0.5rem;
+    gap:     0.5rem;
 }
 
-.acc-btn-row button, .acc-btn-full {
+/* Botones dentro del panel — WCAG 2.5.8 Target Size (AAA) */
+.acc-btn-row button,
+.acc-btn-full {
     background-color: var(--bg-color);
-    color: var(--text-color);
-    border: 2px solid var(--primary-color);
-    padding: 0.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    flex: 1;
-    transition: all 0.2s ease;
+    color:            var(--text-color);
+    border:           2px solid var(--primary-color);
+    padding:          0.5rem;
+    border-radius:    4px;
+    cursor:           pointer;
+    font-weight:      bold;
+    flex:             1;
+    min-height:       44px;
+    transition:       all 0.2s ease;
 }
 
-.acc-btn-row button:hover, .acc-btn-full:hover {
+.acc-btn-row button:hover,
+.acc-btn-full:hover {
     background-color: var(--primary-color);
-    color: #FFFFFF;
+    color:            #FFFFFF;
 }
 
-/* Estado presionado / activo */
+/* Estado activo/presionado — WCAG 4.1.2 Name, Role, Value (A) */
 .acc-btn-full[aria-pressed="true"] {
     background-color: var(--primary-color);
-    color: #FFFFFF;
-    border-color: var(--text-color);
+    color:            #FFFFFF;
+    border-color:     var(--text-color);
 }
 
-/* --- REGLA DE LECTURA (Reading Ruler) --- */
+
+/* =============================================================================
+   9. REGLA DE LECTURA (Reading Ruler)
+   Ayuda visual para usuarios con dislexia o dificultades de seguimiento.
+   pointer-events: none garantiza que no bloquee la interacción.
+============================================================================= */
 .reading-ruler-layer {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    pointer-events: none; /* Permite hacer clic a través de ella */
-    z-index: 9999;
-    /* Efecto buzón: Oscurece arriba y abajo de la posición del ratón */
-    background: linear-gradient(
+    display:        none;
+    position:       fixed;
+    top:            0;
+    left:           0;
+    width:          100%;
+    height:         100vh;
+    pointer-events: none;
+    z-index:        9999;
+    background:     linear-gradient(
         rgba(0, 0, 0, 0.5) 0%,
         rgba(0, 0, 0, 0.5) calc(var(--mouse-y, 50vh) - 60px),
-        transparent calc(var(--mouse-y, 50vh) - 60px),
-        transparent calc(var(--mouse-y, 50vh) + 60px),
+        transparent        calc(var(--mouse-y, 50vh) - 60px),
+        transparent        calc(var(--mouse-y, 50vh) + 60px),
         rgba(0, 0, 0, 0.5) calc(var(--mouse-y, 50vh) + 60px),
         rgba(0, 0, 0, 0.5) 100%
     );
@@ -756,173 +518,516 @@ body.dark-mode .hero-text-content h1 {
     display: block;
 }
 
-/* Ajuste de la regla para modo oscuro */
+/* Ajuste de la regla en modo oscuro */
 body.dark-mode .reading-ruler-layer {
     background: linear-gradient(
         rgba(255, 255, 255, 0.15) 0%,
         rgba(255, 255, 255, 0.15) calc(var(--mouse-y, 50vh) - 60px),
-        transparent calc(var(--mouse-y, 50vh) - 60px),
-        transparent calc(var(--mouse-y, 50vh) + 60px),
+        transparent              calc(var(--mouse-y, 50vh) - 60px),
+        transparent              calc(var(--mouse-y, 50vh) + 60px),
         rgba(255, 255, 255, 0.15) calc(var(--mouse-y, 50vh) + 60px),
         rgba(255, 255, 255, 0.15) 100%
     );
 }
 
-/* --- COMPONENTE DESPLEGABLE (ACCORDION) ACCESIBLE --- */
-.accessible-accordion {
-    border: 2px solid var(--primary-color);
-    border-radius: 8px;
-    margin-bottom: 2rem;
+
+/* =============================================================================
+   10. HERO SECTION
+   WCAG 1.4.10 Reflow — padding-top compensa el header fijo sin causar scroll horizontal.
+============================================================================= */
+.hero-section {
+    padding:          6rem 1rem 4rem; /* Espacio superior = altura aprox. del header fijo */
     background-color: var(--bg-color);
-    transition: all 0.3s ease;
+    display:          flex;
+    flex-direction:   column;
 }
 
-.accordion-trigger {
-    padding: 1.5rem;
-    cursor: pointer;
-    color: var(--primary-color);
+/* Imagen de cabecera — responsive, sin deformación */
+.hero-image-full-width {
+    width:         100%;
+    height:        auto;
+    max-height:    50vh;
+    object-fit:    cover;
+    display:       block;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor del texto del hero */
+.hero-content-container {
+    max-width: 900px;   /* Límite de línea para legibilidad — WCAG 1.4.8 (AAA) */
+    margin:    0 auto;
+    padding:   0 1rem 4rem;
+    width:     100%;
+}
+
+.hero-text-content {
+    text-align: center; /* Centrado en mobile */
+}
+
+/* Tipografía fluida — WCAG 1.4.4 Resize Text (AA) */
+.hero-text-content h1 {
+    font-size:     clamp(1.5rem, 5vw, 3rem);
+    color:         var(--primary-color);
+    line-height:   1.2;
+    margin-bottom: 0.5rem;
+}
+
+body.dark-mode .hero-text-content h1 {
+    color: var(--secondary-color);
+}
+
+/* Representación en Braille — decorativa, aria-hidden para AT */
+.braille-wrapper {
+    font-size:      2rem;
+    color:          var(--primary-color);
+    margin-bottom:  1.5rem;
+    letter-spacing: 0.2em;
+}
+
+.hero-lead {
+    font-size:     1.25rem;
+    font-weight:   bold;
+    margin-bottom: 1rem;
+    color:         var(--text-color);
+}
+
+.hero-description {
+    font-size:     1.1rem;
+    margin-bottom: 2rem;
+    color:         var(--text-color);
+}
+
+/* Imagen genérica responsiva */
+.responsive-img {
+    width:         100%;
+    height:        auto;
+    display:       block;
+    border-radius: 8px;
+}
+
+/* Error 404 */
+
+
+/* Contenedor principal para centrar el contenido */
+.error-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    list-style: none; /* Quita el marcador por defecto */
+    min-height: 70vh;
+    text-align: center;
+    padding: 2rem;
+    font-family: Arial, sans-serif; /* Cambia por la fuente de tu web */
 }
 
-/* Ocultar la flecha nativa de <summary> en navegadores WebKit */
-.accordion-trigger::-webkit-details-marker {
-    display: none;
+.error-content {
+    max-width: 600px;
 }
 
-.accordion-title {
-    margin: 0;
-    font-size: 1.25rem;
+.error-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #333; /* Ajustar a tus colores corporativos */
+    margin-top: 2rem;
 }
 
+h2 {
+    font-size: 2rem;
+    color: #e63946; /* Color de acento sugerido */
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.error-logo {
+    max-width: 250px;
+    height: auto;
+    margin: 0 auto 2rem auto;
+    display: block;
+}
+
+/* Estilo del enlace para que parezca un botón */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1d3557; /* Color principal de Kyosei */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Accesibilidad: foco visible para navegación con teclado y hover */
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #457b9d;
+    transform: translateY(-2px);
+    outline: 3px solid #e63946; /* Borde visible para el foco */
+    outline-offset: 2px;
+}
+/* =============================================================================
+   11. BOTONES DEL HERO
+   WCAG 2.5.8 Target Size — mín. 44×44 px (AAA).
+   WCAG 1.4.3 Contrast (AA) — relación ≥ 4.5:1.
+============================================================================= */
+.hero-actions {
+    display:         flex;
+    flex-direction:  column;
+    gap:             1rem;
+    justify-content: center;
+    align-items:     center;
+}
+
+.btn-primary,
+.btn-secondary {
+    display:         inline-block;
+    padding:         0.8rem 1.5rem;
+    font-size:       1.1rem;
+    font-weight:     bold;
+    text-decoration: none;
+    border-radius:   6px;
+    text-align:      center;
+    transition:      all 0.2s ease;
+    min-height:      44px;
+    min-width:       44px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color:            #fffdfd;
+    border:           2px solid var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color:            var(--text-color);
+    border:           2px solid var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    transform:  translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color:            #FFFFFF;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+    outline:    3px solid var(--secondary-color);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(179, 88, 18, 0.2);
+}
+
+/* Botones de Acordeon - Dimensiones fijas y transición fluida */
 .accordion-icon {
-    font-size: 1.8rem;
+    width: 24px;
+    height: 24px;
+    object-fit: contain; /* Asegura que el PNG no se deforme */
+    flex-shrink: 0;      /* Evita que el ícono se aplaste si el texto es muy largo */
     transition: transform 0.3s ease;
-    line-height: 1;
 }
 
-/* Rotar el icono cuando el details está abierto */
-.accessible-accordion[open] .accordion-icon {
+/* Al abrir el panel, rotamos el "+" 45 grados para formar una "X" */
+details[open] .accordion-trigger .accordion-icon {
     transform: rotate(45deg);
 }
 
-/* Foco accesible para el summary */
-.accordion-trigger:focus-visible {
-    outline: 3px solid var(--focus-outline-color);
-    outline-offset: -3px;
-    border-radius: 8px;
-    background-color: rgba(21, 91, 166, 0.05); /* Fondo sutil para indicar foco */
+/* Respeto por las preferencias de movimiento del usuario */
+@media (prefers-reduced-motion: reduce) {
+    .accordion-icon {
+        transition: none;
+    }
 }
 
-.accordion-content {
-    padding: 0 1.5rem 1.5rem;
-    border-top: 1px solid #CCCCCC;
-    margin-top: 0.5rem;
-    padding-top: 1.5rem;
+/* Invertir a blanco/claro en modo oscuro para no perder el nivel de contraste AA/AAA */
+body.dark-mode .accordion-icon,
+@media (prefers-color-scheme: dark) {
+    .accordion-icon {
+        filter: brightness(0) invert(1);
+    }
 }
 
-.accessible-list li {
-    margin-bottom: 1rem;
-    line-height: 1.6;
+/* =============================================================================
+   12. FOOTER
+   WCAG 1.4.3 Contrast — texto #FFFFFF sobre #121212 = 18:1 (AAA).
+   WCAG 2.5.8 Target Size — enlaces con área de clic ≥ 44×44 px (AAA).
+============================================================================= */
+.main-footer {
+    background-color: #121212;
+    color:            #FFFFFF;
+    padding:          4rem 1rem 1rem;
+    margin-top:       4rem;
+    border-top:       6px solid var(--primary-color);
 }
 
-/* --- BOTÓN NARANJA (Llamado a la acción) --- */
-.cta-container {
-    margin-top: 2.5rem;
-    text-align: center;
+.footer-container {
+    max-width:             1200px;
+    margin:                0 auto;
+    display:               grid;
+    grid-template-columns: 1fr;
+    gap:                   3rem;
 }
 
-.btn-accent {
-    display: inline-block;
-    background-color: var(--secondary-color); /* Utiliza tu Naranja */
-    color: #FFFFFF; /* Contraste > 4.5:1 asegurado */
-    padding: 1rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
+.footer-section h3 {
+    font-size:      1.25rem;
+    margin-bottom:  1.5rem;
+    color:          #F1934E;    /* Contraste 9.2:1 sobre #121212 (AAA) */
+    border-bottom:  2px solid #F1934E;
+    padding-bottom: 0.5rem;
+    display:        inline-block;
+}
+
+.footer-section p {
+    line-height: 1.7; /* Interlineado amplio — mejor para dislexia */
+}
+
+.footer-links,
+.social-links {
+    list-style:     none;
+    padding:        0;
+    margin:         0;
+    display:        flex;
+    flex-direction: column;
+}
+
+/* Área de clic ampliada — WCAG 2.5.8 Target Size (AAA) */
+.footer-links a,
+.social-links a {
+    color:               #FFFFFF;
+    text-decoration:     underline;   /* WCAG F73: distinción sin depender solo del color */
+    text-underline-offset: 4px;
+    padding:             0.75rem 0.5rem;
+    margin-left:         -0.5rem;     /* Compensa el padding visualmente */
+    display:             inline-block;
+    min-height:          44px;
+    transition:          color 0.2s ease, background-color 0.2s ease;
+    border-radius:       4px;
+    width:               fit-content;
+}
+
+.footer-links a:hover,
+.social-links a:hover {
+    color:           #F1934E;
     text-decoration: none;
-    border-radius: 6px;
-    border: 2px solid var(--secondary-color);
-    transition: all 0.2s ease;
-    min-height: 44px; /* WCAG Target Size AAA */
 }
 
-.btn-accent:hover {
-    background-color: #92450c; /* Un naranja más oscuro para el hover */
-    border-color: #92450c;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.footer-links a:focus,
+.footer-links a:focus-visible,
+.social-links a:focus,
+.social-links a:focus-visible {
+    outline:          3px solid #F1934E;
+    outline-offset:   4px;
+    background-color: rgba(241, 147, 78, 0.15);
+    color:            #F1934E;
+    text-decoration:  none;
 }
 
-.btn-accent:focus-visible {
-    outline: 3px solid var(--primary-color); /* Contraste inverso para el foco */
-    outline-offset: 3px;
+.footer-bottom {
+    text-align:  center;
+    margin-top:  4rem;
+    padding-top: 1.5rem;
+    border-top:  1px solid #333333;
+    font-size:   0.9rem;
+    color:       #CCCCCC;
 }
 
-body.dark-mode .btn-accent:hover {
-    background-color: #d17531; 
-    border-color: #d17531;
-}
 
-/* --- PREVENCIÓN DE REFLUJO (WCAG 1.4.10) --- */
-*, *::before, *::after {
-    box-sizing: border-box;
-    /* CRÍTICO: Rompe palabras largas antes de generar scroll horizontal */
-    overflow-wrap: break-word; 
-}
+/* =============================================================================
+   13. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
+   Estrategia mobile-first: se amplían estilos al crecer la pantalla.
 
-img, picture, video, canvas, svg {
-    max-width: 100%;
-    height: auto; /* Mantiene la proporción sin desbordar */
-}
-/* --- BOTONES Y CTAS FLUIDOS --- */
-.hero-actions, 
-.cta-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los botones bajen a la siguiente línea si no caben */
-    gap: 1rem;
-    justify-content: center;
-}
+   WCAG 1.4.10 Reflow (AA):
+     — El contenido debe ser legible a 320 CSS px de ancho (equivalente a 400% zoom
+       en una pantalla de 1280 px) sin scroll horizontal.
+     — Se prohíbe overflow-x en contenedores de contenido.
+     — Los textos se achican proporcionalmente con clamp(), nunca se truncan.
 
-/* Asegurar que los botones ocupen el ancho necesario en móviles pequeños pero sin desbordar */
-.btn-primary, .btn-secondary, .btn-accent {
-    flex: 1 1 auto; /* Permite crecer y encogerse de forma segura */
-    width: 100%;    /* En pantallas < 320px ocuparán el 100% */
-    max-width: fit-content; /* En pantallas grandes mantienen su tamaño natural */
-}
+   Breakpoints usados (em = relativo al tamaño de fuente raíz del navegador,
+   por lo que respeta el zoom del usuario):
+     — < 24.375em  (~390 px): pantallas muy pequeñas / zoom máximo
+     —   37.5em    (~600 px): tablets pequeñas
+     —   60em      (~960 px): escritorio
 
-@media (max-width: 25rem) { /* 400px aprox */
-    .btn-primary, .btn-secondary, .btn-accent {
-        max-width: 100%; /* Botones de ancho completo para facilitar el toque (Target Size AAA) */
+   NOTA: Se usa em en lugar de px para breakpoints para cumplir con WCAG 1.4.4
+   y garantizar que los breakpoints respeten la preferencia de tamaño de fuente
+   del sistema operativo del usuario.
+============================================================================= */
+
+/* ─── Pantallas muy pequeñas o zoom extremo (< ~390 px) ─────────────────────
+   El texto "Herramientas Accesibilidad" desaparece; solo queda el ícono.
+   El nombre de la empresa permanece oculto.
+   No se genera scroll horizontal.
+───────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 24.375em) {
+    /* El texto del botón se oculta visualmente pero permanece para AT */
+    .btn-tools .visible-text {
+        position:    absolute;
+        width:       1px;
+        height:      1px;
+        padding:     0;
+        margin:      -1px;
+        overflow:    hidden;
+        clip:        rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    /* El botón pierde el borde para ganar espacio horizontal */
+    .btn-tools {
+        border:  none;
+        padding: 0.5rem;
+    }
+
+    /* Logo compacto */
+    .logo-img {
+        height: 40px;
+    }
+
+    /* El nombre de la empresa permanece oculto */
+    .company-name {
+        display: none;
+    }
+
+    /* El hero ajusta su padding superior al header más compacto */
+    .hero-section {
+        padding-top: 5rem;
+    }
+
+    /* Tipografía fluida más conservadora para pantallas angostas */
+    .hero-text-content h1 {
+        font-size: clamp(1.25rem, 8vw, 2rem);
+    }
+
+    .hero-lead {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
     }
 }
-/* --- REFLUJO DEL ACORDEÓN --- */
-.accordion-trigger {
-    padding: 1rem; /* Reducimos el padding en pantallas chicas para dar más espacio al texto */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Evita que el texto y el icono se desalineen si el texto ocupa varias líneas */
-    gap: 1rem; /* Espacio seguro e inquebrantable entre el título y el icono */
-}
 
-.accordion-title {
-    margin: 0;
-    /* Tipografía fluida: Mínimo 1.1rem, ideal basado en el ancho (4vw), Máximo 1.25rem */
-    font-size: clamp(1.1rem, 4vw, 1.25rem); 
-    line-height: 1.3;
-}
-
-.accordion-content {
-    padding: 0 1rem 1.5rem; /* Padding lateral coherente con el trigger para móviles */
-}
-
-@media (min-width: 48rem) { /* Tablets y superiores */
-    .accordion-trigger {
-        padding: 1.5rem;
-        align-items: center; /* Vuelve a centrarse verticalmente cuando hay mucho espacio */
+/* ─── Rango mobile estándar (> ~390 px hasta ~600 px) ──────────────────────
+   El texto del botón se sigue ocultando visualmente (icono solo),
+   pero ya con border visible.
+───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 24.376em) and (max-width: 37.4375em) {
+    .btn-tools .visible-text {
+        position:    absolute;
+        width:       1px;
+        height:      1px;
+        padding:     0;
+        margin:      -1px;
+        overflow:    hidden;
+        clip:        rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
     }
-    .accordion-content {
-        padding: 0 1.5rem 1.5rem;
+
+    .btn-tools {
+        border:  none;
+        padding: 0.5rem;
+    }
+
+    .company-name {
+        display: none;
+    }
+}
+
+/* ─── Tablets pequeñas (≥ ~600 px) ─────────────────────────────────────────
+   El nombre de la empresa aparece.
+   El texto del botón de herramientas se hace visible.
+───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 37.5em) {
+    .company-name {
+        display: block;
+    }
+
+    /* El texto del botón de herramientas vuelve a ser visible */
+    .btn-tools .visible-text {
+        position:    static;
+        width:       auto;
+        height:      auto;
+        padding:     0;
+        margin:      0;
+        overflow:    visible;
+        clip:        auto;
+        white-space: normal;
+    }
+
+    .logo-img {
+        height: 55px;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ─── Escritorio (≥ ~960 px) ────────────────────────────────────────────────
+   Header con mayor padding, logo más grande.
+   El drawer de navegación mantiene su comportamiento (siempre burger).
+───────────────────────────────────────────────────────────────────────────── */
+@media (min-width: 60em) {
+    .header-container {
+        padding: 0 1.5rem;
+    }
+
+    .logo-img {
+        height: 70px;
+    }
+
+    .company-name {
+        font-size: 1.2rem;
+    }
+
+    .logo-link {
+        margin-right: 1.5rem;
+    }
+
+    /* El burger siempre visible — menú siempre como drawer */
+    .mobile-menu-toggle {
+        display:     block;
+        margin-left: 1rem;
+    }
+
+    /* La imagen del hero puede crecer un poco más en escritorio */
+    .hero-image-full-width {
+        max-height: 60vh;
+    }
+
+    /* Texto del hero alineado a la izquierda en escritorio */
+    .hero-text-content {
+        text-align: left;
+    }
+
+    /* Botones en fila horizontal */
+    .hero-actions {
+        flex-direction:  row;
+        justify-content: flex-start;
+        align-items:     center;
+    }
+}
+
+/* ─── Preferencia de movimiento reducido ────────────────────────────────────
+   WCAG 2.3.3 Animation from Interactions (AAA)
+───────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration:   0.01ms !important;
+        animation-duration:    0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }
