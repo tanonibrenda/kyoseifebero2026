@@ -111,15 +111,32 @@
 
     <section class="resource-section" aria-labelledby="titulo-paradigma" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
         
-        <details class="accessible-accordion">
+        <div class="accessible-accordion">
             
-            <summary class="accordion-trigger">
-                <h2 id="titulo-paradigma" class="accordion-title">El Nuevo Paradigma de la Discapacidad</h2>
-                <img src="/./img/mas.png" alt="" class="accordion-icon" aria-hidden="true" width="24" height="24">
-            </summary>
+            <h2 id="titulo-paradigma" class="accordion-heading">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="panel-paradigma"
+                    id="btn-paradigma"
+                >
+                    <span class="accordion-title-text">El Nuevo Paradigma de la Discapacidad</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-            <div class="accordion-content">
-                
+            <div 
+                class="accordion-panel"
+                id="panel-paradigma"
+                role="region"
+                aria-labelledby="btn-paradigma"
+                hidden
+            >
+                <div class="accordion-panel-inner">
                 <h3>De la rehabilitación a la eliminación de barreras</h3>
                 
                 <p>
@@ -148,21 +165,39 @@
                     </a>
                 </div> -->
 
+                </div>
             </div>
-        </details>
+        </div>
     </section>
 
     <section class="resource-section" aria-labelledby="titulo-derechos" style="padding: 0 1rem 2rem; max-width: 900px; margin: 0 auto;">
         
-        <details class="accessible-accordion">
+        <div class="accessible-accordion">
             
-            <summary class="accordion-trigger">
-                <h2 id="titulo-derechos" class="accordion-title">Derechos de las Personas con Discapacidad</h2>
-                <img src="/./img/mas.png" alt="" class="accordion-icon" aria-hidden="true" width="24" height="24">
-            </summary>
+            <h2 id="titulo-derechos" class="accordion-heading">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="panel-derechos"
+                    id="btn-derechos"
+                >
+                    <span class="accordion-title-text">Derechos de las Personas con Discapacidad</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-            <div class="accordion-content">
-                
+            <div 
+                class="accordion-panel"
+                id="panel-derechos"
+                role="region"
+                aria-labelledby="btn-derechos"
+                hidden
+            >
+                <div class="accordion-panel-inner">
                 <h3>Un marco internacional para la igualdad</h3>
                 
                 <p>
@@ -184,20 +219,39 @@
                     </li>
                 </ul>
 
+                </div>
             </div>
-        </details>
+        </div>
     </section>
 
 
 <section class="resource-section" aria-labelledby="titulo-ajustes" style="padding: 0 1rem 2rem; max-width: 900px; margin: 0 auto;">
         
-        <details class="accessible-accordion">
-            <summary class="accordion-trigger">
-                <h2 id="titulo-ajustes" class="accordion-title">Ajustes Razonables: Equidad en la Práctica</h2>
-                <img src="/./img/mas.png" alt="" class="accordion-icon" aria-hidden="true" width="24" height="24">
-            </summary>
+        <div class="accessible-accordion">
+            <h2 id="titulo-ajustes" class="accordion-heading">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="panel-ajustes"
+                    id="btn-ajustes"
+                >
+                    <span class="accordion-title-text">Ajustes Razonables: Equidad en la Práctica</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-            <div class="accordion-content">
+            <div 
+                class="accordion-panel"
+                id="panel-ajustes"
+                role="region"
+                aria-labelledby="btn-ajustes"
+                hidden
+            >
+                <div class="accordion-panel-inner">
                 <p>
                     Mientras que el diseño universal busca crear entornos accesibles para la mayor cantidad de personas desde el inicio, los ajustes razonables son modificaciones específicas e individuales. Son las adaptaciones necesarias en un caso particular para garantizar que una persona con discapacidad pueda aprender, trabajar o participar en igualdad de condiciones, eliminando una barrera puntual.
                 </p>
@@ -233,19 +287,37 @@
                     </p>
                 </blockquote>
 
+                </div>
             </div>
-        </details>
+        </div>
     </section>
     <section class="resource-section" aria-labelledby="titulo-acc-digital" style="padding: 0 1rem 2rem; max-width: 900px; margin: 0 auto;">
         
-        <details class="accessible-accordion">
-            <summary class="accordion-trigger">
-                <h2 id="titulo-acc-digital" class="accordion-title">Accesibilidad Digital</h2>
-                <img src="/./img/mas.png" alt="" class="accordion-icon" aria-hidden="true" width="24" height="24">
-            </summary>
+        <div class="accessible-accordion">
+            <h2 id="titulo-acc-digital" class="accordion-heading">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="panel-acc-digital"
+                    id="btn-acc-digital"
+                >
+                    <span class="accordion-title-text">Accesibilidad Digital</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-            <div class="accordion-content">
-                
+            <div 
+                class="accordion-panel"
+                id="panel-acc-digital"
+                role="region"
+                aria-labelledby="btn-acc-digital"
+                hidden
+            >
+                <div class="accordion-panel-inner">
                 <h3>¿Qué es la Accesibilidad Digital?</h3>
                 <p>
                     La accesibilidad digital es el diseño y desarrollo de productos digitales que puedan ser utilizados por todas las personas, independientemente de sus capacidades físicas, cognitivas o sensoriales. No se trata solo de cumplir con normativas, sino de crear experiencias digitales verdaderamente inclusivas que permitan a cada usuario participar plenamente en la era digital.
@@ -271,19 +343,37 @@
                     <li>Aumenta la usabilidad para usuarios con diferentes niveles de experiencia tecnológica.</li>
                 </ul>
 
+                </div>
             </div>
-        </details>
+        </div>
     </section>
     <section class="resource-section" aria-labelledby="titulo-wcag" style="padding: 0 1rem 2rem; max-width: 900px; margin: 0 auto;">
         
-        <details class="accessible-accordion">
-            <summary class="accordion-trigger">
-                <h2 id="titulo-wcag" class="accordion-title">Las Pautas WCAG: El Estándar Global</h2>
-                <img src="/./img/mas.png" alt="" class="accordion-icon" aria-hidden="true" width="24" height="24">
-            </summary>
+        <div class="accessible-accordion">
+            <h2 id="titulo-wcag" class="accordion-heading">
+                <button
+                    class="accordion-trigger"
+                    aria-expanded="false"
+                    aria-controls="panel-wcag"
+                    id="btn-wcag"
+                >
+                    <span class="accordion-title-text">Las Pautas WCAG: El Estándar Global</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-            <div class="accordion-content">
-                
+            <div 
+                class="accordion-panel"
+                id="panel-wcag"
+                role="region"
+                aria-labelledby="btn-wcag"
+                hidden
+            >
+                <div class="accordion-panel-inner">
                 <p>
                     Para que la accesibilidad digital no sea subjetiva, necesitamos reglas claras. Aquí entran en juego las <strong><abbr title="Web Content Accessibility Guidelines, o Pautas de Accesibilidad para el Contenido Web">WCAG</abbr></strong>. Creadas por el <strong><abbr title="World Wide Web Consortium">W3C</abbr></strong> (el consorcio que regula los estándares de internet), las WCAG son el manual internacional que define los criterios técnicos para que un sitio web, un documento o una plataforma de aprendizaje sea verdaderamente inclusiva.
                 </p>
@@ -327,8 +417,9 @@
                     <strong>En la práctica:</strong> Escribir un código HTML semántico y limpio para que los lectores de pantalla y otras tecnologías de asistencia puedan interactuar con la página sin errores.
                 </p>
 
+                </div>
             </div>
-        </details>
+        </div>
     </section>
     </main>
 <footer class="main-footer" aria-labelledby="footer-heading">
