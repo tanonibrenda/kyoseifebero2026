@@ -13,8 +13,9 @@
      9.  Regla de Lectura
     10.  Hero Section
     11.  Botones del Hero
-    12.  Footer
-    13.  Media Queries — Responsive y Reflujo WCAG 2.2
+    12.  Sección de Cursos y Talleres
+    13.  Footer
+    14.  Media Queries — Responsive y Reflujo WCAG 2.2
 ============================================================================= */
 
 
@@ -1010,10 +1011,67 @@ body.dark-mode .accessible-blockquote {
     }
 }
 
+/* =============================================================================
+   12. SECCIÓN DE CURSOS Y TALLERES
+============================================================================= */
+
+/* Contenedor principal de la sección */
+.course-section {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h1 {
+    color: var(--primary-color);
+    margin-top: 5rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+/* Gancho de marketing dentro del acordeón */
+.course-hook {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Caja destacada de detalles (fecha, modalidad) */
+.course-details-box {
+    background: color-mix(in srgb, var(--primary-color) 8%, var(--bg-color));
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.course-details-box .detail-item {
+    margin: 0 0 0.5rem 0;
+}
+
+.course-details-box .detail-item:last-child {
+    margin: 0;
+}
+
+/* Contenedor del llamado a la acción */
+.cta-container {
+    margin-top: 2rem;
+    text-align: center;
+}
 
 
 /* =============================================================================
-   12. FOOTER
+   13. FOOTER
    WCAG 1.4.3 Contrast — texto #FFFFFF sobre #121212 = 18:1 (AAA).
    WCAG 2.5.8 Target Size — enlaces con área de clic ≥ 44×44 px (AAA).
 ============================================================================= */
@@ -1098,7 +1156,7 @@ body.dark-mode .accessible-blockquote {
 
 
 /* =============================================================================
-   13. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
+   14. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
    Estrategia mobile-first: se amplían estilos al crecer la pantalla.
 
    WCAG 1.4.10 Reflow (AA):
