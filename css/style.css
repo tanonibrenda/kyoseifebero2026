@@ -755,7 +755,7 @@ h2 {
     .accordion-icon {
         filter: brightness(0) invert(1);
     }
-} */ */
+} */ 
 
 /* Botones de Acordeon - Dimensiones fijas y transición fluida */
 /* REEMPLAZADO: accordion rediseñado con patrón button + ARIA */
@@ -917,7 +917,7 @@ h2 {
 
 .accordion-panel-inner h4 {
     font-size:     1rem;
-    color:         var(--secondary-color);
+    color:         var(--primary-color);
     margin-top:    1rem;
     margin-bottom: 0.3rem;
 }
