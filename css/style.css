@@ -760,6 +760,61 @@ h2 {
     outline-offset: 2px;
 }
 
+/* --- NUEVAS REGLAS PARA SECCIONES DE RECURSOS --- */
+
+.resource-section {
+    padding: 1.5rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Asegurar que el main content reciba el foco al usar el skip-link */
+#main-content:focus {
+    outline: none;
+}
+
+/* Mejora de la lista de recursos para WCAG AAA */
+.accessible-list {
+    margin: 1rem 0;
+    padding-left: 2rem;
+    list-style-type: disc;
+}
+
+.accessible-list li {
+    margin-bottom: 0.75rem;
+    line-height: 1.8; /* Mayor legibilidad */
+}
+
+/* Estilo para los contenedores de los botones de descarga (si se habilitan) */
+.cta-container {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: color-mix(in srgb, var(--primary-color) 5%, var(--bg-color));
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* REAJUSTE DE CONTRASTE PARA WCAG AAA */
+.accordion-panel-inner h3 {
+    color: var(--primary-color);
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 1rem;
+    margin: 1.5rem 0 1rem 0;
+}
+
+/* Soporte para Reflow (Zoom 400%) */
+@media (max-width: 320px) {
+    .accordion-trigger {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .accordion-chevron {
+        align-self: flex-end;
+    }
+}
 
 /* =============================================================================
    11. ESTILOS ESPECÍFICOS PARA "NOSOTROS"
