@@ -36,7 +36,7 @@
 
         <div class="header-controls">
             
-            <div class="accessibility-wrapper">
+           <div class="accessibility-wrapper">
                 <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
                     <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
                     <span class="visible-text">Herramientas Accesibilidad</span>
@@ -53,31 +53,52 @@
                     </div>
 
                     <fieldset class="acc-control-group">
-                        <legend class="acc-label">Tamaño de texto</legend>
-                        <div class="acc-btn-row">
-                            <button type="button" id="btn-fs-decrease" aria-label="Reducir tamaño de texto">A-</button>
-                            <button type="button" id="btn-fs-reset" aria-label="Restablecer tamaño de texto">A</button>
-                            <button type="button" id="btn-fs-increase" aria-label="Aumentar tamaño de texto">A+</button>
-                        </div>
-                    </fieldset>
+                    <legend class="acc-label">Tamaño de texto</legend>
+                    <div class="acc-btn-row">
+                        
+                        <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
+                        <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
 
+                        <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
+                        <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
+
+                        <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
+                        <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
+
+                    </div>
+                </fieldset>
                     <fieldset class="acc-control-group">
                         <legend class="acc-label">Interlineado</legend>
                         <div class="acc-btn-row">
-                            <button type="button" id="btn-lh-decrease" aria-label="Reducir interlineado">↔-</button>
-                            <button type="button" id="btn-lh-reset" aria-label="Restablecer interlineado">↔</button>
-                            <button type="button" id="btn-lh-increase" aria-label="Aumentar interlineado">↔+</button>
+                            
+                            <button type="button" id="btn-lh-decrease" aria-describedby="desc-lh-decrease">↔-</button>
+                            <span id="desc-lh-decrease" class="sr-only">Reducir interlineado</span>
+
+                            <button type="button" id="btn-lh-reset" aria-describedby="desc-lh-reset">↔</button>
+                            <span id="desc-lh-reset" class="sr-only">Restablecer interlineado</span>
+
+                            <button type="button" id="btn-lh-increase" aria-describedby="desc-lh-increase">↔+</button>
+                            <span id="desc-lh-increase" class="sr-only">Aumentar interlineado</span>
+
                         </div>
                     </fieldset>
 
                     <fieldset class="acc-control-group">
                         <legend class="acc-label">Espaciado de letras</legend>
                         <div class="acc-btn-row">
-                            <button type="button" id="btn-ls-decrease" aria-label="Reducir espaciado">T-</button>
-                            <button type="button" id="btn-ls-reset" aria-label="Restablecer espaciado">T</button>
-                            <button type="button" id="btn-ls-increase" aria-label="Aumentar espaciado">T+</button>
+                            
+                            <button type="button" id="btn-ls-decrease" aria-describedby="desc-ls-decrease">T-</button>
+                            <span id="desc-ls-decrease" class="sr-only">Reducir espaciado de letras</span>
+
+                            <button type="button" id="btn-ls-reset" aria-describedby="desc-ls-reset">T</button>
+                            <span id="desc-ls-reset" class="sr-only">Restablecer espaciado de letras</span>
+
+                            <button type="button" id="btn-ls-increase" aria-describedby="desc-ls-increase">T+</button>
+                            <span id="desc-ls-increase" class="sr-only">Aumentar espaciado de letras</span>
+
                         </div>
                     </fieldset>
+                   
 
                     <div class="acc-control-group">
                         <span class="acc-label" id="ruler-label">Ayudas de lectura</span>

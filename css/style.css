@@ -128,7 +128,7 @@ body {
 ============================================================================= */
 
 /* Clase de accesibilidad: visible solo para lectores de pantalla */
-.sr-only {
+ {
     position:   absolute;
     width:      1px;
     height:     1px;
@@ -188,7 +188,7 @@ body {
 
 /* Logo — enlace y tipografía */
 .logo-link {
-    display:         flex;
+  .sr-only  display: flex;
     align-items:     center;
     text-decoration: none;
     color:           var(--text-color);
@@ -267,7 +267,22 @@ body {
        mediante la clase aplicada vía JS o la regla de media query a continuación */
 }
 
+/* =============================================================================
+   UTILIDADES DE ACCESIBILIDAD
+============================================================================= */
 
+/* Oculta contenido visualmente pero lo expone a las tecnologías de asistencia */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
 /* =============================================================================
    6. CONTROLES DEL HEADER (icon-button, burger)
    WCAG 2.5.8 Target Size — mín. 44×44 px (AAA).
@@ -1164,7 +1179,59 @@ body.dark-mode .accessible-blockquote {
     color:       #CCCCCC;
 }
 
+/* =============================================================================
+   MEJORA DE RESPONSIVE PARA EL FOOTER (Reflow < 422px)
+============================================================================= */
 
+/* Ajuste en la clase base para asegurar que no haya desbordamiento */
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Mobile first: apilado por defecto */
+    gap: 2.5rem;
+    padding: 0 1rem; /* Padding lateral para que el texto no toque los bordes */
+}
+
+/* Breakpoint crítico: menor a 422px */
+@media (max-width: 26.375em) { /* 422px / 16 = 26.375em */
+    .main-footer {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .footer-section {
+        width: 100%; /* Forzamos el uso del 100% del viewport disponible */
+        text-align: left; /* Alineación a la izquierda para mejor legibilidad */
+    }
+
+    .footer-section h3 {
+        display: block; /* La línea decorativa ocupará el ancho disponible */
+        width: 100%;
+        font-size: 1.15rem;
+    }
+
+    /* Maximizamos el área de toque para los enlaces en móviles pequeños */
+    .footer-links a, 
+    .social-links a {
+        width: 100%; /* Los enlaces ocupan todo el ancho para facilitar el clic */
+        display: flex;
+        align-items: center;
+        padding: 0.85rem 0.5rem;
+        border-bottom: 1px solid #333; /* Guía visual para separar elementos táctiles */
+    }
+}
+
+    /* Restauramos el Grid solo cuando hay espacio suficiente (ej. Tablets) */
+    @media (min-width: 37.5em) { /* 600px */
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            flex-direction: row;
+            gap: 2rem;
+        }
+    }
 /* =============================================================================
    14. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
    Estrategia mobile-first: se amplían estilos al crecer la pantalla.
@@ -1353,4 +1420,91 @@ body.dark-mode .accessible-blockquote {
         animation-duration:    0.01ms !important;
         animation-iteration-count: 1 !important;
     }
+}
+/* =============================================================================
+   OPTIMIZACIÓN DE ESPACIO VERTICAL (REFLOW 400% / < 422px)
+============================================================================= */
+
+/* =============================================================================
+   OPTIMIZACIÓN DE ESPACIO VERTICAL (REFLOW 400% / < 422px)
+============================================================================= */
+
+.main-header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid #CCCCCC;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    /* ELIMINAR overflow: hidden si existiera */
+    max-height: 25vh; 
+}
+
+/* Aseguramos que el contenedor interno no bloquee los paneles */
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Referencia para los paneles */
+}
+.acc-panel {
+    position: fixed;         /* Cambiamos a fixed para que flote sobre todo */
+    top: 50%;                /* Centrado vertical inicial */
+    left: 50%;               /* Centrado horizontal inicial */
+    transform: translate(-50%, -50%); /* El truco maestro para centrar absoluto */
+    
+    background-color: var(--header-bg);
+    border: 3px solid var(--primary-color); /* Borde más grueso para mejor contraste */
+    border-radius: 12px;
+    
+    /* Padding reducido y dinámico para maximizar área útil */
+    padding: clamp(0.75rem, 3vh, 1.5rem); 
+    
+    width: 90vw;             /* Usa casi todo el ancho en móviles */
+    max-width: 400px;        /* Pero no se estira infinito en escritorio */
+    
+    /* Altura inteligente para que NUNCA tape toda la pantalla y permita salir */
+    max-height: 85vh; 
+    overflow-y: auto;
+    
+    z-index: 2000;           /* Por encima de todo */
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;            /* Espacio entre controles más compacto */
+    box-shadow: 0 0 0 100vmax rgba(0,0,0,0.5); /* Crea un overlay oscuro detrás para enfocar */
+}
+
+/* Estilizamos el scrollbar para que sea visible y accesible (WCAG 2.2) */
+.acc-panel::-webkit-scrollbar {
+    width: 8px;
+}
+.acc-panel::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+.accessibility-wrapper {
+    position: relative;
+    overflow: visible !important; /* El panel DEBE poder salir del contenedor */
+}
+
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(280px, 85vw);
+    height: 100vh;
+    background-color: var(--nav-mobile-bg);
+    transition: right 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+    
+    /* OPTIMIZACIÓN */
+    padding-top: 25vh; /* El contenido empieza justo donde termina el área máxima del header */
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
 }

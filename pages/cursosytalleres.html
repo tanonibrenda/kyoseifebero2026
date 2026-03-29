@@ -50,13 +50,20 @@
                     </div>
 
                     <fieldset class="acc-control-group">
-                        <legend class="acc-label">Tamaño de texto</legend>
-                        <div class="acc-btn-row">
-                            <button type="button" id="btn-fs-decrease" aria-label="Reducir tamaño de texto">A-</button>
-                            <button type="button" id="btn-fs-reset" aria-label="Restablecer tamaño de texto">A</button>
-                            <button type="button" id="btn-fs-increase" aria-label="Aumentar tamaño de texto">A+</button>
-                        </div>
-                    </fieldset>
+                    <legend class="acc-label">Tamaño de texto</legend>
+                    <div class="acc-btn-row">
+                        
+                        <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
+                        <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
+
+                        <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
+                        <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
+
+                        <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
+                        <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
+
+                    </div>
+                </fieldset>
 
                     <fieldset class="acc-control-group">
                         <legend class="acc-label">Interlineado</legend>
