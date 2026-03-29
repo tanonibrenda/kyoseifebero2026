@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades y Comunidad | Kyosei Accesibilidad</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="description" content="Explora nuestro impacto en la comunidad: webinars sobre accesibilidad digital, LinkedIn inclusivo y plataformas educativas.">
+</head>
+<body>
+    <header class="main-header" id="header-root">
+    <div class="header-container">
+        <a href="/./index.html" class="logo-link">
+            <img src="/./img/logo-kyosei-con-fondo-circular.png" alt="Logotipo Kyosei Accesibilidad" class="logo-img" height="60">
+            <span class="company-name">Kyosei Accesibilidad</span>
+        </a>
+
+        <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
+            <ul class="nav-list">
+                <li><a href="/./index.html" class="nav-link">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="/./pages/recursos.html" class="nav-link">Recursos</a></li> 
+                <li><a href="/./pages/cursosytalleres.html" class="nav-link">Cursos y Talleres</a></li>
+                <li><a href="/./pages/servicios.html" class="nav-link current" aria-current="page">Servicios</a></li>
+                <li><a href="/./pages/actividades.html" class="nav-link">Actividades</a></li>
+                <li><a href="/./pages/contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="accessibility-wrapper">
+                <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
+                    <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
+                    <span class="visible-text">Herramientas Accesibilidad</span>
+                </button>
+                
+                <div id="acc-panel" class="acc-panel" role="dialog" aria-labelledby="acc-title" hidden>
+                    <h2 id="acc-title" class="sr-only">Panel de preferencias de accesibilidad</h2>
+                    <button type="button" id="accCloseBtn" class="acc-close-btn" aria-label="Cerrar panel de accesibilidad">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="theme-label">Tema Visual</span>
+                            <button type="button" id="dark-mode-toggle" class="acc-btn-full" aria-pressed="false">
+                                 Activar Modo Oscuro
+                             </button>
+                    </div>
+
+                    <fieldset class="acc-control-group">
+                    <legend class="acc-label">Tamaño de texto</legend>
+                    <div class="acc-btn-row">
+                        <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
+                        <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
+                        <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
+                        <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
+                        <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
+                        <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
+                    </div>
+                </fieldset>
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Interlineado</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-lh-decrease" aria-describedby="desc-lh-decrease">↔-</button>
+                            <span id="desc-lh-decrease" class="sr-only">Reducir interlineado</span>
+                            <button type="button" id="btn-lh-reset" aria-describedby="desc-lh-reset">↔</button>
+                            <span id="desc-lh-reset" class="sr-only">Restablecer interlineado</span>
+                            <button type="button" id="btn-lh-increase" aria-describedby="desc-lh-increase">↔+</button>
+                            <span id="desc-lh-increase" class="sr-only">Aumentar interlineado</span>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Espaciado de letras</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-ls-decrease" aria-describedby="desc-ls-decrease">T-</button>
+                            <span id="desc-ls-decrease" class="sr-only">Reducir espaciado de letras</span>
+                            <button type="button" id="btn-ls-reset" aria-describedby="desc-ls-reset">T</button>
+                            <span id="desc-ls-reset" class="sr-only">Restablecer espaciado de letras</span>
+                            <button type="button" id="btn-ls-increase" aria-describedby="desc-ls-increase">T+</button>
+                            <span id="desc-ls-increase" class="sr-only">Aumentar espaciado de letras</span>
+                        </div>
+                    </fieldset>
+                   
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="ruler-label">Ayudas de lectura</span>
+                        <button type="button" id="toggle-ruler" class="acc-btn-full" aria-pressed="false">
+                            Activar Regla de Lectura
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <img src="/img/menu_burger.svg" alt="" class="burger-icon" aria-hidden="true" width="32" height="32">
+            </button>
+        </div>
+</header>  
+
+    <main id="main-content" tabindex="-1">
+        <section class="hero-section" aria-labelledby="titulo-actividades">
+            <div class="hero-content-container">
+                <div class="hero-text-content">
+                    <h1 id="titulo-actividades">Actividades y Comunidad</h1>
+                    <p class="hero-lead">Construyendo un mundo digital más justo a través del conocimiento compartido.</p>
+                    <p class="hero-description">
+                        En el espíritu de <strong>Kyosei</strong>, creemos que la accesibilidad crece cuando se trabaja en comunidad. Aquí compartimos nuestras colaboraciones y espacios de formación.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="activities-grid-section" aria-label="Lista de actividades y videos">
+            <div class="activities-container">
+                
+                <article class="activity-card">
+                    <div class="video-placeholder" data-video-id="H6rnk7LgKiM">
+                        <img src="https://img.youtube.com/vi/H6rnk7LgKiM/maxresdefault.jpg" alt="Miniatura del Webinar de Accesibilidad Digital">
+                        <a href="https://youtu.be/H6rnk7LgKiM" class="play-overlay-link" aria-label="Ver Webinar de Accesibilidad Digital en YouTube">
+                            <span class="play-icon" aria-hidden="true">▶</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h2>Webinar de Accesibilidad Digital</h2>
+                        <p>Cada 15 de marzo se conmemora en la Argentina el día de la Accesibilidad. Desde Kyosei Accesibilidad quisimos hacer como homenaje un Webinar para todos puedan saber más sobre accesibilidad digital.</p>
+                        <a href="https://youtu.be/H6rnk7LgKiM" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver en YouTube <span class="sr-only">(abre en nueva ventana)</span></a>
+                    </div>
+                </article>
+
+                <article class="activity-card">
+                    <div class="video-placeholder" data-video-id="jmM9ppF-CpE">
+                        <img src="https://img.youtube.com/vi/jmM9ppF-CpE/maxresdefault.jpg" alt="Miniatura de charla sobre LinkedIn inclusivo">
+                        <a href="https://www.youtube.com/watch?v=jmM9ppF-CpE" class="play-overlay-link" aria-label="Ver charla sobre LinkedIn junto a Capacitadero en YouTube">
+                            <span class="play-icon" aria-hidden="true">▶</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h2>LinkedIn Inclusivo</h2>
+                        <p>Ximena Romero conversa con Capacitadero sobre cómo optimizar perfiles y contenidos en LinkedIn para que sean accesibles para todos.</p>
+                        <a href="https://www.youtube.com/watch?v=jmM9ppF-CpE" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver en YouTube <span class="sr-only">(abre en nueva ventana)</span></a>
+                    </div>
+                </article>
+
+                <article class="activity-card">
+                    <div class="video-placeholder" data-video-id="uE-oEodzv5M">
+                        <img src="https://img.youtube.com/vi/uE-oEodzv5M/maxresdefault.jpg" alt="Miniatura de webinar sobre plataformas educativas accesibles">
+                        <a href="https://www.youtube.com/live/uE-oEodzv5M" class="play-overlay-link" aria-label="Ver webinar sobre accesibilidad en plataformas educativas en YouTube">
+                            <span class="play-icon" aria-hidden="true">▶</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h2>Accesibilidad en Educación</h2>
+                        <p>Colaboración junto a Incluton explorando las barreras y soluciones en los entornos virtuales de aprendizaje.</p>
+                        <a href="https://www.youtube.com/live/uE-oEodzv5M" class="btn-secondary" target="_blank" rel="noopener noreferrer">Ver en YouTube <span class="sr-only">(abre en nueva ventana)</span></a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-container">
+                <p>¿Quieres colaborar con nosotros en un evento?</p>
+                <a href="/pages/contacto.html" class="btn-primary">Hablemos</a>
+            </div>
+        </section>
+    </main>
+    <footer class="main-footer" aria-labelledby="footer-heading">
+<h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
+
+<div class="footer-container">
+    <div class="footer-section">
+        <h3>Kyosei Accesibilidad</h3>
+        <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
+    </div>
+    
+    <div class="footer-section">
+        <h3>Mapa del sitio</h3>
+        <nav aria-label="Mapa del sitio del pie de página">
+            <ul class="footer-links">
+                <li><a href="/./index.html">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html">Nosotros</a></li>
+                <li><a href="/./pages/recursos.html">Recursos</a></li>
+                <li><a href="/./pages/cursosytalleres.html">Cursos y Talleres</a></li>
+                <li><a href="/./pages/servicios.html">Servicios</a></li>
+                <li><a href="/./pages/actividades.html">Actividades</a></li>
+                <li><a href="/./pages/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="footer-section">
+        <h3>Redes Sociales</h3>
+        <nav aria-label="Redes sociales">
+            <ul class="social-links">
+                <li>
+                    <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">YouTube</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
+</div>
+</footer>
+<script src="/js/main.js"></script>
+    </body>
+</html>

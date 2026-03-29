@@ -14,6 +14,7 @@
     10.  Hero Section
     11.  Botones del Hero
     12.  Sección de Cursos y Talleres
+    13.  Actividades
     13.  Footer
     14.  Media Queries — Responsive y Reflujo WCAG 2.2
 ============================================================================= */
@@ -1337,9 +1338,160 @@ body.dark-mode .accessible-blockquote {
     text-align: center;
 }
 
+/* =============================================================================
+   14. SECCIÓN DE CURSOS Y TALLERES
+============================================================================= */
+.activities-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.activity-card {
+    background-color: var(--header-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(21, 91, 166, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-body h2 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+
+.card-body p {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* --- VIDEO PLACEHOLDER (ESTILO YOUTUBE) --- */
+.video-placeholder {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+}
+
+.video-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.play-overlay-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.play-icon {
+    width: 68px;
+    height: 48px;
+    background-color: rgba(21, 91, 166, 0.9); /* Azul Kyosei */
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.play-overlay-link:hover .play-icon,
+.play-overlay-link:focus .play-icon {
+    background-color: #f00; /* Color YouTube para reconocimiento visual */
+    transform: scale(1.1);
+}
+
+/* Soporte Modo Oscuro */
+body.dark-mode .activity-card {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* --- SECCIÓN ACTIVIDADES (CORRECCIÓN RESPONSIVE) --- */
+.activities-container {
+    display: grid;
+    /* El truco mágico: min(100%, 280px). 
+       Si 280px es mayor que el ancho disponible, tomará el 100% del contenedor sin desbordar. */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 2rem; /* Reducimos levemente el gap general para móviles */
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem; /* Padding lateral más ajustado */
+}
+
+/* El resto de las reglas se mantienen iguales... */
+.activity-card {
+    background-color: var(--header-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(21, 91, 166, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* ... (mantener las reglas de h2, p, y video-placeholder) ... */
+
+/* --- OPTIMIZACIÓN EXTREMA PARA < 370px (Reflujo WCAG) --- */
+@media (max-width: 24.375em) { /* Aprox 390px o Zoom Alto */
+    .card-body {
+        padding: 1rem; /* Menos padding para dejar más área de lectura al texto */
+    }
+
+    .card-body h2 {
+        font-size: 1.2rem; /* Reducimos el título para evitar truncamientos */
+    }
+
+    .play-icon {
+        /* Hacemos el botón un poco más compacto, 
+           pero garantizando el tamaño de objetivo táctil de 44x44px (AAA) */
+        width: 54px;
+        height: 44px;
+    }
+}
 
 /* =============================================================================
-   14. FOOTER
+   15. FOOTER
    WCAG 1.4.3 Contrast — texto #FFFFFF sobre #121212 = 18:1 (AAA).
    WCAG 2.5.8 Target Size — enlaces con área de clic ≥ 44×44 px (AAA).
 ============================================================================= */
@@ -1476,7 +1628,7 @@ body.dark-mode .accessible-blockquote {
         }
     }
 /* =============================================================================
-   15. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
+   16. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
    Estrategia mobile-first: se amplían estilos al crecer la pantalla.
 
    WCAG 1.4.10 Reflow (AA):
@@ -1668,9 +1820,7 @@ body.dark-mode .accessible-blockquote {
    OPTIMIZACIÓN DE ESPACIO VERTICAL (REFLOW 400% / < 422px)
 ============================================================================= */
 
-/* =============================================================================
-   OPTIMIZACIÓN DE ESPACIO VERTICAL (REFLOW 400% / < 422px)
-============================================================================= */
+
 
 .main-header {
     background-color: var(--header-bg);

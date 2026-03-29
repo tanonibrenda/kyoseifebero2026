@@ -491,6 +491,56 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =============================================================================
+   CORRECCIÓN: PANEL DE ACCESIBILIDAD (GESTIÓN DE CIERRE)
+============================================================================= */
+function inicializarPanelAccesibilidad() {
+    const accToggle = document.getElementById('acc-menu-toggle');
+    const accPanel  = document.getElementById('acc-panel');
+    const accCloseBtn = document.getElementById('accCloseBtn'); // Botón de la X
+
+    if (!accToggle || !accPanel) return;
+
+    function abrirPanel() {
+        accToggle.setAttribute('aria-expanded', 'true');
+        accPanel.removeAttribute('hidden');
+        anunciar('Panel de accesibilidad abierto');
+        
+        // Foco inicial en el primer elemento o el botón de cerrar para navegación rápida
+        if (accCloseBtn) accCloseBtn.focus(); 
+    }
+
+    function cerrarPanel() {
+        accToggle.setAttribute('aria-expanded', 'false');
+        accPanel.setAttribute('hidden', '');
+        anunciar('Panel de accesibilidad cerrado');
+        // Devolver foco al disparador original (Requisito WCAG)
+        accToggle.focus();
+    }
+
+    // Evento para abrir/cerrar desde el botón principal
+    accToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = accToggle.getAttribute('aria-expanded') === 'true';
+        isExpanded ? cerrarPanel() : abrirPanel();
+    });
+
+    // SOLUCIÓN: Evento específico para la X
+    if (accCloseBtn) {
+        accCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            cerrarPanel();
+        });
+    }
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !accPanel.hasAttribute('hidden')) {
+            cerrarPanel();
+        }
+    });
+}
+/* =============================================================================
    ACORDEÓN ACCESIBLE
    WCAG 2.1.1 Keyboard (A) — Enter/Espacio abren; Escape cierra
    WCAG 2.4.3 Focus Order (A) — foco permanece en el botón
