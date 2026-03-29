@@ -306,9 +306,19 @@ body {
 }
 
 /* Los elementos internos no capturan eventos */
+/* El ícono no captura eventos de clic y reacciona al modo oscuro del sistema o manual */
 .icon-button .toggle-icon,
 .icon-button .burger-icon {
     pointer-events: none;
+    filter: var(--icon-filter, none);
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+/* Inversión de color cuando el botón recibe foco, está activo o el menú está desplegado */
+.icon-button:focus .burger-icon,
+.icon-button:focus-visible .burger-icon,
+.icon-button[aria-expanded="true"] .burger-icon {
+    filter: brightness(0) invert(1);
 }
 
 /* El botón burger es visible por defecto (mobile-first) */
