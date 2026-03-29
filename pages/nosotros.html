@@ -24,8 +24,8 @@
 
         <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
             <ul class="nav-list">
-                <li><a href="/index.html">Inicio</a></li>
-                <li><a href="/./pages/nosotros.html" class="nav-link" class="nav-link current" aria-current="page">Nosotros</a></li>
+                <li><a href="/./index.html" class="nav-link current" aria-current="page">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html" class="nav-link">Nosotros</a></li>
                 <li><a href="/./pages/recursos.html" class="nav-link">Recursos</a></li> 
                 <li><a href="/./pages/cursosytalleres.html" class="nav-link">Cursos y Talleres</a></li>
                 <li><a href="/./pages/servicios.html" class="nav-link">Servicios</a></li>
@@ -34,9 +34,7 @@
             </ul>
         </nav>
 
-        <div class="header-controls">
-            
-           <div class="accessibility-wrapper">
+        <div class="accessibility-wrapper">
                 <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
                     <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
                     <span class="visible-text">Herramientas Accesibilidad</span>
@@ -116,7 +114,7 @@
             </button>
         </div>
     </div>
-</header>
+</header> 
     
 <main id="main-content">
     <section class="hero-section" aria-labelledby="titulo-nosotros">
@@ -127,9 +125,9 @@
             </div>
         </div>
     </section>
-
-    <section aria-labelledby="significado-kyosei" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
-        <h2 id="significado-kyosei" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+    <article class="content-wrapper">
+    <section aria-labelledby="significado-kyosei"  class="info-block"">
+        <h2 id="significado-kyosei">
             ¿Qué significa Kyosei?
         </h2>
         <p>
@@ -140,8 +138,8 @@
         </p>
     </section>
 
-    <section aria-labelledby="nuestra-historia" style="padding: 2rem 1rem 4rem; max-width: 900px; margin: 0 auto;">
-        <h2 id="nuestra-historia" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+    <section aria-labelledby="nuestra-historia" class="info-block">
+        <h2 id="nuestra-historia">
             Nuestra Historia
         </h2>
         <p>
@@ -156,8 +154,8 @@
     </section>
     
 
-    <section aria-labelledby="nuestra-mision" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
-        <h2 id="nuestra-mision" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+    <section aria-labelledby="nuestra-mision" class="info-block" >
+        <h2 id="nuestra-mision">
             Nuestra Misión
         </h2>
         <p>
@@ -165,8 +163,8 @@
         </p>
     </section>
 
-    <section aria-labelledby="nuestra-vision" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
-        <h2 id="nuestra-vision" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+    <section aria-labelledby="nuestra-vision" class="info-block">
+        <h2 id="nuestra-vision"">
             Nuestra Visión
         </h2>
         <p>
@@ -174,74 +172,75 @@
         </p>
     </section>
 
-    <section aria-labelledby="nuestros-valores" style="padding: 2rem 1rem 4rem; max-width: 900px; margin: 0 auto;">
-        <h2 id="nuestros-valores" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem;">
+    <section aria-labelledby="nuestros-valores" class="info-block">
+        <h2 id="nuestros-valores" >
             Nuestros Valores
         </h2>
-        
-        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        <div class="valores-detalle">
+        <h3>
             Kyosei, la búsqueda del bien común
         </h3>
         <p>
             Nuestra filosofía central. Significa trabajar en comunidad para el bien común. Cada decisión, cada servicio y cada acción está orientada hacia el bienestar colectivo. Creemos que la prosperidad mutua se alcanza cuando todas las personas pueden participar plenamente en la sociedad.
         </p>
 
-        <h3 style="color: var(--primary-color); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+        <h3 >
             La accesibilidad es un derecho, no un privilegio
         </h3>
         <p>
             Trabajamos para que cada experiencia digital sea accesible por diseño, eliminando barreras que impiden la participación plena de las personas. Por eso trabajamos con amor, pasión y tenacidad resiliente; para generar un impacto social auténtico.
         </p>
+        </div>
     </section>
-
-    <section aria-labelledby="nuestro-equipo" style="padding: 2rem 1rem 4rem; max-width: 1000px; margin: 0 auto;">
-        <h2 id="nuestro-equipo" style="color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; margin-bottom: 2.5rem;">
+    </article>
+    <section aria-labelledby="nuestro-equipo" class="team-section">
+        <h2 id="nuestro-equipo" class="section-title">
             Nuestro Equipo de Trabajo
         </h2>
 
-        <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; justify-items: center;">
+        <ul class="team-grid">
             
-            <li style="text-align: center; max-width: 300px;">
-                <img src="/./img/ximena_romero.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Ximena Romero">
+            <li class="team-card">
+                <img src="/./img/ximena_romero.png" class="team-photo" alt="Ximena Romero">
                     
                 </div>
-                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Ximena Romero</h3>
-                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Tester en Accesibilidad de 6 años de experiencia</p>
-                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Me encanta trabajar con personas que desafían las barreras y me inspira la creatividad y la innovación.</p>
+                <h3 class="team-name">Ximena Romero</h3>
+                <p class="team-role">Tester en Accesibilidad de 6 años de experiencia</p>
+                <p class="team-bio">Me encanta trabajar con personas que desafían las barreras y me inspira la creatividad y la innovación.</p>
             </li>
 
-            <li style="text-align: center; max-width: 300px;">
-                <img src="/./img/brenda_tanoni.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Brenda Tanoni">
+            <li class="team-card">
+                <img src="/./img/brenda_tanoni.png" class="team-photo" alt="Brenda Tanoni">
                    
                 </div>
-                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Brenda Tanoni</h3>
-                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Médica. Docente. Estudiante de programación. QA</p>
-                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Siempre buscando aprender y mejorar.</p>
+                <h3 class="team-name">Brenda Tanoni</h3>
+                <p class="team-role">Médica. Docente. Estudiante de programación. QA</p>
+                <p class="team-bio">Siempre buscando aprender y mejorar.</p>
             </li>
 
-            <li style="text-align: center; max-width: 300px;">
-                <img src="/./img/ian_sosa.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Ian Sosa">
+            <li class="team-card">
+                <img src="/./img/ian_sosa.png" class="team-photo" alt="Ian Sosa">
                     
                 </div>
-                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Ian Sosa</h3>
-                <p style="color: var(primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Desarrollador Web Frontend, diseñador UX/UI y estudiante de Ingeniería en Informática</p>
-                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Busco que cada línea de código aporte a un diseño más humano e inclusivo.</p>
+                <h3 class="team-name">Ian Sosa</h3>
+                <p class="team-role">Desarrollador Web Frontend, diseñador UX/UI y estudiante de Ingeniería en Informática</p>
+                <p class="team-bio">Busco que cada línea de código aporte a un diseño más humano e inclusivo.</p>
             </li>
 
-            <li style="text-align: center; max-width: 300px;">
-                <img src="/./img/mariano_infante.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Mariano Infante">
+            <li class="team-card">
+                <img src="/./img/mariano_infante.png" class="team-photo" alt="Mariano Infante">
                 </div>
-                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Mariano Infante</h3>
-                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Full Stack Developer y tester QA con mentalidad de crecimiento</p>
-                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Me entusiasma colaborar en equipo, resolver desafíos con creatividad y aportar valor a cada proyecto.</p>
+                <h3 class="team-name">Mariano Infante</h3>
+                <p class="team-role">Full Stack Developer y tester QA con mentalidad de crecimiento</p>
+                <p class="team-bio">Me entusiasma colaborar en equipo, resolver desafíos con creatividad y aportar valor a cada proyecto.</p>
             </li>
 
-            <li style="text-align: center; max-width: 300px;">
-                <img src="/./img/marcos_peirone.png" aria-label="Espacio reservado para la fotografía de Brenda Tanoni" style="width: 180px; height: 180px; border-radius: 50%; background-color: var(--header-bg);  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--primary-color); font-weight: bold;" alt="Marcos Peirone">
+            <li class="team-card">
+                <img src="/./img/marcos_peirone.png" class="team-photo" alt="Marcos Peirone">
                 
-                <h3 style="color: var(--primary-color); margin: 0 0 0.25rem 0; font-size: 1.25rem;">Marcos Peirone</h3>
-                <p style="color: var(--primary-color); font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">Desarrollador BackEnd. Docente</p>
-                <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">Apasionado por la tecnología desde siempre, convierto los desafíos visuales en oportunidades para crear experiencias inclusivas que funcionen para todos.</p>
+                <h3 class="team-name">Marcos Peirone</h3>
+                <p class="team-role">Desarrollador BackEnd. Docente</p>
+                <p class="team-bio">Apasionado por la tecnología desde siempre, convierto los desafíos visuales en oportunidades para crear experiencias inclusivas que funcionen para todos.</p>
             </li>
 
         </ul>

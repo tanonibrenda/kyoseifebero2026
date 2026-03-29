@@ -555,14 +555,76 @@ body.dark-mode .reading-ruler-layer {
         rgba(255, 255, 255, 0.15) 100%
     );
 }
+/* =============================================================================
+   ESTILOS PARA EL BOTÓN DE CIERRE DEL PANEL
+============================================================================= */
 
+/* Ajuste en el panel para dar espacio al botón superior */
+.acc-panel {
+    /* ... tus estilos actuales del panel centrado ... */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* ... resto de estilos ... */
+    
+    padding-top: 3rem; /* Espacio extra arriba para el botón */
+}
+
+/* El título del panel ahora debe ser un h2 para mejor semántica */
+.acc-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Estilos del botón cerrar */
+.acc-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: 2px solid transparent; /* Para el estado de foco */
+    border-radius: 50%;
+    font-size: 2rem; /* Cruz grande y visible */
+    line-height: 1;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Tamaño de toque AAA */
+    height: 44px;
+    transition: all 0.2s ease;
+    z-index: 2001; /* Por encima del contenido del panel */
+}
+
+/* Estados Hover y Focus para Accesibilidad */
+.acc-close-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+}
+
+.dark-mode .acc-close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Foco ultra-visible (WCAG 2.1) */
+.acc-close-btn:focus-visible {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.4);
+}
 
 /* =============================================================================
    10. HERO SECTION
    WCAG 1.4.10 Reflow — padding-top compensa el header fijo sin causar scroll horizontal.
 ============================================================================= */
 .hero-section {
-    padding:          6rem 1rem 4rem; /* Espacio superior = altura aprox. del header fijo */
+    padding:          6rem 1rem 2rem; /* Espacio superior = altura aprox. del header fijo */
     background-color: var(--bg-color);
     display:          flex;
     flex-direction:   column;
@@ -582,7 +644,7 @@ body.dark-mode .reading-ruler-layer {
 .hero-content-container {
     max-width: 900px;   /* Límite de línea para legibilidad — WCAG 1.4.8 (AAA) */
     margin:    0 auto;
-    padding:   0 1rem 4rem;
+    padding:   1 1rem 2rem;
     width:     100%;
 }
 
@@ -697,8 +759,133 @@ h2 {
     outline: 3px solid #e63946; /* Borde visible para el foco */
     outline-offset: 2px;
 }
+
+
 /* =============================================================================
-   11. BOTONES DEL HERO
+   11. ESTILOS ESPECÍFICOS PARA "NOSOTROS"
+============================================================================= */
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.info-block {
+    margin-bottom: 3rem;
+}
+
+.info-block h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.grid-mission-vision {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Contenedor que organiza las "cards" */
+.grid-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+/* LA CLASE MAESTRA: Estética compartida para Misión, Visión y Valores */
+.card-info {
+    background-color: var(--header-bg); /* Consistente con tu paleta */
+    border-top: 4px solid var(--secondary-color); /* El toque naranja institucional */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+/* Estilo para los títulos dentro de estas secciones */
+.card-info h2 {
+    color: var(--primary-color); /* Azul Kyosei */
+    margin-top: 0;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+}
+
+/* Ajuste para los subvalores dentro de la sección Valores */
+.valores-detalle h3 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+}
+
+/* Sección de Equipo */
+.team-section {
+    padding: 4rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-title {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.team-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+}
+
+.team-card {
+    text-align: center;
+    background: var(--header-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.2s ease;
+}
+
+.team-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid var(--secondary-color);
+}
+
+.team-name {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.team-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Dark Mode ajustes para equipo */
+body.dark-mode .team-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+}
+/* =============================================================================
+   12. BOTONES DEL HERO
    WCAG 2.5.8 Target Size — mín. 44×44 px (AAA).
    WCAG 1.4.3 Contrast (AA) — relación ≥ 4.5:1.
 ============================================================================= */
@@ -1037,7 +1224,7 @@ body.dark-mode .accessible-blockquote {
 }
 
 /* =============================================================================
-   12. SECCIÓN DE CURSOS Y TALLERES
+   13. SECCIÓN DE CURSOS Y TALLERES
 ============================================================================= */
 
 /* Contenedor principal de la sección */
@@ -1096,7 +1283,7 @@ body.dark-mode .accessible-blockquote {
 
 
 /* =============================================================================
-   13. FOOTER
+   14. FOOTER
    WCAG 1.4.3 Contrast — texto #FFFFFF sobre #121212 = 18:1 (AAA).
    WCAG 2.5.8 Target Size — enlaces con área de clic ≥ 44×44 px (AAA).
 ============================================================================= */
@@ -1233,7 +1420,7 @@ body.dark-mode .accessible-blockquote {
         }
     }
 /* =============================================================================
-   14. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
+   15. MEDIA QUERIES — RESPONSIVE Y REFLUJO WCAG 2.2
    Estrategia mobile-first: se amplían estilos al crecer la pantalla.
 
    WCAG 1.4.10 Reflow (AA):

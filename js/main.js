@@ -438,7 +438,57 @@ function inicializarPanelAccesibilidad() {
         aplicarPreferencias('Espaciado de letras restablecido');
     });
 }
+// Dentro de tu archivo script.js o en la sección de scripts
 
+document.addEventListener('DOMContentLoaded', () => {
+    const accBtn = document.getElementById('accBtn'); // Botón principal en el header
+    const accPanel = document.getElementById('accPanel');
+    const accCloseBtn = document.getElementById('accCloseBtn'); // NUEVO botón
+
+    // Función para abrir el panel
+    function openAccPanel() {
+        accPanel.removeAttribute('hidden');
+        accBtn.setAttribute('aria-expanded', 'true');
+        // Importante: Mover el foco al primer elemento interactivo del panel (el botón cerrar)
+        accCloseBtn.focus(); 
+    }
+
+    // Función para cerrar el panel
+    function closeAccPanel() {
+        accPanel.setAttribute('hidden', '');
+        accBtn.setAttribute('aria-expanded', 'false');
+        // IMPORTANTE: Devolver el foco al botón que abrió el panel
+        accBtn.focus(); 
+    }
+
+    // Evento para el botón principal
+    accBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = accPanel.hasAttribute('hidden');
+        if (isHidden) {
+            openAccPanel();
+        } else {
+            closeAccPanel();
+        }
+    });
+
+    // NUEVO: Evento para el botón de cerrar
+    accCloseBtn.addEventListener('click', closeAccPanel);
+
+    // Cerrar si se presiona la tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !accPanel.hasAttribute('hidden')) {
+            closeAccPanel();
+        }
+    });
+
+    // Cerrar si se hace clic fuera del panel
+    document.addEventListener('click', (e) => {
+        if (!accPanel.hasAttribute('hidden') && !accPanel.contains(e.target) && e.target !== accBtn) {
+            closeAccPanel();
+        }
+    });
+});
 
 /* =============================================================================
    ACORDEÓN ACCESIBLE
