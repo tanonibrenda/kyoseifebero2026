@@ -35,6 +35,7 @@
     --secondary-color:       #B35812;   /* Naranja — contraste 4.6:1 (AA) */
     --current-page-color:    var(--primary-color);
     --focus-outline-color:   #0d4d92;
+    --third-color:           #052b53; 
 
     /* Tipografía — WCAG 1.4.12 Text Spacing (AAA) */
     --base-font-size:        1rem;
@@ -1105,7 +1106,7 @@ body.dark-mode .team-card {
     font-size:   clamp(1.05rem, 2.5vw, 1.25rem);
     font-weight: bold;
     line-height: 1.3;
-    color:       var(--primary-color);
+    color:       var(--third-color);
     flex:        1;
 }
 
