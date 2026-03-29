@@ -138,6 +138,22 @@ function manejarTrampaDeFoco(e, contenedor) {
    WCAG 4.1.2 Name, Role, Value (A) — aria-expanded actualizado
    WCAG 4.1.3 Status Messages (AA) — anuncio de apertura/cierre
 ============================================================================= */
+
+
+//
+
+/* =============================================================================
+   NAVEGACIÓN Y MENÚ MÓVIL (CORREGIDO PARA NAVEGACIÓN EXCLUSIVA POR TECLADO)
+   WCAG 2.1.1 Keyboard (A) — todo operable con teclado y Escape global
+   WCAG 2.4.3 Focus Order (A) — foco gestionado al abrir/cerrar
+   WCAG 4.1.2 Name, Role, Value (A) — aria-expanded actualizado
+   WCAG 4.1.3 Status Messages (AA) — anuncio de apertura/cierre
+============================================================================= */
+/* =============================================================================
+   NAVEGACIÓN Y MENÚ MÓVIL (CORRECCIÓN DEFINITIVA DE FOCO)
+   WCAG 2.1.1 Keyboard (A) & WCAG 2.1.2 No Keyboard Trap (A)
+   Incluye el botón disparador en el ciclo de Tab y suma flechas de dirección.
+============================================================================= */
 function inicializarNavegacion() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mainMenu         = document.getElementById('main-menu');
@@ -149,7 +165,6 @@ function inicializarNavegacion() {
     if (!overlay) {
         overlay = document.createElement('div');
         overlay.classList.add('nav-overlay');
-        // El overlay es decorativo; no lo exponemos a AT
         overlay.setAttribute('aria-hidden', 'true');
         document.body.appendChild(overlay);
 
@@ -158,19 +173,25 @@ function inicializarNavegacion() {
         });
     }
 
+    // Unir dinámicamente los enlaces y el botón en un solo arreglo de foco
+    function obtenerElementosMenu() {
+        const links = Array.from(mainMenu.querySelectorAll('.nav-link'));
+        // El ciclo será: link 1 -> link 2 ... -> link final -> botón cerrar -> link 1
+        return [...links, mobileMenuToggle]; 
+    }
+
     function abrirMenu() {
         mobileMenuToggle.setAttribute('aria-expanded', 'true');
         mainMenu.classList.add('open');
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
 
-        // Anunciar apertura — WCAG 4.1.3
         anunciar('Menú de navegación abierto');
 
-        // Mover foco al primer enlace — WCAG 2.4.3
+        // Foco inicial en el primer enlace
         requestAnimationFrame(() => {
-            const primerEnlace = mainMenu.querySelector('.nav-link');
-            if (primerEnlace) primerEnlace.focus();
+            const links = mainMenu.querySelectorAll('.nav-link');
+            if (links.length > 0) links[0].focus();
         });
     }
 
@@ -181,28 +202,64 @@ function inicializarNavegacion() {
         document.body.style.overflow = '';
 
         anunciar('Menú de navegación cerrado');
-
-        // Devolver foco al disparador — WCAG 2.4.3
         mobileMenuToggle.focus();
     }
 
-    function toggleMenu() {
+    mobileMenuToggle.addEventListener('click', () => {
         const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
         isExpanded ? cerrarMenu() : abrirMenu();
-    }
+    });
 
-    mobileMenuToggle.addEventListener('click', toggleMenu);
+    // Control global de teclado para el menú
+    document.addEventListener('keydown', (e) => {
+        // Si el menú está cerrado, no hacemos nada y dejamos el comportamiento normal
+        if (!mainMenu.classList.contains('open')) return;
 
-    // Teclado dentro del menú
-    mainMenu.addEventListener('keydown', (e) => {
+        const elementos = obtenerElementosMenu();
+        if (elementos.length === 0) return;
+
+        const primero = elementos[0]; // Primer enlace
+        const ultimo = elementos[elementos.length - 1]; // Botón hamburguesa
+
+        // 1. Cierre seguro con Escape
         if (e.key === 'Escape') {
+            e.preventDefault();
             cerrarMenu();
             return;
         }
-        manejarTrampaDeFoco(e, mainMenu);
+
+        // 2. Trampa de foco robusta (Tab y Shift+Tab)
+        if (e.key === 'Tab') {
+            if (e.shiftKey) { // Navegación hacia atrás
+                if (document.activeElement === primero) {
+                    e.preventDefault();
+                    ultimo.focus();
+                }
+            } else { // Navegación hacia adelante
+                if (document.activeElement === ultimo) {
+                    e.preventDefault();
+                    primero.focus();
+                }
+            }
+            return;
+        }
+
+        // 3. Patrón avanzado de accesibilidad: Navegación con flechas (Up/Down)
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            const links = Array.from(mainMenu.querySelectorAll('.nav-link'));
+            const currentIndex = links.indexOf(document.activeElement);
+            
+            // Solo aplicar flechas si el foco está actualmente en un enlace
+            if (currentIndex !== -1) { 
+                e.preventDefault();
+                let nextIndex = e.key === 'ArrowDown' 
+                    ? (currentIndex + 1) % links.length 
+                    : (currentIndex - 1 + links.length) % links.length;
+                links[nextIndex].focus();
+            }
+        }
     });
 }
-
 
 /* =============================================================================
    MODO OSCURO
