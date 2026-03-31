@@ -1383,6 +1383,25 @@ body.dark-mode .accessible-blockquote {
     flex-grow: 1;
 }
 
+/* Imagen decorativa dentro del panel del acordeón — WCAG 1.1.1 (decorativa) */
+.course-decorative-img {
+    display:      block;
+    width:        25vw;
+    height:       auto;
+    margin:       0 auto 1.5rem;
+    opacity:      0.85;
+    border-radius: 8px;
+}
+
+/* Modo oscuro: leve ajuste de brillo para no perder contraste */
+body.dark-mode .course-decorative-img,
+@media (prefers-color-scheme: dark) {
+    .course-decorative-img {
+        opacity: 0.70;
+        filter:  brightness(0.9);
+    }
+}
+
 /* --- VIDEO PLACEHOLDER (ESTILO YOUTUBE) --- */
 .video-placeholder {
     position: relative;
