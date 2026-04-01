@@ -25,12 +25,8 @@
     <meta name="twitter:title" content="Cursos y Talleres de Accesibilidad Digital | Kyosei">
     <meta name="twitter:description" content="Aprende a crear entornos educativos sin barreras: Moodle, documentos, redes y clases de programación accesibles.">
     <meta name="twitter:image" content="https://wwww.kyoseiaccesibilidad.com/img/logo-kyosei-con-fondo-circular.png">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="/./img/iconologo.ico">
-    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<!-- Enlace de salto — WCAG 2.4.1 Bypass Blocks (A) -->
 <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
 <header class="main-header" id="header-root">
@@ -43,10 +39,10 @@
 
         <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
             <ul class="nav-list">
-                <li><a href="/./index.html" class="nav-link current" aria-current="page">Inicio</a></li>
+                <li><a href="/./index.html" class="nav-link">Inicio</a></li>
                 <li><a href="/./pages/nosotros.html" class="nav-link">Nosotros</a></li>
                 <li><a href="/./pages/recursos.html" class="nav-link">Recursos</a></li> 
-                <li><a href="/./pages/cursosytalleres.html" class="nav-link">Cursos y Talleres</a></li>
+                <li><a href="/./pages/cursosytalleres.html" class="nav-link current" aria-current="page">Cursos y Talleres</a></li>
                 <li><a href="/./pages/servicios.html" class="nav-link">Servicios</a></li>
                 <li><a href="/./pages/actividades.html" class="nav-link">Actividades</a></li>
                 <li><a href="/./pages/contacto.html" class="nav-link">Contacto</a></li>
@@ -54,7 +50,6 @@
         </nav>
 
         <div class="header-controls">
-            
             <div class="accessibility-wrapper">
                 <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
                     <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
@@ -72,20 +67,16 @@
                     </div>
 
                     <fieldset class="acc-control-group">
-                    <legend class="acc-label">Tamaño de texto</legend>
-                    <div class="acc-btn-row">
-                        
-                        <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
-                        <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
-
-                        <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
-                        <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
-
-                        <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
-                        <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
-
-                    </div>
-                </fieldset>
+                        <legend class="acc-label">Tamaño de texto</legend>
+                        <div class="acc-btn-row">
+                            <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
+                            <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
+                            <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
+                            <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
+                            <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
+                            <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
+                        </div>
+                    </fieldset>
 
                     <fieldset class="acc-control-group">
                         <legend class="acc-label">Interlineado</legend>
@@ -114,318 +105,326 @@
                 </div>
             </div>
 
-            
-
             <button type="button" id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
                 <img src="/img/menu_burger.svg" alt="" class="burger-icon" aria-hidden="true" width="32" height="32">
             </button>
         </div>
     </div>
 </header>    
-<main id="main-content" tabindex="-1">
-<section class="resource-section course-section" aria-labelledby="titulo-cursos-moodle">
-    
-    <div class="section-header">
-        <h1 id="titulo-cursos-moodle">Cursos y Talleres Disponibles</h1>
-        <p class="section-subtitle">Capacitación teórico-práctica para transformar la mirada pedagógica hacia la inclusión real.</p>
-    </div>
 
-    <div class="accessible-accordion">
+<main id="main-content" tabindex="-1">
+    
+    <section class="hero-section" aria-labelledby="titulo-principal-cursos">
+        <div class="hero-content-container">
+            <div class="hero-text-content">
+                <h1 id="titulo-principal-cursos">Cursos y Talleres Disponibles</h1>
+                <p class="hero-lead">Capacitación teórico-práctica para transformar la mirada pedagógica hacia la inclusión real.</p>
+            </div>
+        </div>
+    </section>
+
         <!-- ==========================================================================================================================================================
                                                                      Instagram
             ========================================================================================================================================================== -->
-        <section class="resource-section course-section" aria-labelledby="titulo-cursos-instagram">
-            <div class="accessible-accordion">
-            <h2 class="accordion-heading accordion-heading--separator">
-                    <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-instagram-seo" id="btn-instagram-seo">
-                        <span class="accordion-title-text">Crecé en Instagram con Accesibilidad y SEO</span>
-                        <span class="accordion-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            </svg>
-                        </span>
-                    </button>
-                </h2>
 
-                <div class="accordion-panel" id="panel-instagram-seo" role="region" aria-labelledby="btn-instagram-seo" hidden>
-                    <div class="accordion-panel-inner">
-                        
-                        <p class="course-hook">Optimizá tu alcance con empatía: conectá con nuevas audiencias y multiplicá el impacto de tu proyecto.</p>
-                        <p>Descubrí cómo las prácticas de diseño inclusivo no solo transforman tu perfil en un espacio sin barreras, sino que le dan a los algoritmos de Instagram exactamente lo que necesitan para posicionar tu marca y destacar tu contenido frente a la competencia.</p>
+    <section class="resource-section" aria-labelledby="titulo-curso-instagram">
+        <div class="accessible-accordion">
+            <h2 id="titulo-curso-instagram" class="accordion-heading">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-instagram-seo" id="btn-instagram-seo">
+                    <span class="accordion-title-text">Crecé en Instagram con Accesibilidad y SEO</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
+            
+            <div class="accordion-panel" id="panel-instagram-seo" role="region" aria-labelledby="btn-instagram-seo" hidden>
+                <div class="accordion-panel-inner">
+                    <div>
+                        <img src="/./img/instagram_curso.png" 
+                        alt="Banner promocional de Kyosei “Curso de Instagram, SEO y Accesibilidad”. Incluye ilustraciones de pantallas tipo Instagram en distintos dispositivos, gráficos de crecimiento y búsqueda en Google, un icono grande de accesibilidad, y una laptop con “logo de WCAG”." 
+                        aria-hidden="true" 
+                        class="course-decorative-img" 
+                        >
+                    </div>
+                    <p class="course-hook">Optimizá tu alcance con empatía: conectá con nuevas audiencias y multiplicá el impacto de tu proyecto.</p>
+                    <p>Descubrí cómo las prácticas de diseño inclusivo no solo transforman tu perfil en un espacio sin barreras, sino que le dan a los algoritmos de Instagram exactamente lo que necesitan para posicionar tu marca y destacar tu contenido frente a la competencia.</p>
 
-                        <h3>¿Para quién es este curso?</h3>
-                        <ul class="accessible-list">
-                            <li><strong>Para Emprendedores y Profesionales:</strong> Diferenciate en el mercado, mejorá tu posicionamiento orgánico y construí una comunidad fiel.</li>
-                            <li><strong>Para Empresas y Marcas: </strong>Fortalezcan su reputación corporativa, reflejen sus valores de diversidad y amplíen su mercado llegando a más clientes.</li>
-                            <li><strong>Para Organizaciones y Público en General: </strong>Aseguren que su mensaje llegue a todos por igual, amplificando su voz y su impacto social.</li>
-                            
-                        </ul>
+                    <h3>¿Para quién es este curso?</h3>
+                    <ul class="accessible-list">
+                        <li><strong>Para Emprendedores y Profesionales:</strong> Diferenciate en el mercado, mejorá tu posicionamiento orgánico y construí una comunidad fiel.</li>
+                        <li><strong>Para Empresas y Marcas:</strong> Fortalezcan su reputación corporativa, reflejen sus valores de diversidad y amplíen su mercado llegando a más clientes.</li>
+                        <li><strong>Para Organizaciones y Público en General:</strong> Aseguren que su mensaje llegue a todos por igual, amplificando su voz y su impacto social.</li>
+                    </ul>
 
-                        <div class="course-details-box">
-                            <p class="detail-item"><strong>🎯 Orientado a:</strong> Emprendedores, creadores de contenido y community managers</p>
-                            <p class="detail-item"><strong>💻 Modalidad:</strong> 100% Práctica y aplicada a tu propia cuenta</p>
-                        </div>
+                    <div class="course-details-box">
+                        <p class="detail-item"><strong>🎯 Orientado a:</strong> Emprendedores, creadores de contenido y community managers</p>
+                        <p class="detail-item"><strong>💻 Modalidad:</strong> 100% Práctica y aplicada a tu propia cuenta</p>
+                    </div>
 
-                        <h3>¿Qué vas a aprender?</h3>
-                        <ul class="accessible-list">
-                            <li><strong>El algoritmo ciego:</strong> Por qué el texto alternativo (Alt Text) es tu mejor herramienta de SEO oculto para multiplicar tus visualizaciones.</li>
-                            <li><strong>Subtítulos estratégicos:</strong> Cómo retener la atención (incluso de la gran mayoría de usuarios que miran videos sin sonido) utilizando subtítulos abiertos y cerrados.</li>
-                            <li><strong>Diseño visual de alto impacto:</strong> Creación de placas atractivas usando contrastes, tipografías legibles y paletas de colores que comunican tu identidad sin dejar a nadie afuera.</li>
-                            <li><strong>Hashtags accesibles:</strong> La regla del CamelCase (#EscribirAsi) y su impacto directo en la lectura de pantalla y en la indexación de tus posteos.</li>
-                            <li><strong>Auditoría exprés:</strong> Herramientas simples y rápidas para evaluar la accesibilidad actual de tu feed, tus reels y tus historias.</li>
-                        </ul>
+                    <h3>¿Qué vas a aprender?</h3>
+                    <ul class="accessible-list">
+                        <li><strong>El algoritmo ciego:</strong> Por qué el texto alternativo (Alt Text) es tu mejor herramienta de SEO oculto para multiplicar tus visualizaciones.</li>
+                        <li><strong>Subtítulos estratégicos:</strong> Cómo retener la atención (incluso de la gran mayoría de usuarios que miran videos sin sonido) utilizando subtítulos abiertos y cerrados.</li>
+                        <li><strong>Diseño visual de alto impacto:</strong> Creación de placas atractivas usando contrastes, tipografías legibles y paletas de colores que comunican tu identidad sin dejar a nadie afuera.</li>
+                        <li><strong>Hashtags accesibles:</strong> La regla del CamelCase (#EscribirAsi) y su impacto directo en la lectura de pantalla y en la indexación de tus posteos.</li>
+                        <li><strong>Auditoría exprés:</strong> Herramientas simples y rápidas para evaluar la accesibilidad actual de tu feed, tus reels y tus historias.</li>
+                    </ul>
 
-                        <h3>Tu logro al finalizar</h3>
-                        <p>Vas a convertir tu perfil de Instagram en un imán de interacciones. Al dominar estas prácticas éticas y técnicas, vas a lograr expandir tu comunidad, fortalecer el valor de tu marca y potenciar de forma real tus ventas o tu influencia.</p>
+                    <h3>Tu logro al finalizar</h3>
+                    <p>Vas a convertir tu perfil de Instagram en un imán de interacciones. Al dominar estas prácticas éticas y técnicas, vas a lograr expandir tu comunidad, fortalecer el valor de tu marca y potenciar de forma real tus ventas o tu influencia.</p>
 
-                        <div class="cta-container">
-                            <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de Instagram, SEO y Accesibilidad">
-                                Consultá por el próximo taller y asegurá tu lugar: 
-                            </a>
-                        </div>
-
+                    <div class="cta-container">
+                        <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de Instagram, SEO y Accesibilidad">
+                            Consultá por el próximo taller y asegurá tu lugar
+                        </a>
                     </div>
                 </div>
-                </div>
-        </section>
-
-
-        <!-- ==========================================================================================================================================================
-                            DOCUMENTOS ACCESIBLES
-            ========================================================================================================================================================== -->
-
-        <section class="resource-section course-section" aria-labelledby="titulo-cursos-instagram">
-            <div class="accessible-accordion">
-                <h2 class="accordion-heading accordion-heading--separator">
-                    <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-docs-accesibles" id="btn-docs-accesibles">
-                        <span class="accordion-title-text">Creación de documentos accesibles con IA </span>
-                        <span class="accordion-chevron" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
-                                <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            </svg>
-                        </span>
-                    </button>
-                </h2>
-
-                <div class="accordion-panel" id="panel-docs-accesibles" role="region" aria-labelledby="btn-docs-accesibles" hidden>
-                    <div class="accordion-panel-inner">
-                        
-                        <p class="course-hook">Asegurá que tus comunicaciones, reportes y materiales lleguen a todos sin barreras. El diseño inclusivo empieza mucho antes del último clic.</p>
-                        <p>Aprendé a pensar y estructurar tus documentos desde cero para que sean verdaderamente universales. Descubrí cómo integrar las mejores prácticas en tu rutina diaria y usá la inteligencia artificial como tu asistente ideal para agilizar la carga operativa, siempre bajo tu criterio.</p>
-
-                        <div class="course-details-box">
-                            <p class="detail-item"><strong>⏳ Duración:</strong> 2 horas </p>
-                            <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica </p>
-                        </div>
-
-                        <h3>¿Para quién es este curso?</h3>
-                        <ul class="accessible-list">
-                            <li><strong>Para Profesionales y Público en General:</strong> Sumá un diferencial clave a tu perfil. Aprendé a organizar currículums, presupuestos y proyectos digitales de forma clara y accesible para cualquier lector.</li>
-                            <li><strong>Para Empresas y Organizaciones: </strong>Diseñen reportes, manuales y comunicaciones corporativas impecables. Integren la inclusión en el día a día de sus equipos cumpliendo con estándares internacionales de calidad.
-        </li>
-                            <li><strong>Para Docentes e Instituciones: </strong>Transformá tus materiales didácticos y evaluaciones en recursos autónomos. Asegurá que cada estudiante pueda participar y aprender en igualdad de condiciones.</li>
-                            
-                        </ul>
-
-                        <h3>¿Qué vas a aprender?</h3>
-                        <ul class="accessible-list">
-                            <li>Las bases del diseño universal: Cómo pensar y organizar la información de un documento antes de empezar a escribir.</li>
-                            <li>Estructura invisible pero esencial: El uso estratégico de estilos, encabezados y jerarquías para que los lectores de pantalla puedan navegar sin problemas.</li>
-                            <li>La IA como asistente, no como piloto: Cómo guiar a la inteligencia artificial para redactar textos alternativos (Alt Text) precisos y útiles en imágenes, gráficos y tablas complejas.</li>
-                            <li>Diseño visual consciente: Selección de colores, contrastes y tipografías que garantizan una lectura cómoda e inclusiva.</li>
-                            <li>Conversión segura: Las buenas prácticas para exportar desde Word, PowerPoint y otras plataformas a PDFs accesibles, sin perder información en el camino.</li>
-                            <li>Revisión inteligente: Cómo utilizar los validadores integrados para detectar barreras y realizar los ajustes finales con seguridad.</li>
-                            <li>Nuevos formatos: Primeros pasos para la adaptación de contenidos a audio y principios básicos de Lectura Fácil.</li>
-                        </ul>
-
-                        <h3>Tu logro al finalizar</h3>
-                        <p>Vas a incorporar la accesibilidad de forma natural a tu forma de trabajar. Ya sea en tus proyectos personales, en la oficina o en el aula, sabrás exactamente cómo estructurar, adaptar y revisar cualquier archivo para que cumpla con los estándares internacionales, usando la IA para optimizar tu tiempo.</p>
-
-                        <div class="cta-container">
-                            <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de creación de documentos accesibles">
-                                ¡Solicitá este taller para ti o tu institución!
-                            </a>
-                        </div>
-
-                    </div>
-                    
-
-                </div>
-
             </div>
-        </section>
+        </div>
+    </section>
+    <!-- ==========================================================================================================================================================
+                                                                     Documentos Accesibles
+        ========================================================================================================================================================== -->
 
-        <!-- ==========================================================================================================================================================
-                            MOODLE
-            ========================================================================================================================================================== -->
-        <section>
-            <h2 class="accordion-heading">
-            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-moodle-ia" id="btn-moodle-ia">
-                <span class="accordion-title-text">Creá un Moodle 100% Accesible con IA</span>
-                <span class="accordion-chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
-                        <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    </svg>
-                </span>
-            </button>
+    <section class="resource-section" aria-labelledby="titulo-curso-docs">
+        <div class="accessible-accordion">
+            <h2 id="titulo-curso-docs" class="accordion-heading">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-docs-accesibles" id="btn-docs-accesibles">
+                    <span class="accordion-title-text">Creación de documentos accesibles con IA</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
             </h2>
 
-        <div class="accordion-panel" id="panel-moodle-ia" role="region" aria-labelledby="btn-moodle-ia" hidden>
-            <div class="accordion-panel-inner">
-                
-                <p class="course-hook">Optimizá tu tiempo y garantizá que nadie quede afuera de tus entornos digitales.</p>
-                <p>Ya sea que busques potenciar tu perfil profesional, capacitar a tu equipo de trabajo o hacer que tus proyectos sean más inclusivos, este curso te da las herramientas prácticas para lograrlo. Aprendé a integrar la inteligencia artificial en tu flujo de trabajo para diseñar experiencias sin barreras.</p>
+            <div class="accordion-panel" id="panel-docs-accesibles" role="region" aria-labelledby="btn-docs-accesibles" hidden>
+                <div class="accordion-panel-inner">
+                    <div>
+                        <img src="/./img/doc_accesibles_cursos.png" 
+                        alt="Banner promocional de Kyosei “Curso de Documentos Accesibles con IA”. Incluye ilustraciones de distintos tipos de documentos, un icono grande de accesibilidad, y una laptop dice verificación requerimientos WCAG." 
+                        aria-hidden="true" 
+                        class="course-decorative-img" 
+                        >
+                    </div>
+                    <p class="course-hook">Asegurá que tus comunicaciones, reportes y materiales lleguen a todos sin barreras. El diseño inclusivo empieza mucho antes del último clic.</p>
+                    <p>Aprendé a pensar y estructurar tus documentos desde cero para que sean verdaderamente universales. Descubrí cómo integrar las mejores prácticas en tu rutina diaria y usá la inteligencia artificial como tu asistente ideal para agilizar la carga operativa, siempre bajo tu criterio.</p>
 
-                
-                <h3>¿Para quién es este curso?</h3>
-                <ul class="accessible-list">
-                    <li><strong>Para Profesionales y Educadores:</strong> Llevá tus capacitaciones al siguiente nivel, asegurando que cada persona pueda participar de forma autónoma e independiente.</li>
-                    <li><strong>Para Empresas e Instituciones: </strong>Capaciten a sus equipos, cumplan con los estándares internacionales de accesibilidad y refuercen su compromiso con la inclusión y la diversidad.</li>
-                    <li><strong>Para el Público en General y Administradores: </strong>Si gestionás o creás contenido en plataformas Moodle, descubrí cómo hacerlas amigables para cualquier usuario, sin importar sus capacidades.</li>
-                    
-                </ul>
+                    <div class="course-details-box">
+                        <p class="detail-item"><strong>⏳ Duración:</strong> 2 horas</p>
+                        <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica</p>
+                    </div>
 
-                <h3>¿Qué vas a aprender?</h3>
-                <ul class="accessible-list">
-                    <li>Principios de accesibilidad digital en plataformas educativas.</li>
-                    <li>Uso de inteligencia artificial para generar textos accesibles con formato HTML.</li>
-                    <li>Validación y testeo de accesibilidad en Moodle.</li>
-                    <li>Configuración óptima de Moodle para usuarios con tecnologías asistivas.</li>
-                </ul>
+                    <h3>¿Para quién es este curso?</h3>
+                    <ul class="accessible-list">
+                        <li><strong>Para Profesionales y Público en General:</strong> Sumá un diferencial clave a tu perfil. Aprendé a organizar currículums, presupuestos y proyectos digitales de forma clara y accesible para cualquier lector.</li>
+                        <li><strong>Para Empresas y Organizaciones:</strong> Diseñen reportes, manuales y comunicaciones corporativas impecables. Integren la inclusión en el día a día de sus equipos cumpliendo con estándares internacionales de calidad.</li>
+                        <li><strong>Para Docentes e Instituciones:</strong> Transformá tus materiales didácticos y evaluaciones en recursos autónomos. Asegurá que cada estudiante pueda participar y aprender en igualdad de condiciones.</li>
+                    </ul>
 
-                <h3>Tu logro al finalizar</h3>
-                <p>Vas a poder crear, gestionar y auditar espacios en Moodle que cumplan con los estándares internacionales WCAG 2.2 nivel AA, utilizando la IA como tu mejor aliada para simplificar el proceso.</p>
+                    <h3>¿Qué vas a aprender?</h3>
+                    <ul class="accessible-list">
+                        <li>Las bases del diseño universal: Cómo pensar y organizar la información de un documento antes de empezar a escribir.</li>
+                        <li>Estructura invisible pero esencial: El uso estratégico de estilos, encabezados y jerarquías para que los lectores de pantalla puedan navegar sin problemas.</li>
+                        <li>La IA como asistente, no como piloto: Cómo guiar a la inteligencia artificial para redactar textos alternativos (Alt Text) precisos y útiles en imágenes, gráficos y tablas complejas.</li>
+                        <li>Diseño visual consciente: Selección de colores, contrastes y tipografías que garantizan una lectura cómoda e inclusiva.</li>
+                        <li>Conversión segura: Las buenas prácticas para exportar desde Word, PowerPoint y otras plataformas a PDFs accesibles, sin perder información en el camino.</li>
+                        <li>Revisión inteligente: Cómo utilizar los validadores integrados para detectar barreras y realizar los ajustes finales con seguridad.</li>
+                        <li>Nuevos formatos: Primeros pasos para la adaptación de contenidos a audio y principios básicos de Lectura Fácil.</li>
+                    </ul>
 
-                <div class="cta-container">
-                    <a href="/pages/carrito.html" class="btn-primary" aria-label="Anotate a la comisión del 11 de abril">
-                        ¡Anotate a la comisión del 11 de abril!
-                    </a>
-                </div>
-                <div class="course-details-box">
-                    <p class="detail-item"><strong>📅 Próxima comisión:</strong> 11 de abril de 2026</p>
-                    <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica</p>
+                    <h3>Tu logro al finalizar</h3>
+                    <p>Vas a incorporar la accesibilidad de forma natural a tu forma de trabajar. Ya sea en tus proyectos personales, en la oficina o en el aula, sabrás exactamente cómo estructurar, adaptar y revisar cualquier archivo para que cumpla con los estándares internacionales, usando la IA para optimizar tu tiempo.</p>
+
+                    <div class="cta-container">
+                        <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de creación de documentos accesibles">
+                            ¡Solicitá este taller para ti o tu institución!
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-       
-        </section>
+    </section>
+
+    <!--==========================================================================================================================================================
+                                                                     Moodle
+        ========================================================================================================================================================== -->
+
+    <section class="resource-section" aria-labelledby="titulo-curso-moodle">
+        <div class="accessible-accordion">
+            <h2 id="titulo-curso-moodle" class="accordion-heading">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-moodle-ia" id="btn-moodle-ia">
+                    <span class="accordion-title-text">Creá un Moodle 100% Accesible con IA</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
+
+            <div class="accordion-panel" id="panel-moodle-ia" role="region" aria-labelledby="btn-moodle-ia" hidden>
+                <div class="accordion-panel-inner">
+                    <div>
+                        <img src="/./img/moodle_curso.png" 
+                        alt="Banner promocional de Kyosei “Curso de Moodle 100% con IA”. Incluye ilustraciones de distintos tipos de documentos, la plataforma Moodle, un icono grande de accesibilidad, y de una IA." 
+                        aria-hidden="true" 
+                        class="course-decorative-img" 
+                        >
+                    </div>
+                    <p class="course-hook">Optimizá tu tiempo y garantizá que nadie quede afuera de tus entornos digitales.</p>
+                    <p>Ya sea que busques potenciar tu perfil profesional, capacitar a tu equipo de trabajo o hacer que tus proyectos sean más inclusivos, este curso te da las herramientas prácticas para lograrlo. Aprendé a integrar la inteligencia artificial en tu flujo de trabajo para diseñar experiencias sin barreras.</p>
+
+                    <h3>¿Para quién es este curso?</h3>
+                    <ul class="accessible-list">
+                        <li><strong>Para Profesionales y Educadores:</strong> Llevá tus capacitaciones al siguiente nivel, asegurando que cada persona pueda participar de forma autónoma e independiente.</li>
+                        <li><strong>Para Empresas e Instituciones:</strong> Capaciten a sus equipos, cumplan con los estándares internacionales de accesibilidad y refuercen su compromiso con la inclusión y la diversidad.</li>
+                        <li><strong>Para el Público en General y Administradores:</strong> Si gestionás o creás contenido en plataformas Moodle, descubrí cómo hacerlas amigables para cualquier usuario, sin importar sus capacidades.</li>
+                    </ul>
+
+                    <h3>¿Qué vas a aprender?</h3>
+                    <ul class="accessible-list">
+                        <li>Principios de accesibilidad digital en plataformas educativas.</li>
+                        <li>Uso de inteligencia artificial para generar textos accesibles con formato HTML.</li>
+                        <li>Validación y testeo de accesibilidad en Moodle.</li>
+                        <li>Configuración óptima de Moodle para usuarios con tecnologías asistivas.</li>
+                    </ul>
+
+                    <h3>Tu logro al finalizar</h3>
+                    <p>Vas a poder crear, gestionar y auditar espacios en Moodle que cumplan con los estándares internacionales WCAG 2.2 nivel AA, utilizando la IA como tu mejor aliada para simplificar el proceso.</p>
+
+                    <div class="course-details-box">
+                        <p class="detail-item"><strong>📅 Próxima comisión:</strong> 11 de abril de 2026</p>
+                        <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica</p>
+                    </div>
+
+                    <div class="cta-container">
+                        <a href="/pages/carrito.html" class="btn-primary" aria-label="Anotate a la comisión del 11 de abril del curso de Moodle">
+                            ¡Anotate a la comisión del 11 de abril!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================================================================================================
+                                                                     Programación para Ciegos
+        ========================================================================================================================================================== -->
         
-    </div>
+    <section class="resource-section" aria-labelledby="titulo-curso-prog">
+        <div class="accessible-accordion">
+            <h2 id="titulo-curso-prog" class="accordion-heading">
+                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-prog-ciegos" id="btn-prog-ciegos">
+                    <span class="accordion-title-text">Cómo enseñar programación a alumnos ciegos</span>
+                    <span class="accordion-chevron" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </span>
+                </button>
+            </h2>
 
-</section>
+            <div class="accordion-panel" id="panel-prog-ciegos" role="region" aria-labelledby="btn-prog-ciegos" hidden>
+                <div class="accordion-panel-inner">
+                    <div>
+                        <img src="/./img/desarrollo_curso.png" 
+                        alt="Banner promocional de Kyosei “Curso de Herramientas para enseñar programación a un alumno ciego”. Metodologías inclusivas y tecnologia de asistencia. Se ven distintos dispositivos con codigo de computación" 
+                        aria-hidden="true" 
+                        class="course-decorative-img" 
+                        >
+                    </div>
+                    <p class="course-hook">El pensamiento computacional no tiene barreras visuales. Abrí las puertas de la industria tecnológica a todos tus estudiantes.</p>
+                    <p>Ya sea que enseñes las bases lógicas con pseudocódigo, la sintaxis limpia de Python o desarrollo web, aprenderás a adaptar tu metodología para guiar a estudiantes con discapacidad visual en el mundo del código.</p>
 
-<!--        ==========================================================================================================================================================
-                           Programación para Alumnos Ciegos
-            ========================================================================================================================================================== -->
+                    <div class="course-details-box">
+                        <p class="detail-item"><strong>⏳ Duración:</strong> 2 horas</p>
+                        <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica</p>
+                    </div>
 
-<section class="resource-section course-section" aria-labelledby="titulo-cursos-instagram">
-    <div class="accessible-accordion">
-        <h2 class="accordion-heading" style="border-top: 1px solid #CCCCCC;">
-            <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-prog-ciegos" id="btn-prog-ciegos">
-                <span class="accordion-title-text">Cómo  enseñar programación a alumnos ciegos</span>
-                <span class="accordion-chevron" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="22" height="22" focusable="false" aria-hidden="true">
-                        <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    </svg>
-                </span>
-            </button>
-        </h2>
+                    <h3>¿Qué vas a aprender?</h3>
+                    <ul class="accessible-list">
+                        <li>Comprensión profunda de cómo interactúa con la tecnología y el código un usuario de lector de pantalla.</li>
+                        <li>Configuración y uso de IDEs y editores de código accesibles (como VSCode con extensiones específicas y audio IDEs).</li>
+                        <li>El rol de la Inteligencia Artificial como asistente para la lectura y estructuración de código.</li>
+                        <li>Técnicas pedagógicas para explicar conceptos visuales, lógica y estructura sin depender de referencias gráficas.</li>
+                    </ul>
 
-        <div class="accordion-panel" id="panel-prog-ciegos" role="region" aria-labelledby="btn-prog-ciegos" hidden>
-            <div class="accordion-panel-inner">
-                
-                <p class="course-hook">El pensamiento computacional no tiene barreras visuales. Abrí las puertas de la industria tecnológica a todos tus estudiantes.</p>
-                <p>Ya sea que enseñes las bases lógicas con pseudocódigo, la sintaxis limpia de Python o desarrollo web, aprenderás a adaptar tu metodología para guiar a estudiantes con discapacidad visual en el mundo del código.</p>
+                    <h3>Tu logro al finalizar</h3>
+                    <p>Adquirirás estrategias pedagógicas y técnicas concretas para enseñar programación de manera efectiva, garantizando que tus alumnos con discapacidad visual puedan codificar con total autonomía.</p>
 
-                <div class="course-details-box">
-                    <p class="detail-item"><strong>⏳ Duración:</strong> 2 horas </p>
-                    <p class="detail-item"><strong>💻 Modalidad:</strong> Teórico-práctica</p>
+                    <div class="cta-container">
+                        <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de enseñanza de programación para alumnos ciegos">
+                            ¡Llevá la programación inclusiva a tu aula!
+                        </a>
+                    </div>
                 </div>
-
-                <h3>¿Qué vas a aprender?</h3>
-                <ul class="accessible-list">
-                    <li>Comprensión profunda de cómo interactúa con la tecnología y el código un usuario de lector de pantalla.</li>
-                    <li>Configuración y uso de IDEs y editores de código accesibles (como VSCode con extensiones específicas y audio IDEs).</li>
-                    <li>El rol de la Inteligencia Artificial como asistente para la lectura y estructuración de código.</li>
-                    <li>Técnicas pedagógicas para explicar conceptos visuales, lógica y estructura sin depender de referencias gráficas.</li>
-                </ul>
-
-                <h3>Tu logro al finalizar</h3>
-                <p>Adquirirás estrategias pedagógicas y técnicas concretas para enseñar programación de manera efectiva, garantizando que tus alumnos con discapacidad visual puedan codificar con total autonomía.</p>
-
-                <div class="cta-container">
-                    <a href="/pages/contacto.html" class="btn-primary" aria-label="Consultar por el taller de enseñanza de programación para alumnos ciegos">
-                        ¡Llevá la programación inclusiva a tu aula!
-                    </a>
-                </div>
-
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 </main>
 
 <footer class="main-footer" aria-labelledby="footer-heading">
-<h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
+    <h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
 
-<div class="footer-container">
-    <div class="footer-section">
-        <h3>Kyosei Accesibilidad</h3>
-        <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
-    </div>
-    
-    <div class="footer-section">
-        <h3>Mapa del sitio</h3>
-        <nav aria-label="Mapa del sitio del pie de página">
-            <ul class="footer-links">
-                <li><a href="/./pages/index.html">Inicio</a></li>
-                <li><a href="/./pages/nosotros.html">Nosotros</a></li>
-                <li><a href="/./pages/guias.html">Guías</a></li>
-                <li><a href="/./pages/cursosytalleres.html">Cursos y Talleres</a></li>
-                <li><a href="/./pages/servicios.html">Servicios</a></li>
-                <li><a href="/./pages/actividades.html">Actividades</a></li>
-                <li><a href="/./pages/contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Kyosei Accesibilidad</h3>
+            <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Mapa del sitio</h3>
+            <nav aria-label="Mapa del sitio del pie de página">
+                <ul class="footer-links">
+                    <li><a href="/./index.html">Inicio</a></li>
+                    <li><a href="/./pages/nosotros.html">Nosotros</a></li>
+                    <li><a href="/./pages/recursos.html">Recursos</a></li>
+                    <li><a href="/./pages/cursosytalleres.html">Cursos y Talleres</a></li>
+                    <li><a href="/./pages/servicios.html">Servicios</a></li>
+                    <li><a href="/./pages/actividades.html">Actividades</a></li>
+                    <li><a href="/./pages/contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-section">
+            <h3>Redes Sociales</h3>
+            <nav aria-label="Redes sociales">
+                <ul class="social-links">
+                    <li>
+                        <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                            <span aria-hidden="true">LinkedIn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
+                            <span aria-hidden="true">Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
+                            <span aria-hidden="true">Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                            <span aria-hidden="true">YouTube</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
 
-    <div class="footer-section">
-        <h3>Redes Sociales</h3>
-        <nav aria-label="Redes sociales">
-            <ul class="social-links">
-                <li>
-                    <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
-                        
-                        <span aria-hidden="true">LinkedIn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
-                        
-                        <span aria-hidden="true">Instagram</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
-                        
-                        <span aria-hidden="true">Facebook</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
-                        
-                        <span aria-hidden="true">YouTube</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
     </div>
-</div>
-
-<div class="footer-bottom">
-    <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
-</div>
 </footer>
 <script src="/js/main.js"></script>
 </body>
