@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripción al Curso </title>
+    <title>Inscripción al Curso | Kyosei Accesibilidad</title>
 
     <link rel="icon" type="image/png" sizes="32x32" href="/img/iconologo.ico">
     <link rel="stylesheet" href="/css/style.css">
@@ -28,86 +28,101 @@
 
 <header class="main-header" id="header-root">
     <div class="header-container">
-        <a href="/index.html" class="logo-link">
-            <img src="/img/logo-kyosei-con-fondo-circular.png" alt="Logotipo Kyosei Accesibilidad" class="logo-img" height="60">
+        
+        <a href="/./index.html" class="logo-link">
+            <img src="/./img/logo-kyosei-con-fondo-circular.png" alt="Logotipo Kyosei Accesibilidad" class="logo-img" height="60">
             <span class="company-name">Kyosei Accesibilidad</span>
         </a>
 
         <nav id="main-menu" class="main-nav" aria-label="Menú principal de navegación">
             <ul class="nav-list">
-                <li><a href="/index.html" class="nav-link">Inicio</a></li>
-                <li><a href="/pages/nosotros.html" class="nav-link">Nosotros</a></li>
-                <li><a href="/pages/recursos.html" class="nav-link">Recursos</a></li> 
-                <li><a href="/pages/cursosytalleres.html" class="nav-link current" aria-current="page">Cursos y Talleres</a></li>
-                <li><a href="/pages/servicios.html" class="nav-link">Servicios</a></li>
-                <li><a href="/pages/actividades.html" class="nav-link">Actividades</a></li>
-                <li><a href="/pages/contacto.html" class="nav-link">Contacto</a></li>
+                <li><a href="/./index.html" class="nav-link current" aria-current="page">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="/./pages/recursos.html" class="nav-link">Recursos</a></li> 
+                <li><a href="/./pages/cursosytalleres.html" class="nav-link">Cursos y Talleres</a></li>
+                <li><a href="/./pages/servicios.html" class="nav-link">Servicios</a></li>
+                <li><a href="/./pages/actividades.html" class="nav-link">Actividades</a></li>
+                <li><a href="/./pages/contacto.html" class="nav-link">Contacto</a></li>
             </ul>
         </nav>
 
         <div class="accessibility-wrapper">
-            <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
-                <img src="/img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
-                <span class="visible-text">Herramientas Accesibilidad</span>
-            </button>
-            
-            <div id="acc-panel" class="acc-panel" role="dialog" aria-labelledby="acc-title" hidden>
-                <button id="accCloseBtn" class="acc-close-btn" aria-label="Cerrar panel de accesibilidad">×</button>
-                <h2 id="acc-title" class="acc-title">Preferencias de accesibilidad</h2>
+                <button id="acc-menu-toggle" class="btn-tools" aria-controls="acc-panel" aria-expanded="false" aria-haspopup="dialog">
+                    <img src="/./img/accesibilidad-universal.svg" alt="" class="icon-img" aria-hidden="true" width="24" height="24">
+                    <span class="visible-text">Herramientas Accesibilidad</span>
+                </button>
                 
-                <div class="acc-control-group">
-                    <span class="acc-label" id="theme-label">Tema Visual</span>
-                    <button type="button" id="dark-mode-toggle" class="acc-btn-full" aria-pressed="false">Activar Modo Oscuro</button>
-                </div>
+                <div id="acc-panel" class="acc-panel" role="dialog" aria-labelledby="acc-title" hidden>
+                    <h2 id="acc-title" class="sr-only">Panel de preferencias de accesibilidad</h2>
+                    
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="theme-label">Tema Visual</span>
+                            <button type="button" id="dark-mode-toggle" class="acc-btn-full" aria-pressed="false">
+                                 Activar Modo Oscuro
+                             </button>
+                    </div>
 
-                <fieldset class="acc-control-group">
+                    <fieldset class="acc-control-group">
                     <legend class="acc-label">Tamaño de texto</legend>
                     <div class="acc-btn-row">
+                        
                         <button type="button" id="btn-fs-decrease" aria-describedby="desc-fs-decrease">A-</button>
                         <span id="desc-fs-decrease" class="sr-only">Reducir tamaño de texto</span>
+
                         <button type="button" id="btn-fs-reset" aria-describedby="desc-fs-reset">A</button>
                         <span id="desc-fs-reset" class="sr-only">Restablecer tamaño de texto</span>
+
                         <button type="button" id="btn-fs-increase" aria-describedby="desc-fs-increase">A+</button>
                         <span id="desc-fs-increase" class="sr-only">Aumentar tamaño de texto</span>
-                    </div>
-                </fieldset>
 
-                <fieldset class="acc-control-group">
-                    <legend class="acc-label">Interlineado</legend>
-                    <div class="acc-btn-row">
-                        <button type="button" id="btn-lh-decrease" aria-describedby="desc-lh-decrease">↔-</button>
-                        <span id="desc-lh-decrease" class="sr-only">Reducir interlineado</span>
-                        <button type="button" id="btn-lh-reset" aria-describedby="desc-lh-reset">↔</button>
-                        <span id="desc-lh-reset" class="sr-only">Restablecer interlineado</span>
-                        <button type="button" id="btn-lh-increase" aria-describedby="desc-lh-increase">↔+</button>
-                        <span id="desc-lh-increase" class="sr-only">Aumentar interlineado</span>
                     </div>
                 </fieldset>
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Interlineado</legend>
+                        <div class="acc-btn-row">
+                            
+                            <button type="button" id="btn-lh-decrease" aria-describedby="desc-lh-decrease">↔-</button>
+                            <span id="desc-lh-decrease" class="sr-only">Reducir interlineado</span>
 
-                <fieldset class="acc-control-group">
-                    <legend class="acc-label">Espaciado de letras</legend>
-                    <div class="acc-btn-row">
-                        <button type="button" id="btn-ls-decrease" aria-describedby="desc-ls-decrease">T-</button>
-                        <span id="desc-ls-decrease" class="sr-only">Reducir espaciado de letras</span>
-                        <button type="button" id="btn-ls-reset" aria-describedby="desc-ls-reset">T</button>
-                        <span id="desc-ls-reset" class="sr-only">Restablecer espaciado de letras</span>
-                        <button type="button" id="btn-ls-increase" aria-describedby="desc-ls-increase">T+</button>
-                        <span id="desc-ls-increase" class="sr-only">Aumentar espaciado de letras</span>
+                            <button type="button" id="btn-lh-reset" aria-describedby="desc-lh-reset">↔</button>
+                            <span id="desc-lh-reset" class="sr-only">Restablecer interlineado</span>
+
+                            <button type="button" id="btn-lh-increase" aria-describedby="desc-lh-increase">↔+</button>
+                            <span id="desc-lh-increase" class="sr-only">Aumentar interlineado</span>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="acc-control-group">
+                        <legend class="acc-label">Espaciado de letras</legend>
+                        <div class="acc-btn-row">
+                            
+                            <button type="button" id="btn-ls-decrease" aria-describedby="desc-ls-decrease">T-</button>
+                            <span id="desc-ls-decrease" class="sr-only">Reducir espaciado de letras</span>
+
+                            <button type="button" id="btn-ls-reset" aria-describedby="desc-ls-reset">T</button>
+                            <span id="desc-ls-reset" class="sr-only">Restablecer espaciado de letras</span>
+
+                            <button type="button" id="btn-ls-increase" aria-describedby="desc-ls-increase">T+</button>
+                            <span id="desc-ls-increase" class="sr-only">Aumentar espaciado de letras</span>
+
+                        </div>
+                    </fieldset>
+                   
+                    <div class="acc-control-group">
+                        <span class="acc-label" id="ruler-label">Ayudas de lectura</span>
+                        <button type="button" id="toggle-ruler" class="acc-btn-full" aria-pressed="false">
+                            Activar Regla de Lectura
+                        </button>
                     </div>
-                </fieldset>
-               
-                <div class="acc-control-group">
-                    <span class="acc-label" id="ruler-label">Ayudas de lectura</span>
-                    <button type="button" id="toggle-ruler" class="acc-btn-full" aria-pressed="false">Activar Regla de Lectura</button>
                 </div>
             </div>
-        </div>
 
-        <button type="button" id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
-            <img src="/img/menu_burger.svg" alt="" class="burger-icon" aria-hidden="true" width="32" height="32">
-        </button>
-    </div>
-</header> 
+            <button type="button" id="mobile-menu-toggle" class="icon-button mobile-menu-toggle" aria-controls="main-menu" aria-expanded="false" aria-label="Abrir menú de navegación">
+                <img src="/img/menu_burger.svg" alt="" class="burger-icon" aria-hidden="true" width="32" height="32">
+            </button>
+        </div>
+</header>  
     
 <main id="main-content">
     <section class="hero-section" aria-labelledby="titulo-carrito">
@@ -120,7 +135,7 @@
     </section>
 
     <article class="content-wrapper">
-        <div id="form-status-message" tabindex="-1"></div>
+        <div id="form-status-message"></div>
 
         <section class="contact-section" aria-labelledby="form-heading">
             <h2 id="form-heading" class="sr-only">Formulario de inscripción y pago</h2>
@@ -134,35 +149,35 @@
                     
                     <div class="form-group">
                         <label for="nombre">Nombre <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="text" id="nombre" name="nombre" required aria-required="true" autocomplete="given-name" minlength="2" maxlength="50">
+                        <input type="text" id="nombre" name="nombre" required autocomplete="given-name" minlength="2" maxlength="50">
                     </div>
 
                     <div class="form-group">
                         <label for="apellido">Apellido <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="text" id="apellido" name="apellido" required aria-required="true" autocomplete="family-name" minlength="2" maxlength="50">
+                        <input type="text" id="apellido" name="apellido" required autocomplete="family-name" minlength="2" maxlength="50">
                     </div>
 
                     <div class="form-group">
                         <label for="edad">Edad <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="number" id="edad" name="edad" required aria-required="true" min="16" max="120" aria-describedby="edad-help">
-                        <span id="edad-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem;">Edad mínima: 16 años.</span>
+                        <input type="number" id="edad" name="edad" required min="16" max="120" aria-describedby="edad-help">
+                        <span id="edad-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem; display: block;">Edad mínima: 16 años.</span>
                     </div>
 
                     <div class="form-group">
                         <label for="pais">País <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="text" id="pais" name="pais" required aria-required="true" autocomplete="country-name" maxlength="50">
+                        <input type="text" id="pais" name="pais" required autocomplete="country-name" maxlength="50">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Correo electrónico <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="email" id="email" name="email" required aria-required="true" autocomplete="email" aria-describedby="email-help" maxlength="100">
-                        <span id="email-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem;">Recibirás la confirmación en este correo.</span>
+                        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-help" maxlength="100">
+                        <span id="email-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem; display: block;">Recibirás la confirmación en este correo.</span>
                     </div>
 
                     <div class="form-group">
                         <label for="whatsapp">WhatsApp <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required aria-required="true" autocomplete="tel" placeholder="+54 9 11 1234-5678" aria-describedby="whatsapp-help" maxlength="20">
-                        <span id="whatsapp-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem;">Incluye el código de tu país (ej: +54 para Argentina).</span>
+                        <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" placeholder="+54 9 11 1234-5678" aria-describedby="whatsapp-help" maxlength="20">
+                        <span id="whatsapp-help" style="font-size: 0.85rem; color: var(--text-color); margin-top: 0.4rem; display: block;">Incluye el código de tu país (ej: +54 para Argentina).</span>
                     </div>
                 </fieldset>
 
@@ -171,9 +186,10 @@
 
                     <div class="form-group">
                         <label for="curso">Curso <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
-                        <select id="curso" name="curso" required aria-required="true">
+                        <select id="curso" name="curso" required>
                             <option value="" disabled selected>Seleccioná un curso...</option>
                             <option value="Taller Moodle Accesible">Taller Moodle Accesible con IA</option>
+                            <option value="Curso Introductorio Accesibilidad">Crece en Instagram con Accesibilidad y SEO</option>
                         </select>
                     </div>
 
@@ -181,14 +197,14 @@
                         <legend style="font-weight: bold; margin-bottom: 0.5rem; color: var(--text-color);">Método de pago <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></legend>
                         
                         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; min-height: 44px; cursor: pointer;">
-                                <input type="radio" name="pago" id="paypal" value="paypal" required aria-required="true" style="width: 24px; height: 24px; min-height: auto; margin: 0;">
-                                PayPal
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; min-height: 44px; cursor: pointer;">
-                                <input type="radio" name="pago" id="mercado" value="mercado" required aria-required="true" style="width: 24px; height: 24px; min-height: auto; margin: 0;">
-                                Mercado Pago
-                            </label>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; min-height: 44px;">
+                                <input type="radio" name="pago" id="paypal" value="paypal" required style="width: 24px; height: 24px; margin: 0;">
+                                <label for="paypal" style="cursor: pointer; margin: 0;">PayPal</label>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; min-height: 44px;">
+                                <input type="radio" name="pago" id="mercado" value="mercado" required style="width: 24px; height: 24px; margin: 0;">
+                                <label for="mercado" style="cursor: pointer; margin: 0;">Mercado Pago</label>
+                            </div>
                         </div>
                     </fieldset>
                 </fieldset>
@@ -200,57 +216,189 @@
 </main>
 
 <footer class="main-footer" aria-labelledby="footer-heading">
-    <h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
+<h2 id="footer-heading" class="sr-only">Información del sitio y enlaces útiles</h2>
+
+<div class="footer-container">
+    <div class="footer-section">
+        <h3>Kyosei Accesibilidad</h3>
+        <p>Educamos con Empatía, Diseñamos con amor, Testeamos con Convicción.</p>
     </div>
+    
+    <div class="footer-section">
+        <h3>Mapa del sitio</h3>
+        <nav aria-label="Mapa del sitio del pie de página">
+            <ul class="footer-links">
+                <li><a href="/./pages/index.html">Inicio</a></li>
+                <li><a href="/./pages/nosotros.html">Nosotros</a></li>
+                <li><a href="/./pages/guias.html">Guías</a></li>
+                <li><a href="/./pages/cursosytalleres.html">Cursos y Talleres</a></li>
+                <li><a href="/./pages/servicios.html">Servicios</a></li>
+                <li><a href="/./pages/actividades.html">Actividades</a></li>
+                <li><a href="/./pages/contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="footer-section">
+        <h3>Redes Sociales</h3>
+        <nav aria-label="Redes sociales">
+            <ul class="social-links">
+                <li>
+                    <a href="https://linkedin.com/company/kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">LinkedIn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/kyoseiaccesibilidad/" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">Instagram</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61578219146874" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">Facebook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/@kyoseiaccesibilidad" target="_blank" rel="noopener noreferrer">
+                        <span aria-hidden="true">YouTube</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <p>&copy; 2026 Kyosei Accesibilidad. Todos los derechos reservados.</p>
+</div>
 </footer>
 
 <script src="/js/main.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- 1. Manejo de mensajes de estado (Éxito / Error) ---
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
+        const form = document.getElementById('kyosei-inscripcion-form');
         const statusContainer = document.getElementById('form-status-message');
 
-        if (status === 'success') {
-            statusContainer.innerHTML = '<div class="alert alert-success" role="alert"><p>¡Inscripción exitosa! Tus datos han sido guardados. Te contactaremos a la brevedad para finalizar el proceso de pago.</p></div>';
-            statusContainer.focus();
-            // Utiliza la función anunciar() de main.js para enviar el mensaje a lectores de pantalla
-            if (typeof anunciar === 'function') {
-                anunciar('Inscripción exitosa. Tus datos han sido guardados correctamente.');
-            }
-        } else if (status === 'error') {
-            statusContainer.innerHTML = '<div class="alert alert-error" role="alert"><p>Ocurrió un error al procesar tu inscripción. Por favor, revisá los campos o intentá nuevamente más tarde.</p></div>';
-            statusContainer.focus();
-            if (typeof anunciar === 'function') {
-                anunciar('Error al procesar la inscripción. Por favor, revisá tus datos.');
-            }
-        }
-
-        // --- 2. Validación accesible en el frontend ---
-        const form = document.getElementById('kyosei-inscripcion-form');
-        form.addEventListener('submit', function(e) {
-            if (!form.checkValidity()) {
-                e.preventDefault();
-                
-                if (typeof anunciar === 'function') {
-                    anunciar('El formulario contiene errores. Por favor, revisá los campos obligatorios marcados.', 'assertive');
+        // Función para limpiar mensajes de error dinámicos
+        const limpiarErrores = () => {
+            const mensajesError = form.querySelectorAll('.error-dinamico');
+            mensajesError.forEach(msg => msg.remove());
+            
+            const inputsInvalidos = form.querySelectorAll('[aria-invalid="true"]');
+            inputsInvalidos.forEach(input => {
+                input.removeAttribute('aria-invalid');
+                const describedBy = input.getAttribute('aria-describedby');
+                if (describedBy) {
+                    input.setAttribute('aria-describedby', describedBy.replace(input.id + '-error', '').trim());
                 }
-                
-                // Mover el foco al primer elemento inválido para guiar al usuario
-                const firstInvalid = form.querySelector(':invalid');
-                if (firstInvalid) {
-                    // Si el elemento inválido es un radio button, hacer focus al primer radio del grupo
-                    if(firstInvalid.type === 'radio') {
-                        const radioGroup = form.querySelectorAll(`input[name="${firstInvalid.name}"]`);
-                        if(radioGroup.length > 0) radioGroup[0].focus();
+            });
+        };
+
+        // Interceptamos el envío del formulario para usar Fetch API y evitar la redirección a JSON
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            limpiarErrores();
+
+            // 1. Validación accesible robusta (WCAG 3.3.1 / 3.3.3)
+            if (!form.checkValidity()) {
+                if (typeof anunciar === 'function') {
+                    anunciar('El formulario contiene errores. Por favor, revisá los campos obligatorios indicados.', 'assertive');
+                }
+
+                let primerInvalido = null;
+
+                Array.from(form.elements).forEach(elemento => {
+                    if (elemento.willValidate && !elemento.validity.valid) {
+                        elemento.setAttribute('aria-invalid', 'true');
+                        
+                        // Crear mensaje de error dinámico con el mensaje nativo del navegador
+                        const idError = elemento.id + '-error';
+                        const spanError = document.createElement('span');
+                        spanError.id = idError;
+                        spanError.className = 'error-dinamico';
+                        spanError.style.color = '#dc3545';
+                        spanError.style.fontSize = '0.85rem';
+                        spanError.style.display = 'block';
+                        spanError.style.marginTop = '0.4rem';
+                        spanError.textContent = '❌ ' + elemento.validationMessage;
+
+                        // Insertar mensaje cerca del campo o grupo (para los radios)
+                        if (elemento.type === 'radio') {
+                            const fieldset = elemento.closest('fieldset');
+                            if (!fieldset.querySelector('#' + idError)) {
+                                fieldset.appendChild(spanError);
+                            }
+                        } else {
+                            elemento.parentNode.appendChild(spanError);
+                            // Vincular el error al atributo aria-describedby del input
+                            const currentDesc = elemento.getAttribute('aria-describedby') || '';
+                            elemento.setAttribute('aria-describedby', (currentDesc + ' ' + idError).trim());
+                        }
+
+                        if (!primerInvalido) primerInvalido = elemento;
+                    }
+                });
+
+                // Mover el foco al primer elemento con error
+                if (primerInvalido) {
+                    if (primerInvalido.type === 'radio') {
+                        const radioGroup = form.querySelectorAll(`input[name="${primerInvalido.name}"]`);
+                        if (radioGroup.length > 0) radioGroup[0].focus();
                     } else {
-                        firstInvalid.focus();
+                        primerInvalido.focus();
                     }
                 }
+                return; // Detener la ejecución si hay errores
             }
+
+            // 2. Envío por Fetch API en segundo plano
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const btnTextoOriginal = submitBtn.textContent;
+            submitBtn.textContent = 'Procesando inscripción...';
+            submitBtn.disabled = true;
+            
+            if (typeof anunciar === 'function') {
+                anunciar('Procesando inscripción, por favor aguardá...', 'polite');
+            }
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Ocurrió un error de comunicación con el servidor.');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    statusContainer.innerHTML = '<div class="alert alert-success" role="status" tabindex="-1" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;"><p>¡Inscripción exitosa! Tus datos han sido guardados. Te contactaremos a la brevedad para finalizar el proceso de pago.</p></div>';
+                    form.reset(); // Limpiamos el formulario tras un éxito
+                    if (typeof anunciar === 'function') {
+                        anunciar('Inscripción exitosa. Tus datos han sido guardados correctamente.', 'assertive');
+                    }
+                } else {
+                    throw new Error(data.error || 'Error procesando los datos.');
+                }
+            })
+            .catch(error => {
+                statusContainer.innerHTML = `<div class="alert alert-error" role="alert" tabindex="-1" style="background-color: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;"><p>Ocurrió un error: ${error.message}. Revisá tus datos e intentá nuevamente.</p></div>`;
+                if (typeof anunciar === 'function') {
+                    anunciar('Error al procesar la inscripción. ' + error.message, 'assertive');
+                }
+            })
+            .finally(() => {
+                submitBtn.textContent = btnTextoOriginal;
+                submitBtn.disabled = false;
+                
+                // Mover el foco visual al mensaje resultante para lectura inmediata
+                const cajaAlerta = statusContainer.querySelector('div');
+                if(cajaAlerta) {
+                    cajaAlerta.focus();
+                    cajaAlerta.style.outline = 'none'; // Evita el borde feo azul de focus en cajas de texto no interactivas
+                }
+            });
         });
     });
 </script>

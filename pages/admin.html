@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel de Alumnos — Kyosei</title>
+  <link rel="icon" type="image/x-icon" href="img/iconologo.ico">
+  <!-- Bootstrap + icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <div id="header"></div>
+  
+  <main class="container my-5 pt-4" aria-labelledby="titulo-admin">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 id="titulo-admin" class="display-5 fw-bold text-danger">Panel de Alumnos Inscritos</h1>
+      <button class="btn btn-outline-primary" onclick="actualizarTabla()" aria-label="Actualizar tabla de alumnos">
+        <i class="bi bi-arrow-clockwise me-1"></i> Actualizar
+      </button>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card bg-primary text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title" id="total-alumnos">0</h4>
+                <p class="card-text">Total Alumnos</p>
+              </div>
+              <div class="align-self-center">
+                <i class="bi bi-people-fill fs-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-success text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title" id="paypal-count">0</h4>
+                <p class="card-text">PayPal</p>
+              </div>
+              <div class="align-self-center">
+                <i class="bi bi-paypal fs-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-info text-white">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title" id="mercado-count">0</h4>
+                <p class="card-text">Mercado Pago</p>
+              </div>
+              <div class="align-self-center">
+                <i class="bi bi-credit-card fs-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-warning text-dark">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <div>
+                <h4 class="card-title" id="moodle-count">0</h4>
+                <p class="card-text">Taller Moodle</p>
+              </div>
+              <div class="align-self-center">
+                <i class="bi bi-laptop fs-1"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Filtros</h5>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="filtro-curso" class="form-label">Curso</label>
+            <select id="filtro-curso" class="form-select" onchange="aplicarFiltros()">
+              <option value="">Todos los cursos</option>
+              <option value="Taller Moodle Accesible">Taller Moodle Accesible</option>
+              <option value="Curso Introductorio Accesibilidad">Curso Introductorio Accesibilidad</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="filtro-pago" class="form-label">Método de pago</label>
+            <select id="filtro-pago" class="form-select" onchange="aplicarFiltros()">
+              <option value="">Todos los métodos</option>
+              <option value="PayPal">PayPal</option>
+              <option value="Mercado Pago">Mercado Pago</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="filtro-buscar" class="form-label">Buscar</label>
+            <input type="text" id="filtro-buscar" class="form-control" placeholder="Nombre, email o país..." onkeyup="aplicarFiltros()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estado de carga -->
+    <div id="estado-carga" class="text-center py-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando alumnos...</span>
+      </div>
+      <p class="mt-2 text-muted">Cargando alumnos...</p>
+    </div>
+
+    <!-- Tabla de alumnos -->
+    <div class="table-responsive" id="contenedor-tabla" style="display: none;">
+      <table class="table table-bordered table-hover align-middle" id="tablaAlumnos">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>  
+            <th scope="col">
+              <button class="btn btn-link text-white p-0 text-decoration-none" onclick="ordenarTabla('nombre')">
+                Nombre <i class="bi bi-arrow-down-up"></i>
+              </button>
+            </th>
+            <th scope="col">
+              <button class="btn btn-link text-white p-0 text-decoration-none" onclick="ordenarTabla('apellido')">
+                Apellido <i class="bi bi-arrow-down-up"></i>
+              </button>
+            </th>
+            <th scope="col">Edad</th>
+            <th scope="col">País</th>
+            <th scope="col">Email</th>
+            <th scope="col">WhatsApp</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Método de pago</th>
+            <th scope="col">
+              <button class="btn btn-link text-white p-0 text-decoration-none" onclick="ordenarTabla('fecha')">
+                Fecha <i class="bi bi-arrow-down-up"></i>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="tabla-alumnos">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div id="mensaje-error" class="alert alert-danger d-none" role="alert">
+      <i class="bi bi-exclamation-triangle me-2"></i>
+      <span id="texto-error"></span>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Cargar header y footer -->
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("header").innerHTML = html; });
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => { document.getElementById("footer").innerHTML = html; });
+  </script>
+  
+  <!-- Lógica del panel administrativo -->
+  <script>
+    let datosAlumnos = [];
+    let datosOriginales = [];
+    let ordenActual = { campo: 'fecha', direccion: 'desc' };
+
+    function mostrarError(mensaje) {
+      const errorDiv = document.getElementById("mensaje-error");
+      const textoError = document.getElementById("texto-error");
+      textoError.textContent = mensaje;
+      errorDiv.classList.remove('d-none');
+      
+      document.getElementById("estado-carga").style.display = "none";
+      document.getElementById("contenedor-tabla").style.display = "none";
+    }
+
+    function ocultarError() {
+      document.getElementById("mensaje-error").classList.add('d-none');
+    }
+
+    function actualizarEstadisticas(datos) {
+      const totalAlumnos = datos.length;
+      const paypalCount = datos.filter(a => a.metodo_pa === 'PayPal').length;
+      const mercadoCount = datos.filter(a => a.metodo_pa === 'Mercado Pago').length;
+      const moodleCount = datos.filter(a => a.curso === 'Taller Moodle Accesible').length;
+
+      document.getElementById('total-alumnos').textContent = totalAlumnos;
+      document.getElementById('paypal-count').textContent = paypalCount;
+      document.getElementById('mercado-count').textContent = mercadoCount;
+      document.getElementById('moodle-count').textContent = moodleCount;
+    }
+
+    function renderizarTabla(datos) {
+      const tbody = document.getElementById("tabla-alumnos");
+      tbody.innerHTML = "";
+      
+      if (datos.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" class="text-muted text-center">No se encontraron alumnos con los filtros aplicados.</td></tr>`;
+        return;
+      }
+
+      datos.forEach((alumno, index) => {
+        const fila = `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${alumno.nombre}</td>
+            <td>${alumno.apellido}</td>
+            <td>${alumno.edad}</td>
+            <td>${alumno.pais}</td>
+            <td><a href="mailto:${alumno.email}" class="text-decoration-none">${alumno.email}</a></td>
+            <td><a href="https://wa.me/${alumno.whatsapp.replace(/\D/g, '')}" target="_blank" class="text-decoration-none">${alumno.whatsapp}</a></td>
+            <td><span class="badge bg-info">${alumno.curso}</span></td>
+            <td><span class="badge ${alumno.metodo_pa === 'PayPal' ? 'bg-primary' : 'bg-success'}">${alumno.metodo_pa}</span></td>
+            <td>${alumno.fecha}</td>
+          </tr>
+        `;
+        tbody.innerHTML += fila;
+      });
+    }
+
+    function aplicarFiltros() {
+      const filtroCurso = document.getElementById('filtro-curso').value;
+      const filtroPago = document.getElementById('filtro-pago').value;
+      const filtroBuscar = document.getElementById('filtro-buscar').value.toLowerCase();
+
+      let datosFiltrados = [...datosOriginales];
+
+      if (filtroCurso) {
+        datosFiltrados = datosFiltrados.filter(alumno => alumno.curso === filtroCurso);
+      }
+
+      if (filtroPago) {
+        datosFiltrados = datosFiltrados.filter(alumno => alumno.metodo_pa === filtroPago);
+      }
+
+      if (filtroBuscar) {
+        datosFiltrados = datosFiltrados.filter(alumno => 
+          alumno.nombre.toLowerCase().includes(filtroBuscar) ||
+          alumno.apellido.toLowerCase().includes(filtroBuscar) ||
+          alumno.email.toLowerCase().includes(filtroBuscar) ||
+          alumno.pais.toLowerCase().includes(filtroBuscar)
+        );
+      }
+
+      datosAlumnos = datosFiltrados;
+      renderizarTabla(datosAlumnos);
+      actualizarEstadisticas(datosAlumnos);
+    }
+
+    function ordenarTabla(campo) {
+      if (ordenActual.campo === campo) {
+        ordenActual.direccion = ordenActual.direccion === 'asc' ? 'desc' : 'asc';
+      } else {
+        ordenActual.campo = campo;
+        ordenActual.direccion = 'asc';
+      }
+
+      datosAlumnos.sort((a, b) => {
+        let valorA = a[campo];
+        let valorB = b[campo];
+
+        if (campo === 'edad') {
+          valorA = parseInt(valorA);
+          valorB = parseInt(valorB);
+        } else if (campo === 'fecha') {
+          valorA = new Date(a.fecha);
+          valorB = new Date(b.fecha);
+        } else {
+          valorA = valorA.toLowerCase();
+          valorB = valorB.toLowerCase();
+        }
+
+        if (ordenActual.direccion === 'asc') {
+          return valorA > valorB ? 1 : -1;
+        } else {
+          return valorA < valorB ? 1 : -1;
+        }
+      });
+
+      renderizarTabla(datosAlumnos);
+    }
+
+    function cargarAlumnos() {
+      document.getElementById("estado-carga").style.display = "block";
+      document.getElementById("contenedor-tabla").style.display = "none";
+      ocultarError();
+
+      fetch("https://kyoseiaccesibilidad.com/backend/listar_alumnos.php")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Respuesta del servidor:', data);
+          
+          if (data.success && Array.isArray(data.data)) {
+            datosOriginales = [...data.data];
+            datosAlumnos = [...data.data];
+            
+            document.getElementById("estado-carga").style.display = "none";
+            document.getElementById("contenedor-tabla").style.display = "block";
+            
+            renderizarTabla(datosAlumnos);
+            actualizarEstadisticas(datosAlumnos);
+          } else {
+            throw new Error(data.error || 'Respuesta del servidor no válida');
+          }
+        })
+        .catch(error => {
+          console.error("Error al cargar alumnos:", error);
+          mostrarError(`Error al obtener alumnos: ${error.message}`);
+        });
+    }
+
+    function actualizarTabla() {
+      cargarAlumnos();
+    }
+
+    // Cargar alumnos al iniciar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarAlumnos();
+    });
+  </script>
+</body>
+</html>
