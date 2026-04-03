@@ -5,25 +5,39 @@ header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json; charset=utf-8');
 
-// Configuración de errores para PRODUCCIÓN
-// En producción, display_errors debe ser 0 para no romper el JSON ni exponer rutas.
-error_reporting(E_ALL);
-ini_set('display_errors', 0); 
-ini_set('log_errors', 1); // Asegura que los errores se guarden en el log de tu hosting
+// --- DETECCIÓN AUTOMÁTICA DE ENTORNO ---
+$es_local = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']);
 
-$host = "localhost";
-$user = "u419252749_admin";
-$password = "6x3>IS^4xB*";
-$database = "u419252749_alumnos";
+if ($es_local) {
+    // Entorno de Desarrollo (Localhost)
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1); // Mostramos errores para facilitar el debug
+    
+    $host = "localhost";
+    $user = "root";
+    $password = ""; // Por defecto XAMPP no tiene contraseña
+    $database = "kyosei_local";
+} else {
+    // Entorno de Producción (Hostinger)
+    error_reporting(E_ALL);
+    ini_set('display_errors', 0); // Ocultamos errores para no romper el JSON ni exponer rutas
+    ini_set('log_errors', 1);     // Los errores se guardan en el log del hosting
+    
+    $host = "localhost";
+    $user = "u419252749_admin";
+    $password = "6x3>IS^4xB*";
+    $database = "u419252749_alumnos";
+}
 
 try {
+    // Conectar a la base de datos usando las credenciales dinámicas
     $conn = new mysqli($host, $user, $password, $database);
     
     if ($conn->connect_error) {
         throw new Exception("Error de conexión a la base de datos.");
     }
     
-    $conn->set_charset("utf8mb4");
+    $conn->set_charset("utf8mb4"); // utf8mb4 previene problemas con caracteres especiales y emojis
 
     // --- PAGINACIÓN ---
     // Recibimos parámetros por GET (ej: listar_alumnos.php?limit=20&offset=0)
@@ -36,7 +50,7 @@ try {
     $resultTotal = $conn->query($sqlTotal);
     $totalRegistros = $resultTotal->fetch_assoc()['total_registros'];
 
-    // 2. Consulta principal con LIMIT y OFFSET usando Prepared Statements
+    // 2. Consulta principal con LIMIT y OFFSET usando Prepared Statements (Seguridad contra inyección SQL)
     $sql = "SELECT 
                 id_alumno, 
                 nombre, 
@@ -63,7 +77,7 @@ try {
     
     $alumnos = [];
     while ($row = $result->fetch_assoc()) {
-        // Formatear método de pago
+        // Formatear método de pago para que sea amigable en la lectura
         $metodoPagoTexto = '';
         switch($row['metodo_pa']) {
             case 'paypal':
@@ -109,7 +123,7 @@ try {
     http_response_code(500);
     echo json_encode([
         "success" => false,
-        "error" => $e->getMessage(), // Mensaje seguro, no expone rutas del servidor
+        "error" => $es_local ? $e->getMessage() : "Ocurrió un error interno en el servidor.", // Protegemos detalles en producción
         "data" => []
     ], JSON_UNESCAPED_UNICODE);
 } finally {

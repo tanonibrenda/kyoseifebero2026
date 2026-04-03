@@ -140,7 +140,12 @@
         <section class="contact-section" aria-labelledby="form-heading">
             <h2 id="form-heading" class="sr-only">Formulario de inscripción y pago</h2>
             
-            <form action="https://kyoseiaccesibilidad.com/backend/guardar_alumno.php" method="POST" id="kyosei-inscripcion-form" class="accessible-form" novalidate>
+<!-- action="https://kyoseiaccesibilidad.com/backend/guardar_alumno.php"   para cambiar a form cuando se publique -->
+
+            <form 
+            
+            action="/backend/guardar_alumno.php"
+            method="POST" id="kyosei-inscripcion-form" class="accessible-form" novalidate>
                 
                 <p class="form-instructions">Todos los campos marcados con un asterisco (<span aria-hidden="true" class="req-mark">*</span><span class="sr-only">asterisco</span>) son obligatorios.</p>
 
@@ -188,8 +193,8 @@
                         <label for="curso">Curso <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></label>
                         <select id="curso" name="curso" required>
                             <option value="" disabled selected>Seleccioná un curso...</option>
-                            <option value="Taller Moodle Accesible">Taller Moodle Accesible con IA</option>
-                            <option value="Curso Introductorio Accesibilidad">Crece en Instagram con Accesibilidad y SEO</option>
+                            <option value="Taller Moodle Accesible con IA">Taller Moodle Accesible con IA</option>
+                            <option value="Crece en Instagram con Accesibilidad y SEO">Crece en Instagram con Accesibilidad y SEO</option>
                         </select>
                     </div>
 

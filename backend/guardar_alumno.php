@@ -1,9 +1,15 @@
 <?php
 // Habilitar CORS si es necesario
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
+
+// --- NUEVO: Manejar la petición preflight (OPTIONS) de CORS ---
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 // Activar reporte de errores para debugging
 error_reporting(E_ALL);
@@ -20,7 +26,7 @@ function enviarEmails($datosAlumno) {
     $pais = $datosAlumno['pais'];
     $edad = $datosAlumno['edad'];
     
-    // Email de confirmación para el alumno (MEJORADO)
+    // Email de confirmación para el alumno
     $asuntoAlumno = "Confirmación de inscripción - Kyosei Accesibilidad";
     $mensajeAlumno = "
     <html>
@@ -113,21 +119,32 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die(json_encode(["success" => false, "error" => "Método no permitido. Solo se acepta POST"]));
 }
 
-// Configuración de la base de datos
-$host = "localhost";
-$user = "u419252749_admin";
-$password = "6x3>IS^4xB*";
-$database = "u419252749_alumnos";
+// --- DETECCIÓN AUTOMÁTICA DE ENTORNO ---
+$es_local = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']);
+
+if ($es_local) {
+    // Credenciales de tu computadora (XAMPP)
+    $host = "localhost";
+    $user = "root";
+    $password = ""; // Por defecto XAMPP no tiene contraseña
+    $database = "kyosei_local";
+} else {
+    // Credenciales de producción (Hostinger)
+    $host = "localhost";
+    $user = "u419252749_admin";
+    $password = "6x3>IS^4xB*";
+    $database = "u419252749_alumnos";
+}
 
 try {
-    // Conectar a la base de datos
+    // Conectar a la base de datos usando las credenciales detectadas
     $conn = new mysqli($host, $user, $password, $database);
     
     if ($conn->connect_error) {
         throw new Exception("Error de conexión a la base de datos.");
     }
     
-    $conn->set_charset("utf8");
+    $conn->set_charset("utf8mb4"); // utf8mb4 es más seguro y soporta emojis
     
     $campos_requeridos = ['nombre', 'apellido', 'edad', 'pais', 'email', 'whatsapp', 'curso', 'pago'];
     foreach ($campos_requeridos as $campo) {
@@ -152,7 +169,7 @@ try {
     if (strlen($pais) < 2 || strlen($pais) > 50) throw new Exception("El país debe tener entre 2 y 50 caracteres.");
     if (strlen($whatsapp) < 10 || strlen($whatsapp) > 20) throw new Exception("El número de WhatsApp debe tener entre 10 y 20 caracteres.");
     
-    // CORRECCIÓN CRÍTICA: Los cursos permitidos ahora coinciden con la oferta real
+    // Validamos exactamente contra los 'values' enviados desde el HTML
     $cursos_permitidos = [
         'Taller Moodle Accesible con IA', 
         'Crece en Instagram con Accesibilidad y SEO'
