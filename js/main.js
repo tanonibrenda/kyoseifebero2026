@@ -745,33 +745,43 @@ function inicializarFormularioInscripcion() {
         }
         anunciar('Procesando inscripción, por favor aguardá…', 'polite');
 
-        fetch(form.action, {
+     fetch(form.action, {
             method: 'POST',
             body:   new FormData(form),
         })
-        .then((res) => {
+        .then(async (res) => {
             if (!res.ok) throw new Error('Error de comunicación con el servidor.');
-            return res.json();
-        })
-        .then((data) => {
-            if (data.success) {
-                mostrarEstado(
-                    'success',
-                    '¡Inscripción exitosa! Tus datos fueron guardados. Te contactaremos a la brevedad para finalizar el proceso de pago.'
-                );
-                anunciar('Inscripción exitosa. Tus datos han sido guardados correctamente.', 'assertive');
-                form.reset();
-                limpiarErrores();
+            
+            // Verificamos si Make devolvió texto o JSON para evitar errores de parseo
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const data = await res.json();
+                if (!data.success) throw new Error(data.error || 'Error procesando los datos.');
+                return data;
             } else {
-                throw new Error(data.error || 'Error procesando los datos.');
+                return await res.text(); // Make.com suele devolver "Accepted" en texto plano
             }
+        })
+        .then(() => {
+            // Entramos aquí si la promesa se resolvió correctamente (ya sea JSON exitoso o Texto "Accepted")
+            mostrarEstado(
+                'success',
+                '¡Inscripción exitosa! Tus datos fueron guardados. Te contactaremos a la brevedad para finalizar el proceso de pago.'
+            );
+            if (typeof anunciar === 'function') {
+                anunciar('Inscripción exitosa. Tus datos han sido guardados correctamente.', 'assertive');
+            }
+            form.reset();
+            limpiarErrores();
         })
         .catch((error) => {
             mostrarEstado(
                 'error',
                 `Ocurrió un error: ${error.message}. Revisá tus datos e intentá nuevamente.`
             );
-            anunciar('Error al procesar la inscripción. ' + error.message, 'assertive');
+            if (typeof anunciar === 'function') {
+                anunciar('Error al procesar la inscripción. ' + error.message, 'assertive');
+            }
         })
         .finally(() => {
             if (submitBtn) {
@@ -779,5 +789,4 @@ function inicializarFormularioInscripcion() {
                 submitBtn.disabled    = false;
             }
         });
-    });
-}
+    })}

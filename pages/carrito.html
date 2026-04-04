@@ -144,7 +144,7 @@
 
             <form 
             
-            action="/backend/guardar_alumno.php"
+            action="https://hook.us2.make.com/e8rrnk6jdr99oups80goc24cps82vudg"
             method="POST" id="kyosei-inscripcion-form" class="accessible-form" novalidate>
                 
                 <p class="form-instructions">Todos los campos marcados con un asterisco (<span aria-hidden="true" class="req-mark">*</span><span class="sr-only">asterisco</span>) son obligatorios.</p>
@@ -198,7 +198,7 @@
                         </select>
                     </div>
 
-                    <fieldset style="border: none; padding: 0; margin-top: 1.5rem;">
+                    <!-- <fieldset style="border: none; padding: 0; margin-top: 1.5rem;">
                         <legend style="font-weight: bold; margin-bottom: 0.5rem; color: var(--text-color);">Método de pago <span aria-hidden="true" class="req-mark">*</span><span class="sr-only">(campo requerido)</span></legend>
                         
                         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -211,7 +211,7 @@
                                 <label for="mercado" style="cursor: pointer; margin: 0;">Mercado Pago</label>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
                 </fieldset>
 
                 <button type="submit" class="btn-primary form-submit-btn">Inscribirse y Proceder al Pago</button>
@@ -279,133 +279,6 @@
 </footer>
 
 <script src="/js/main.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('kyosei-inscripcion-form');
-        const statusContainer = document.getElementById('form-status-message');
 
-        // Función para limpiar mensajes de error dinámicos
-        const limpiarErrores = () => {
-            const mensajesError = form.querySelectorAll('.error-dinamico');
-            mensajesError.forEach(msg => msg.remove());
-            
-            const inputsInvalidos = form.querySelectorAll('[aria-invalid="true"]');
-            inputsInvalidos.forEach(input => {
-                input.removeAttribute('aria-invalid');
-                const describedBy = input.getAttribute('aria-describedby');
-                if (describedBy) {
-                    input.setAttribute('aria-describedby', describedBy.replace(input.id + '-error', '').trim());
-                }
-            });
-        };
-
-        // Interceptamos el envío del formulario para usar Fetch API y evitar la redirección a JSON
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            limpiarErrores();
-
-            // 1. Validación accesible robusta (WCAG 3.3.1 / 3.3.3)
-            if (!form.checkValidity()) {
-                if (typeof anunciar === 'function') {
-                    anunciar('El formulario contiene errores. Por favor, revisá los campos obligatorios indicados.', 'assertive');
-                }
-
-                let primerInvalido = null;
-
-                Array.from(form.elements).forEach(elemento => {
-                    if (elemento.willValidate && !elemento.validity.valid) {
-                        elemento.setAttribute('aria-invalid', 'true');
-                        
-                        // Crear mensaje de error dinámico con el mensaje nativo del navegador
-                        const idError = elemento.id + '-error';
-                        const spanError = document.createElement('span');
-                        spanError.id = idError;
-                        spanError.className = 'error-dinamico';
-                        spanError.style.color = '#dc3545';
-                        spanError.style.fontSize = '0.85rem';
-                        spanError.style.display = 'block';
-                        spanError.style.marginTop = '0.4rem';
-                        spanError.textContent = '❌ ' + elemento.validationMessage;
-
-                        // Insertar mensaje cerca del campo o grupo (para los radios)
-                        if (elemento.type === 'radio') {
-                            const fieldset = elemento.closest('fieldset');
-                            if (!fieldset.querySelector('#' + idError)) {
-                                fieldset.appendChild(spanError);
-                            }
-                        } else {
-                            elemento.parentNode.appendChild(spanError);
-                            // Vincular el error al atributo aria-describedby del input
-                            const currentDesc = elemento.getAttribute('aria-describedby') || '';
-                            elemento.setAttribute('aria-describedby', (currentDesc + ' ' + idError).trim());
-                        }
-
-                        if (!primerInvalido) primerInvalido = elemento;
-                    }
-                });
-
-                // Mover el foco al primer elemento con error
-                if (primerInvalido) {
-                    if (primerInvalido.type === 'radio') {
-                        const radioGroup = form.querySelectorAll(`input[name="${primerInvalido.name}"]`);
-                        if (radioGroup.length > 0) radioGroup[0].focus();
-                    } else {
-                        primerInvalido.focus();
-                    }
-                }
-                return; // Detener la ejecución si hay errores
-            }
-
-            // 2. Envío por Fetch API en segundo plano
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const btnTextoOriginal = submitBtn.textContent;
-            submitBtn.textContent = 'Procesando inscripción...';
-            submitBtn.disabled = true;
-            
-            if (typeof anunciar === 'function') {
-                anunciar('Procesando inscripción, por favor aguardá...', 'polite');
-            }
-
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Ocurrió un error de comunicación con el servidor.');
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    statusContainer.innerHTML = '<div class="alert alert-success" role="status" tabindex="-1" style="background-color: #d4edda; color: #155724; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;"><p>¡Inscripción exitosa! Tus datos han sido guardados. Te contactaremos a la brevedad para finalizar el proceso de pago.</p></div>';
-                    form.reset(); // Limpiamos el formulario tras un éxito
-                    if (typeof anunciar === 'function') {
-                        anunciar('Inscripción exitosa. Tus datos han sido guardados correctamente.', 'assertive');
-                    }
-                } else {
-                    throw new Error(data.error || 'Error procesando los datos.');
-                }
-            })
-            .catch(error => {
-                statusContainer.innerHTML = `<div class="alert alert-error" role="alert" tabindex="-1" style="background-color: #f8d7da; color: #721c24; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem;"><p>Ocurrió un error: ${error.message}. Revisá tus datos e intentá nuevamente.</p></div>`;
-                if (typeof anunciar === 'function') {
-                    anunciar('Error al procesar la inscripción. ' + error.message, 'assertive');
-                }
-            })
-            .finally(() => {
-                submitBtn.textContent = btnTextoOriginal;
-                submitBtn.disabled = false;
-                
-                // Mover el foco visual al mensaje resultante para lectura inmediata
-                const cajaAlerta = statusContainer.querySelector('div');
-                if(cajaAlerta) {
-                    cajaAlerta.focus();
-                    cajaAlerta.style.outline = 'none'; // Evita el borde feo azul de focus en cajas de texto no interactivas
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
